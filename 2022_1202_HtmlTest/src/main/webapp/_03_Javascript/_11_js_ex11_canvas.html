@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#myCanvas{
+	border: 1px solid red;
+}
+
+
+</style>
+
+
+<script type="text/javascript">
+
+//init을 생성하는 이유 -> 재사용을 하기 위해서 
+//근데 window.onload는 한번만 사용하고 말꺼니깐 굳이 재사용성이 필요없다.
+//function init() {}
+
+/* 윈도우 (초기화 이벤트) */
+/* HTML내의 모든 요소(Element)의 배치가 완료되면.. */
+
+
+//window에서 load가 완료가 되면->function을 실행해라
+window.onload = function () {
+	
+	var myCanvas = document.getElementById("myCanvas"); // 도화지 내놔
+	var ctx = myCanvas.getContext("2d");				// 그리기 도구 내놔
+	
+	//사각형 
+	//선속성
+	ctx.strokeStyle="pur";
+	ctx.strokeRect(10, 10, 100, 100)
+	//면속성
+	ctx.fillStyle="rgb(255,255,0)";
+	ctx.fillRect(10, 10, 100, 100);
+
+
+
+
+
+};
+
+//확인
+
+
+</script>
+
+</head>
+<body>
+
+
+<canvas id="myCanvas" width="600" height="400">
+	이 브라우저는 Canvas를 지원하지 않습니다.
+</canvas>
+
+</body>
+</html>

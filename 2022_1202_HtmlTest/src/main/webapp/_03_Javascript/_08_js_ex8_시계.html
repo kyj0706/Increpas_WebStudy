@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+   span{
+       display: inline-block;
+   } 
+   
+   /* Multi-Selector (Group Selector) */
+   #hour,#minute,#second{
+      width: 34px;
+      height: 38px;
+      background: black;
+      color: white;   
+      
+      font-size: 28px;
+      font-weight: bold;  
+      text-align: center; 
+   }
+   
+   #ampm{
+   	  width: 60px;
+      height: 38px;
+      background: black;
+      color: red;   
+      
+      font-size: 28px;
+      font-weight: bold;  
+      text-align: center; 
+   
+   }
+   
+     #han{
+   	  width: 60px;
+      height: 38px;
+      background: black;
+      color: white;   
+      
+      font-size: 28px;
+      font-weight: bold;  
+      text-align: center; 
+   
+   }
+   
+   
+   .colon{
+   	  width: 17px;
+      height: 38px;
+      background: black;
+      color: white;  
+      
+      font-size: 28px;
+      font-weight: bold;  
+      text-align: center; 	
+   }
+   
+   /* span사이의 공백을 없애는 방법 */
+   body{
+      font-size: 0;
+   }
+
+</style>
+
+<script type="text/javascript">
+
+   /*  타이머
+       시간: 1/1000(milisecond)
+       
+       setTimeout(함수,시간)   : 지정시간경과후 함수호출(1회만 호출)
+       setInterval(함수,시간)  : 지정시간경과후 지속적으로 함수호출
+       clearInterval(timer)    : 타이머 중지
+   */
+   
+   //방법1
+   /*
+   setTimeout(myTimer, 1000);
+       
+   function myTimer(){
+	   console.log('1초후 호출된다');
+	   setTimeout(myTimer, 1000);
+   } 
+   */
+   
+   //방법2
+   /*
+   var timer = setInterval(myTimer2,1000);
+   var count= 0;
+   function myTimer2(){
+	   count++;
+	   console.log(count);	
+	   
+	   if(count>=10){
+		   clearInterval(timer);//타이머 중지
+	   }
+   }
+   */
+   
+   setTimeout(display_digital,0);
+   
+   //시간을 주기적으로 얻어서 출력할 수 있는 타이머 구동
+   setInterval(display_digital , 500);
+   
+   var bColon = true;
+   
+   function display_digital(){
+	   
+	   //현재시간 구하기
+	   var now = new Date();
+	   var ampm;
+	 
+	   
+	   
+	   //시분초 얻어오기
+	   var hour   = now.getHours();
+	   var minute = now.getMinutes(); 
+	   var second = now.getSeconds();
+	   
+	   ampm = (hour < 12) ? '오전' : '오후';
+	   /* now.getHours()%12; 는 0~*/
+	   hour = hour%12;
+	   
+	   //1자리면 2자리로 만들어서 출력  ??? 넌 뭐야 ? 
+	   if( hour<10 )  hour   = '0' + hour;
+	   if(minute<10)  minute = '0' + minute;
+	   if(second<10)  second = '0' + second;
+
+	   
+	   
+	   var h_arr = ['한시','두시','세시','네시','오시','육시','칠시','팔시','구시','십시','십일시','십이시'];
+	   
+	   hour = hour -1 ;  
+	   //hour_str = hour.toString();
+	   //hour_str = hour_str.substring(1,3 );
+	   hour_int = parseInt(hour);
+	 	//console.log(hour==h_arr[1]);
+	   //console.log(h_arr[1]);
+	   
+	   //console.log((hour_int)===(h_arr[1]));
+	   //h_arr_str= h_arr.toString();
+	   
+	   
+	 //한글 출력 
+	   var han;
+		   //console.log(han);
+		   //console.log(h_arr[1]==hour);
+	  
+	  
+	   
+	   
+		   
+		   
+		   
+		  
+	   
+		   //console.log(h_arr[0]==hour_str);
+		  //console.log(hour_str);
+		  //console.log(h_arr_str);
+	   
+	  
+	   
+	   //console.log(h_arr.length==hour);
+	   
+	   
+	   //console.log(hour,minute,second);
+	   
+	   //콜론의 색상을 변경
+	   bColon = !bColon;
+	   //console.log(bColon);
+	 
+	   var colon_array = document.getElementsByClassName("colon");
+	   
+	   colon_array[0].style.color = bColon ? 'white' : 'red';
+	   colon_array[1].style.color = bColon ? 'red' : 'white';
+	   
+	   
+	   //시분초를 해당 span위치에 넣는다
+	   document.getElementById("hour").innerHTML   = hour;
+	   document.getElementById("minute").innerHTML = minute;
+	   document.getElementById("second").innerHTML = second;
+	   document.getElementById("ampm").innerHTML = ampm;
+	   document.getElementById("han").innerHTML= han;
+		  
+	   
+   }
+</script>
+
+
+
+   
+
+</head>
+<body>
+
+
+
+<span id="hour"></span>
+<span class="colon">:</span>
+<span id="minute"></span>
+<span class="colon">:</span>
+<span id="second"></span>
+<span id="ampm" class="ampm"></span>
+<span id="han"></span>
+
+
+
+</body>
+</html>

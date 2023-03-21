@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#disp{
+		width: 150px;
+		height: 300px;
+		background: black;
+		color: white;
+		padding: 10px;
+	}
+
+
+</style>
+
+<script type="text/javascript">
+	
+	//2~9사이의 숫자 체크 정규식(Regular Expression)
+	//정규식 패턴
+	// ^ 	 : 시작 
+	// $ 	 : 끝
+	// {n}	 : 숫자릿수
+	// {n,m} : n~m자리
+	// {n,}  : n자리 이상
+	// +	 : 1~n자리
+	// *	 : 0~n
+	//  ?	 : 0 or 1
+	var regular_dan = /^[2-9]{1}$/; 
+	
+
+
+
+	function res_gugudan() {
+		//alert('구구단 출력하기');
+		
+		//입력한 dan값을 얻어오기
+		var dan = document.getElementById("dan").value;
+		
+		if(regular_dan.test(dan)==false){
+			alert('입력:['+dan+'] ▶'+ '2~9사이의 숫자만 입력하세요');
+			document.getElementById("dan").value = '';//값지우기
+			document.getElementById("dan").focus();
+			return;
+		}
+		
+		
+		//alert(dan+"단 출력");
+		var res = "["+dan+"]" + " 단<br>";
+		
+		/*
+		res += (dan + "x" + 1 + "=" + (dan*1)+ "<br>");
+		res += (dan + "x" + 2 + "=" + (dan*2)+ "<br>");
+		res += (dan + "x" + 3 + "=" + (dan*3)+ "<br>");
+		res += (dan + "x" + 4 + "=" + (dan*4)+ "<br>");
+		res += (dan + "x" + 5 + "=" + (dan*5)+ "<br>");
+		res += (dan + "x" + 6 + "=" + (dan*6)+ "<br>");
+		res += (dan + "x" + 7 + "=" + (dan*7)+ "<br>");
+		res += (dan + "x" + 8 + "=" + (dan*8)+ "<br>");
+		res += (dan + "x" + 9 + "=" + (dan*9)+ "<br>");
+		*/
+		for(var i=1; i<=9; i++){
+			res += (dan + "x" + i + "=" + (dan*i)+ "<br>");
+			
+		}
+		
+
+		//결과출력
+		document.getElementById("disp").innerHTML = res;
+		document.getElementById("dan").value = '';//값지우기
+		document.getElementById("dan").focus();
+	}
+	
+
+</script>
+
+</head>
+<body>
+
+단 : <input type="text" id="dan" placeholder="구구단 단수를 입력하세요">
+<input type="button" value="결과보기" onclick="res_gugudan();">
+<hr>
+
+<div id="disp">여기에 구구단 출력</div>
+
+</body>
+</html>

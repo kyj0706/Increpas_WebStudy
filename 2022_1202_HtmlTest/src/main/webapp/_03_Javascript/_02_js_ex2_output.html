@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+	//변수선언시 var or let 사용
+	var w = window.innerWidth;
+	var h = window.innerHeight;
+	
+	//javascript debugging
+	var msg = "w:" + w + "h:"+ h;
+	
+	//출력방법
+	console.log(msg);
+	//alert(msg);
+	document.write(msg);
+	
+	// var vs let 차이점
+	// data type : Number String Data
+	
+	
+	//변수 자료형이 불명확하다
+	var a =10;
+	//var a =안녕;
+	console.log(a);
+	
+	//지역변수에서 사용되고 var문제점을 보안한 변수형식 
+	//let b =10;
+	let b =20;
+	console.log(b);
+	
+	//상수선언
+	const PI = 3.1;
+	
+	//PI = 3.141592;
+	
+	
+	
+	
+	/*html 은 인터프리터 언어이다.
+	위에서 아래로 순차적으로 진행되기 때문에 해당의 결과는 되지 않는다.
+	why? w h가 아직 만들어 지지도 않았는데 뭘하라는 말이야 ? 라는 의미*/
+	
+	//span tag 사이에 값 넣기 : innerHTML이용
+	//document.getElementById("w").innerHTML = w;
+	//documnet.getElementById("h").innerHTML = h;
+	
+	
+</script>
+
+</head>
+<body>
+<hr>
+브라우져 크기
+<hr>
+ 폭 : <span id="w"></span> <br>
+높이: <span id="h"></span> <br>
+
+<script type="text/javascript">
+	//span tag 사이에 값 넣기 : innerHTML이용
+	document.getElementById("w").innerHTML = w;
+	document.getElementById("h").innerHTML = h;
+
+</script>
+
+
+
+
+</body>
+</html>

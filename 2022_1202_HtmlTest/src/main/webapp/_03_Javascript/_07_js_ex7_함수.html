@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+  /* 함수생성 방법 */
+  
+  
+  //1.선언적방식 : 호이스팅(선언위치를 위쪽으로 배치)
+  function hello(){
+	  return "안녕하세요";
+  }
+  
+  document.write(hello() + "<br>");
+  
+  
+  //2.함수 리터럴(익명함수): 호이스팅이 안된다
+  var hi = function(){
+	  return "Hi Everyone";
+  };
+  //   상수 = 리터럴
+  const PI  = 3.14;    //숫자형 리터럴
+  const NAME= "내이름";//문자형 리터럴
+  
+  document.write(hi() + "<br>");
+  
+  //3.Arrow방식(람다식)
+  var plus1 = function(a,b){ return a+b;};
+  
+  var plus2 = (a,b)=> { return a+b } ;
+  
+  var plus3 = (a,b)=> a+b ;
+  
+  document.write( plus1(1,2)   + "<br>");
+  document.write( plus3(1,2)   + "<br>");
+  
+  
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

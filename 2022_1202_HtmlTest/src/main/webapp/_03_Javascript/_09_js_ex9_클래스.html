@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	
+	/* sataic 함수를 내장한 클래스 */
+	class MyMath 
+	{	
+		/* 클래스내부에서는 function를 사용하면 에러가 나온다. */
+		static plus(a,b){
+			return a+b;
+		}
+		
+		static max(a,b,c){
+			var big = (a > b) ? a : b;
+			big = c > big ? c : big;
+			
+			return big;
+		}
+	}
+	
+	/* 멤버변수를 갖는 클래스 설계 */
+	class MyDate {
+		constructor(year,month,day) {
+			this.year = year;
+			this.month = month;
+			this.day = day;
+		}
+	}
+	
+	var global_a;
+	
+	function test() 
+	{	
+		var local_a = 10;
+		//var생략하면 호이스팅발생
+		global_a=10;
+	}
+	
+</script>
+
+<script type="text/javascript">
+	
+	//var mm = new MyMath();
+	var result =  MyMath.plus(1,2);
+	
+	document.write(result+"<br>");
+	
+	result = MyMath.max(1,2,3);
+	document.write(result+"<br>");
+
+	document.write(Math.abs(-100)+"<br>");
+	document.write(Math.max(10,5)+"<br>");
+	document.write(Math.min(10,5)+"<br>");
+	document.write(Math.pow(2,3)+"<br>");
+	
+	
+	
+</script>
+
+</head>
+<body>
+
+
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- form tag
+		1. 서버로 폼요소를 전송시 사용되는 Tag
+		2. 속성(Attribute)
+			action = "" <- 전송대상 (생략시 자신에게 전송)
+			method = "" <- 선송방식 (GET or POST) [생략시 기본값 GET)
+ -->
+ <!-- 
+ 	_06_form_tag.html?name=홍길동&id=hong
+ 					 ?변수(Parameter)명=값 <- Query
+ 					 ?변수=1=값&변수2=값2
+ 
+ 
+  -->
+ 
+ 
+<h1>저기요 ~</h1>
+<form action="" method="get">
+	이름:<input type="text"  name="name"  placeholder="이름을 입력하세요"> <br>
+	아이디:<input type="text"  name="id" placeholder="아이디를 입력하세요"> <br>
+	비밀번호:<input type="password"  name="pw" placeholder="비밀번호를 입력하세요"> <br>
+	
+			<!-- radio 사용시 name을 동일하게 지정해야 [그룹화]가 된다. -->
+	성별 : <input type="radio" name="gender" value="남자" checked="checked"> 남자
+		   <input type="radio" name="gender" value="여자"> 여자
+	<br>
+			<!-- checkbox사용시 name을 동일하게 주면 서버측에서 배열로 1번에 받을 수 있다 ..
+				??? 
+			  -->
+	취미 : 
+		   <input type="checkbox" name="hoddy" value="독서">독서
+		   <input type="checkbox" name="hoddy" value="괴롭히기">괴롭히기
+		   <input type="checkbox" name="hoddy" value="영화">영화
+		   <input type="checkbox" name="hoddy" value="운동">운동  
+	<br>
+			<!-- name을 동일하게 주면 서버측에서 배열로 1번에 받을 수 있다.
+				type="text" 값기록유무와 상관없이 모두 넘어간다. 
+			 -->
+	
+	친구1: <input type="text" name="friend"><br>
+	친구2: <input type="text" name="friend"><br>
+	친구3: <input type="text" name="friend"><br>
+	친구4: <input type="text" name="friend"><br>
+	
+	혈액형: <select name="blood">
+				<option value="A">A형</option>
+				<option value="B">B형</option>
+				<option value="O">O형</option>
+				<option value="AB">AB형</option>
+			</select>
+	<br>	
+	자기소개<br>
+	<textarea name="profile" rows="5" cols="50"></textarea>
+	<br>
+	
+	<hr>
+		<font color="red" size="8">웹표준을 준수하지 않는 컨트롤[쓰지마]</font>
+		<font color="blue" size="3">모든 브라우저가 적용되는게 아니야</font>
+	<hr>
+	생년월일: <input type="date" name="birthday"><br>
+	종아하는색상<input type="color" name="RGB"><br>  
+	<hr>	  
+	
+	<input type="submit" value="서버로 전송 ">
+	<input type="reset" value="초기화">
+	<br>
+	
+	
+
+</form>
+
+
+</body>
+</html>

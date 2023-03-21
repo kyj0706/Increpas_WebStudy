@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//배열
+	document.write("'자바스크립트'와 '자바'가 같네<br>");
+	document.write('"자바스크립트"와 "자바"가 똑같지는 않네<br>');
+	
+	var fruit_array = ['사과','배','참외','수박'];
+	document.write("fruit_array's length: " + fruit_array.length+"<br>");
+	
+	document.write("--[첨자이용]--<br>");
+	for(var i=0;  i<fruit_array.length; i++){
+		document.write("fruit_array["+i+"]="+ fruit_array[i] +"<br>");
+	}
+	
+	document.write("----[for in(첨자를 변환)]----<br>")
+	for(var i in fruit_array){
+		//document.write(i+"<br>");
+		document.write("fruit_array["+i+"]="+ fruit_array[i] +"<br>");
+	}
+	
+	document.write("----[for in(요소값을 변환)]----<br>")
+	for(var fruit of fruit_array){
+		document.write(fruit+"<br>");
+	}
+	
+	
+
+</script>
+
+
+</head>
+<body>
+
+</body>
+</html>

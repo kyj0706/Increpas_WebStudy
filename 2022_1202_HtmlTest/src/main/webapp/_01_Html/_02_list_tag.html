@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <hr>
+     <h3>Ordered List(순서있는 목록)</h3>
+  <hr>
+	  <ol>
+	     <li>하나</li>
+	     <li>둘</li>
+	     <li>셋</li>
+	  </ol>
+  
+  <hr>
+     <h3>Unordered List(순서없는 목록)</h3>
+  <hr>
+  	  <ul  style="list-style: upper-alpha; ">
+  	      <li>서울</li>
+  	      <li>경기</li>
+  	      <li>인천</li>
+  	  </ul>
+  
+  
+  <hr>
+     <h3>Dictionary List(사전목록)</h3>
+  <hr>
+      <!-- dictionary list -->
+  	  <dl> 						
+  	    <!-- dictionary title:제목 -->
+  	  	<dt>Html이란?</dt>		
+  	  	<!-- dictionary data :내용 -->
+  	  	<dd>HyperText Markup Language약자로 tag를 이용한 데이터 표현언어</dd>
+  	  	
+  	  	<dt>CSS란?</dt>
+  	  	<dd>Cascade Style Sheet약자로 데이터의 모양/상태을 표현하는 언어</dd>
+  	  	       		
+  	  	<dt>Javascript란?</dt>
+  	  	<dd>(Web)Browser의 제어용 언어(각종 요소제어 및 이벤트 처리)</dd>       		
+  	  </dl>	
+  	 
+  <hr>
+     Javascript 브라우져 제어예제
+  <hr>
+  <input type="button" value="닫기"  onclick="  self.close();   " >  
+  <br>
+  <br>
+  
+  <input type="button" value="보이기"  
+         onclick=" document.getElementById('d1').style.display = 'block';    " >
+  <input type="button" value="숨기기"  
+         onclick=" document.getElementById('d1').style.display = 'none'; " >
+  <br>  
+  <br>
+  <div id="d1" style="width: 100px;  height: 100px; background: red;"></div>
+  
+  
+  
+   
+</body>
+</html>

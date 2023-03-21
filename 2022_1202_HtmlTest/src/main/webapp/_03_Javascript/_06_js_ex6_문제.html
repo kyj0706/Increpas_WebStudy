@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//제약
+	//su1 su2 1~999까지 숫자만 허용(정규식)
+	var reg = /^[1-9]{1}[0-9]{0,2}$/;
+	
+	function plus() {
+		var su1 =parseInt(document.getElementById("su1").value);
+		var su2 =parseInt(document.getElementById("su2").value);
+		if(reg.test(su1)==false || reg.test(su2)==false){
+			alert("1~999만 입력");
+			document.getElementById("su1").value = '';//값지우기
+			document.getElementById("su2").value = '';//값지우기
+			document.getElementById("su1").focus()
+			return;
+		}
+		var res =su1 + su2;
+		
+		//결과출력
+		document.getElementById("result").value = res;
+	}
+	function minus() {
+		var su1 =parseInt(document.getElementById("su1").value);
+		var su2 =parseInt(document.getElementById("su2").value);
+		if(reg.test(su1)==false || reg.test(su2)==false){
+			alert("1~999만 입력");
+			document.getElementById("su1").value = '';//값지우기
+			document.getElementById("su2").value = '';//값지우기
+			document.getElementById("su1").focus()
+			return;
+		}
+		var res =su1 - su2;
+		//결과출력
+		document.getElementById("result").value = res;
+	}
+	function mutiply() {
+		var su1 =parseInt(document.getElementById("su1").value);
+		var su2 =parseInt(document.getElementById("su2").value);
+		if(reg.test(su1)==false || reg.test(su2)==false){
+			alert("1~999만 입력");
+			document.getElementById("su1").value = '';//값지우기
+			document.getElementById("su2").value = '';//값지우기
+			document.getElementById("su1").focus()
+			return;
+		}
+		var res =su1 * su2;
+		//결과출력
+		document.getElementById("result").value = res;
+	}
+	function divide() {
+		var su1 =parseInt(document.getElementById("su1").value);
+		var su2 =parseInt(document.getElementById("su2").value);
+		if(reg.test(su1)==false || reg.test(su2)==false){
+			alert("1~999만 입력");
+			document.getElementById("su1").value = '';//값지우기
+			document.getElementById("su2").value = '';//값지우기
+			document.getElementById("su1").focus()
+			return;
+		}
+		var res =su1 / su2;
+		//결과출력
+		document.getElementById("result").value = res;
+	}
+	function remain() {
+		var su1 =parseInt(document.getElementById("su1").value);
+		var su2 =parseInt(document.getElementById("su2").value);
+		if(reg.test(su1)==false || reg.test(su2)==false){
+			alert("1~999만 입력");
+			document.getElementById("su1").value = '';//값지우기
+			document.getElementById("su2").value = '';//값지우기
+			document.getElementById("su1").focus()
+			return;
+		}
+		var res =su1 % su2;
+		//결과출력
+		document.getElementById("result").value = res;
+	}
+	
+	
+
+</script>
+
+
+</head>
+<body>
+수1 : <input id="su1">
+수2 : <input id="su2"> 
+<hr>
+<input type="button" value="+" onclick="plus();">
+<input type="button" value="-" onclick="minus();">
+<input type="button" value="*" onclick="mutiply();">
+<input type="button" value="/" onclick="divide();">
+<input type="button" value="%" onclick="remain();">
+<hr>
+결과 : <input id="result">
+
+<!-- 테스트 하고 지울거 -->
+<input type="button" value="테스트" onclick="res_su();"> 
+
+
+</body>
+</html>

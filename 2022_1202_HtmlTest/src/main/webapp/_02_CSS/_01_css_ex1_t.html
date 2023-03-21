@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- 
+    CSS(Cascade Style Sheet)
+    : 연속(계속) style(모양/크기/색상) 적용하겠다
+    
+    ##사용방법##
+    1.inline방식    : element(tag)내에 직접 지정
+    2.선언적방식    : html문서 위쪽에 선언하고 사용
+    3.외부화일 link : css외부에 작성후 연결해서 사용
+ -->
+
+<!-- 선언적 방식 -->
+<style type="text/css">
+  
+  /* selector : CSS의 대상 선택 */
+  /* 1.Element Selector  */
+  p { 
+        /* property : value ; */
+        color: red ;
+        font-family: 궁서체,굴림체,바탕체; 
+    }
+  /* 2.id Selector 
+       <p id="p1">      =>  #p1
+  */
+  #p1 {
+       color: blue;
+  } 
+  
+  /* 3. class Selector
+        <p class="c1">  => .c1  
+   */ 
+   .c1 {
+       color: green;
+   }
+   
+   /* 4.multi Selector */
+   div,p{
+      /* border: 1px solid yellow; */
+      /* 그림자 */
+      text-shadow: 1px 1px 2px black;
+   }
+
+</style>
+
+
+</head>
+<body>
+
+<!-- tag내의 속성 
+     name = "xxx" <- server로 전송되는 속성값
+     id   = "yyy" <- client에서만 사용될때(server로 전송되지 않는다)
+  -->
+
+<div>애국가</div>
+
+<p id="p1">동해물과</p>
+<p class="c1">남산위에</p>
+<p class="c1">가을하늘</p>
+<p>이기상과</p>
+
+<!-- inline방식 -->
+<p style="color: navy; ">후렴:무궁화 삼천리</p>
+
+</body>
+</html>

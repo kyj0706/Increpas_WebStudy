@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+#main_menu {
+	list-style: none;
+	text-align: center;
+}
+
+/* 자식요소 지정하는 selector 방법
+	부모 > 자식 : 바로 아래 요소만 해당
+	부모   자식 : 하위요소 모두 해당  
+
+
+ */
+#main_menu > li{
+	display: inline-block;
+}
+
+/* a <- inline요소 : 크기조절 불가능
+ */
+#main_menu > li > a{
+	border: 1px solid red;
+	display: block;
+	width:120px;
+	height: 30px;
+	text-decoration: none;
+	color: orange;
+	text-align: center;
+	
+	font-size: 20px;
+	font-weight: bold;
+	
+	/* box의 외부 간격 */
+	margin : 30px;
+}
+
+
+/* tag:hover <- 해당 tag에 마우스가 올라가면 */
+#main_menu > li > a:hover{
+	
+	color: blue;
+	border: 1px solid blue;
+}
+
+
+#main_menu > li > a:focus {
+	
+	color: red;
+	
+}
+
+
+
+
+
+
+
+
+
+

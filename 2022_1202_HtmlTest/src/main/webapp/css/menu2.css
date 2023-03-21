@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+table, tr,td,th{
+	border: 1px solid black;
+	border-collapse: collapse;
+	margin: auto;
+	text-shadow: 2px 2px 10px yellow;
+	 
+}
+th,td{
+	width: 120px;
+	height: 200px;
+}
+img{
+	width: 173px;
+	height: 125px;
+	box-shadow: 2px 2px 10px black;
+}
+
+
+
+.sub_menu{
+	list-style: none;
+	text-align: center;
+}
+
+.sub_menu > li >a{
+	border: 1px solid red;
+	display: block;
+	width:120px;
+	height: 30px;
+	text-decoration: none;
+	color: orange;
+	text-align: center;
+	
+	font-size: 20px;
+	font-weight: bold;
+	
+	/* box의 외부 간격 */
+	margin : 50px;
+	
+	box-shadow: 2px 2px 10px red;
+}
+
+.sub_menu >li > a:hover {
+	
+	color: navy; 
+	
+}
+
+.sub_menu2{
+	list-style: none;
+	text-align: center;
+}
+
+.sub_menu2 > li{
+	
+	display: inline-block;
+}
+
+.sub_menu2>li > a{
+	border: 1px solid orange;
+	display: block;
+	width:120px;
+	height: 30px;
+	text-decoration: none;
+	color: blue;
+	text-align: center;
+	
+	font-size: 20px;
+	font-weight: bold;
+	
+	/* box의 외부 간격 */
+	margin : 30px;
+	
+	box-shadow: 2px 2px 10px orange;
+}
+
+.sub_menu2>li > a:focus {
+	color: red;
+}
+
+
+
+#account{
+	border: 1px solid black; 
+	float: left;
+}
+#login{
+	border: 1px solid black;
+	float: left;
+}
+#account > login > li{
+	display: inline-block;
+	list-style: none;
+}
+
+
+#logout{
+	border: 1px solid black;
+	float: right;
+}
+
+#join{
+	border: 1px solid black; 
+	
+}
+
+

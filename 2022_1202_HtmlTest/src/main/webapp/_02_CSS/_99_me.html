@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+
+
+	
+	.container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+      }
+      .input {
+        width: 150px;
+        margin: 3px 0;
+      }
+      .input:focus {
+        animation-name: border-focus;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        border:solid ; 
+        
+      }
+      
+       @keyframes border-focus {
+        from {
+         
+          border-radius: 100%;
+          
+           
+        }
+        to {
+          border-radius: 0%;
+        }
+      }
+	
+
+	
+</style>
+
+</head>
+<body>
+<form action="#" method="get">
+    <div class="container">
+      <input class="input" name="id" placeholder="ID" />
+      <input class="input" name="pw" placeholder="PASSWORD" />
+      <input class="input" name="pw2" placeholder="PASSWORD AGAIN" />
+      <input class="input" name="em" placeholder="EMAIL" />
+      <input class="input" name="Pn" placeholder="PHONE NUMBER" />
+    </div>
+<div style="text-align: center;">
+<a href="./_03_수직메뉴.html"><input type="button" value="돌아가기"></a>
+<input type="submit" value="가입">
+<input type="reset" value="초기화">
+</div>
+</form>
+</body>
+</html>

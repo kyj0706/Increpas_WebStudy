@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+   
+   function bmi(){
+	   var body_length = document.getElementById("body_length").value;
+	   var body_weight = document.getElementById("body_weight").value;
+	   console.log(body_length);
+	   
+	   
+	   //입력조건 체크
+	   var body_length_m =body_length/100;
+	   var bmi = body_weight / (body_length_m ** 2);
+	   
+	   
+	   var body_state;
+	   if (bmi<18.5) body_state="저체중";
+	   else if (bmi>=18.5 && bmi<23) body_state="정상"; 
+	   else if (bmi>=23 && bmi<25) body_state="과체중"; 
+	   else if (bmi>=25) body_state="비만"; 
+	   
+	   var msg = "<h3>결과</h3><hr>"+"입력 신장 :"+ body_length+"(Cm)<br>" 
+	   			+"입력 무게 :"+body_weight+"(Kg)<br>"
+	   			+"BMI :" + bmi 
+	   			+"<br>상태 :" + body_state;
+		
+	
+	   
+	   document.getElementById("disp").innerHTML = msg;
+	   document.getElementById("body_length").value= '';
+	   document.getElementById("body_weight").value= '';
+	   document.getElementById("body_length").focus();
+	   
+	   
+   }
+ 
+</script>
+
+</head>
+<body>
+
+<hr>
+  <h3>BMI구하기</h3>
+<hr>
+신장:<input id="body_length"> <br>
+체중:<input id="body_weight"> <br>
+<input type="button"  value="BMI구하기"  onclick="bmi();">
+<hr>
+<div id="disp">BMI결과 출력</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//제약
+	//su1 su2 1~999까지 숫자만 허용(정규식)
+	var reg = /^[1-9]{1}[0-9]{0,2}$/;
+	
+	function claV(E) {
+/* 	function claV(s1,s2,E) { */
+		var su1 =parseInt(document.getElementById("su1").value);
+		var su2 =parseInt(document.getElementById("su2").value);
+		/* var su1 =parseInt(s1);
+		var su2 =parseInt(s2); */
+		
+		if(reg.test(su1)==false || reg.test(su2)==false){
+			alert("1~999사이 입력");
+			document.getElementById("su1").value = '';//값지우기
+			document.getElementById("su2").value = '';//값지우기
+			document.getElementById("result").value = '';//값지우기
+			document.getElementById("su1").focus()
+			return;
+		}
+		
+		switch (E) {
+		/* case "+": 	var res = su1 + su2; break; */
+		case "plus": 	var res = su1 + su2; break;
+		case "minus": 	var res = su1 - su2; break;
+		case "mutiply":	var res = su1 * su2; break;
+		case "divide": 	var res = su1 / su2; break;
+		case "remain":	var res = su1 % su2; break;
+		}
+		//결과출력
+		document.getElementById("result").value = res;
+	}
+</script>
+
+</head>
+<body>
+수1 : <input id="su1">
+수2 : <input id="su2"> 
+<hr>
+계산 : 
+<input type="button" value="+" onclick="claV('plus');">
+<!-- <input type="button" value="+" onclick="claV(su1.value, su2.value, this.value);"> -->
+<input type="button" value="-" onclick="claV('minus');">
+<input type="button" value="*" onclick="claV('mutiply');">
+<input type="button" value="/" onclick="claV('divide');">
+<input type="button" value="%" onclick="claV('remain');">
+<hr>
+결과 : <input id="result">
+
+
+
+</body>
+</html>

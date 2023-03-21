@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+/* 
+	## 자료형(DataType)
+	문자형 : String
+	숫자형 : Number
+	날짜형 : Date
+	논리형 : Boolean
+	
+	## 연산자(Operato) ##
+		:Java와 거의 유사함 
+*/
+
+//산술연산자 : + - */ %
+var a = 10;
+var b = 3;
+document.write("<h3>산술연산자</h3>");
+document.write(a + "+" +b+"="+(a+b)+"<br>");
+document.write(a + "-" +b+"="+(a-b)+"<br>");
+document.write(a + "*" +b+"="+(a*b)+"<br>");
+document.write(a + "/" +b+"="+(a/b)+"<br>");
+document.write(a + "/" +b+"="+Math.floor(a/b)+"<br>");
+document.write(a + "/" +b+"="+Math.round(a/b)+"<br>");
+document.write(a + "%" +b+"="+(a%b)+"<br>");
+document.write(a + "**" +b+"="+(a**b)+"<br>");
+
+document.write("<h3>관계연산자</h3>");
+document.write(a + ">" + b + ": " + (a>b) +"<br>" );
+document.write(a + ">=" + b + ": " + (a>=b) +"<br>" );
+document.write(a + "<" + b + ": " + (a<b) +"<br>" );
+document.write(a + "<=" + b + ": " + (a<=b) +"<br>" );
+document.write(a + "==" + b + ": " + (a==b) +"<br>" );
+document.write(a + "===" + b + ": " + (a===b) +"<br>" );
+document.write(a + "!=" + b + ": " + (a!=b) +"<br>" );
+ 
+var c = 3;
+var d = '3';
+ 
+// == : 값위주 체크
+document.write((c == d) + "<br>");
+//=== : 타입까지 체크를 한다. 
+document.write((c === d) + "<br>");
+
+document.write("<h3>bit연산자(잘사용 안하는)</h3>");
+document.write("10 >> 1=>"+ (10>>1)+"</br>");
+document.write("10 &  2=>"+ (10&2)+"</br>");
+
+//숫자에 연산
+var sum = 0;
+sum += 1;
+sum += 2;
+sum += 3;
+sum += 4;
+document.write("<h3>대입연산자</h3>");
+document.write(sum+"<br>");
+
+//문자에 연산
+var song1 ="";
+song1 += "동해물과";
+song1 += "백두산이";
+song1 += "마르고";
+song1 += "닳도록";
+document.write(song1+"<br>");
+
+
+
+
+</script>
+	
+</head>
+<body>
+
+</body>
+</html>

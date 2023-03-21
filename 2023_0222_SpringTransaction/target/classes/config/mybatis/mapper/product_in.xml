@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product_in">
+
+   <!-- 전체조회 -->
+   <select id="product_in_list"  resultType="vo.ProductVo">
+      select * from product_in order by idx 
+   </select>
+   
+   <!-- 1건조회 -->
+   <select id="product_in_one_idx"  parameterType="int"  
+                                    resultType="product">
+      select * from product_in where idx=#{ idx }
+   </select>
+   
+   <!-- 추가 -->
+   <insert id="product_in_insert"  parameterType="vo.ProductVo">
+      insert into product_in values(
+						            seq_product_in_idx.nextVal,
+						            #{ name },
+						            #{ cnt },
+						            sysdate
+      )
+   </insert>
+
+   <!-- 삭제  -->
+   <delete id="product_in_delete"  parameterType="int">
+      delete from product_in where idx=#{ idx } 
+   </delete>
+   
+   <!-- 수량만 수정 -->
+   <update id="product_in_update"  parameterType="vo.ProductVo">
+      update product_in set cnt = #{ cnt } 
+      where  idx=#{ idx }
+   </update>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

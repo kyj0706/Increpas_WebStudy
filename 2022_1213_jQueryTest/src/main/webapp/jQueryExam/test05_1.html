@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.title{
+	background: black;
+	color: white;
+	border: 1px dotted green;
+}
+</style>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	// 문서가 로딩된 후에 함수가 실행 
+	$(document).ready(function(){
+		// jquery : CSS에 사용하던 선택자를 
+		// 그대로 사용할수 있다. 
+		// id가 pwd 인 요소를 1px 실선 레드
+		
+		$("#pwd").css("border","1px solid red");
+	    //document.getElementById("pwd").style.border = "1px solid red"; 
+	
+		$("#id").css("border","1px solid blue");
+
+		// class row 인 요소를 찾아
+		// 초록색 점선으로 표시 
+		/* $(".row").css("border","1px dotted green")
+				 .css("background","black")
+		         .css("color","white"); */
+		         
+		// 미리 정의해놓은 CSS를 적용  
+		//  .title
+		$(".row").addClass("title");
+		         
+		         
+		$("input[type='submit']").css("border","1px solid blue");
+		
+		$("table").css("border","2px solid blue");
+	});
+</script>
+</head>
+<body>
+	<table>
+		<tr>
+			<th class="row">ID :</th>
+			<td>
+				<input type="text" id="id" />
+			</td>
+		</tr>
+		<tr>
+			<th class="row">PW :</th>
+			<td>
+			<input type="text" id="pwd" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<input type="submit" value="로그인" /> 
+			<input type="reset"  value="RESET" />
+			</td>
+		</tr>
+	</table>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.teamproject.Mapper.EventBoardMapper">
+		<!-- 게시글수 가져오기 -->
+	<select id="selectEventBoardCount" resultType="int">
+		select count(*) from event_board join fmanager using(fm_id) 
+	</select>
+	
+	
+	
+	<select id="selectEventBoardList" resultType="com.example.teamproject.Vo.EventBoardVo">
+			select eb_num,eb_title,eb_content,fm_name,finfo_name,to_char(eb_date,'yyyy-mm-dd hh:mi') eb_date,to_char(eb_start_date,'yyyy-mm-dd') eb_start_date,to_char(eb_end_date,'yyyy-mm-dd') eb_end_date,eb_hit,img_name from event_board join event_board_images using (eb_num)  join fmanager using(fm_id)
+			<if test='category == "1"'>
+				<where>
+					sysdate > eb_start_date and eb_end_date > sysdate
+				</where> 
+			</if>
+			<if test='category == "2"'>
+				<where>
+					sysdate > eb_end_date
+				</where> 
+			</if>
+			
+			order by eb_num desc 
+	</select>
+
+	<!-- 글쓰기 -->
+	<insert id="eventBoardInsert" >
+	<selectKey keyProperty="eb_num" order="BEFORE" resultType="int" >
+			select eb_seq.nextval from dual
+		</selectKey>
+		insert into event_board values(#{eb_num},#{eb_title},#{eb_content},sysdate,#{eb_start_date},#{eb_end_date},0,#{fm_id},#{finfo_name})
+	</insert>
+	<insert id="eventBoardImgInsert">
+		insert into event_board_images values(eb_img_seq.nextval,#{fileName},#{eb_num})
+	</insert>
+	
+	<!-- 뷰페이지 가져오기 -->
+	<select id="selectEventBoardView" resultType="com.example.teamproject.Vo.EventBoardVo">
+		select eb_num,eb_title,eb_content,fm_id,fm_name,finfo_name,to_char(eb_date,'yyyy-mm-dd') eb_date,to_char(eb_start_date,'yyyy-mm-dd') eb_start_date,to_char(eb_end_date,'yyyy-mm-dd') eb_end_date,eb_hit from event_board join fmanager using(fm_id)  where eb_num = #{eb_num} 
+	</select>
+	<!-- 이미지 이름 가져오기  -->
+	<select id="selectEventBoardImg" resultType="com.example.teamproject.Vo.EventBoardImgVo">
+		select * from event_board_images where eb_num = #{eb_num}
+	</select>
+	<!-- 게시글 조회수 증가  -->
+	<update id="updateEventBoardHit">
+		update event_board set eb_hit = eb_hit+1 where eb_num = #{eb_num}
+	</update>
+	<!-- 게시글 다음글 가져오기 -->
+	<select id="selectNextView" resultType="com.example.teamproject.Vo.EventBoardVo">
+		select eb_num from
+		(select rownum rnum,b.* from
+		(select * from event_board join fmanager using(fm_id) order by eb_num desc) b ) where rnum = 
+		(select rnum from(select rownum rnum,b.*from (select * from event_board join  fmanager using(fm_id)
+		order by eb_num desc)b) where eb_num = #{eb_num})+1
+	</select>
+	<!-- 게시글 이전글 가져오기  -->
+	<select id="selectPreView" resultType="com.example.teamproject.Vo.EventBoardVo">
+		select eb_num from
+		(select rownum rnum,b.* from
+		(select * from event_board join fmanager using(fm_id) order by eb_num desc) b ) where rnum = 
+		(select rnum from(select rownum rnum,b.*from (select * from event_board join  fmanager using(fm_id)
+		order by eb_num desc)b) where eb_num = #{eb_num})-1
+	</select>
+	<!-- 게시글 수정 -->
+	<update id="eventBoardModify">
+		update event_board set eb_title = #{eb_title} ,eb_start_date=#{eb_start_date},eb_end_date=#{eb_end_date}, eb_content = #{eb_content}, eb_date = sysdate where eb_num = #{eb_num}
+	</update>
+	<!--게시글 이미지 수정  -->
+	<update id="eventBoardImgModify">
+		update event_board_images set img_name = #{fileName} where img_no = #{img_no}
+	</update>
+	
+		<!-- 게시글 지우기 -->
+	<delete id="eventBoardDelete">
+		delete event_board where eb_num = #{eb_num}
+	</delete>
+	<!-- 게시글 이미지 지우기 -->
+	<delete id="eventBoardDeleteImg">
+		delete event_board_images where eb_num = #{eb_num}
+	</delete>
+	<select id="selectFinfoName" resultType="String">
+	select finfo_name from finfo where fm_id =#{fm_id}
+	</select>
+
+ </mapper>

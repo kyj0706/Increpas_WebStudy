@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.teamproject.Mapper.ReservationMapper">
+	<select id="selectFinfoCount" resultType="int">
+	select count(*) from finfo where finfo_sport like '%'||#{sportCategory}||'%' and
+				finfo_name like '%'||#{searchWord}||'%' and finfo_add1 like '%'||#{searchCategory}||'%'		
+	</select>
+	<!--시설 리스트 가져오기  -->
+	<select id="selectFinfoList" resultType="com.example.teamproject.Vo.Fac_admin_Vo">
+		select * from (select rownum rnum, b.* from(select * from finfo where finfo_sport like '%'||#{sportCategory}||'%' and
+				finfo_name like '%'||#{searchWord}||'%' and finfo_add1 like '%'||#{searchCategory}||'%')b)
+				where rnum between #{startRow} and #{endRow}		
+	</select>
+	
+	<!-- 시설 뷰페이지  -->
+	<select id="selectfinfoView" resultType="com.example.teamproject.Vo.Fac_admin_Vo">
+		select * from finfo where finfo_no = #{finfo_no}
+	</select>
+	
+	<!-- 회원정보  -->
+	<select id="selectMember" resultType="com.example.teamproject.Vo.MemberVo">
+		select * from member where m_id = #{id}
+	</select>
+	
+	<!--예약정보 체크  -->
+	<select id="reserDateCheck" resultType="String">
+		select reser_time from reservation where reser_date = to_date(#{reserDate},'yyyy-mm-dd') and reser_status = '0' and finfo_no = #{finfo_no}
+	</select>
+	
+	<!--예약  -->
+	<insert id="reservation">
+		<selectKey keyProperty="reser_no" order="BEFORE" resultType="int" >
+			select reser_seq.nextval from dual
+		</selectKey>
+		insert into reservation values(#{reser_no},#{finfo_no},#{m_no},to_date(#{reser_date},'yyyy-mm-dd'),sysdate,#{reser_time},'0')
+	</insert>
+	<!-- 예약결과 -->
+	<select id="selectResult" resultType="com.example.teamproject.Vo.ReservationVo">
+		select reser_no,finfo_no,m_no,m_nickname,finfo_name,finfo_price,to_char(reser_date,'yyyy-mm-dd') reser_date,reser_time,reser_status from reservation join finfo using(finfo_no) join member using(m_no) where reser_no = #{reser_no}
+	</select>
+	
+	<!-- 예약 시설 가격  -->
+	<select id="getReservationFee" resultType="int">
+		select finfo_price from finfo where finfo_no = #{finfo_no}
+	</select>
+	
+	<!-- 예약 취소  -->
+	<update id="cancelResrvation">
+		update reservation set reser_status = '1' where reser_no = #{reser_no}
+	</update>
+	
+	<!-- 결제 -->
+	<insert id="insertPay">
+		insert into payment values(pay_seq.nextval,#{reser_no},#{m_no},#{fee},sysdate,'0')
+	</insert>
+	
+	<!-- 이벤트 정보 가져오기 -->
+	<select id="selectEventInfo" resultType="com.example.teamproject.Vo.EventBoardVo">
+		select * from (select rownum rnum, b.* from (select eb_num,finfo_name,eb_title,eb_content,to_char(eb_date,'yyyy-mm-dd')eb_date,to_char(eb_start_date,'yyyy-mm-dd') eb_start_date,to_char(eb_end_date,'yyyy-mm-dd') eb_end_date,img_name from event_board join event_board_images using(eb_num) where (sysdate > eb_start_date and eb_end_date > sysdate) order by eb_num desc )b) where rnum between 1 and 6
+	</select>
+	
+	<!-- 공지사항 정보 가져오기  -->
+	<select id="selectNoticeInfo" resultType="com.example.teamproject.Vo.NoticeBoardVo">
+		select * from ( select rownum rnum ,b.* from (select n_num,n_title,to_char(n_date,'yyyy-mm-dd') n_date from notice_board order by n_num desc)b) where rnum between 1 and 7
+	</select>
+	
+	<!-- 회원 정보  -->
+	<select id="selectMemberInfo" resultType="com.example.teamproject.Vo.MemberVo">
+		select * from member where m_no = #{m_no}
+	</select>
+	
+	<!-- 결제정보 -->
+	<select id="selectPaymentInfo" resultType="com.example.teamproject.Vo.PaymentVo">
+		select * from payment where reser_no = #{reser_no}
+	</select>
+	
+	<!-- 이벤트 이미지  -->
+	<select id="selectImgName" resultType="String">
+		select finfo_pic1 from finfo where finfo_no = #{finfo_no}
+	</select>
+	
+	<!-- 결제취소  -->
+	<update id="cancelPayment">
+		update payment set pay_status = '1' where reser_no = #{reser_no}
+	</update>
+	
+	<!-- 환불 금액  -->
+	<select id="selectRefundFee" resultType="int">
+		select pay_price from payment where reser_no = #{reser_no}
+	</select>
+	
+	<!-- 환불한 회원 가져오기  -->
+	<select id="selectRefundM_no" resultType="int">
+		select m_no from reservation where reser_no = #{reser_no}
+	</select>
+	
+	<!-- 환불   -->
+	<insert id="insertRefund">
+		insert into refund values(refund_seq.nextval,#{reser_no},#{m_no},#{refundFee},sysdate)
+	</insert>
+	
+	<!-- 환불정보  -->
+	<select id="selectRefundInfo" resultType="com.example.teamproject.Vo.RefundVo">
+		select * from refund where reser_no = #{reser_no}
+	</select>
+	
+	<!-- 종목  -->
+	<select id="selectSportList" resultType="String">
+		<if test='searchArea == "전체"'>
+			select distinct(finfo_sport) from finfo 
+		</if>
+		<if test='searchArea != "전체"'>
+			select distinct(finfo_sport) from finfo where finfo_add1 like '%'||#{searchArea}||'%' 
+		</if>
+	</select>
+	
+	<!-- 시설이름  -->
+	<select id="selectFinfoName" resultType="com.example.teamproject.Vo.Fac_admin_Vo">
+		<if test = 'searchArea == "전체"'>
+			select finfo_name,finfo_no from finfo where finfo_sport =  #{sportCategory}
+		</if>
+		<if test='searchArea != "전체"'>
+			select finfo_name,finfo_no from finfo where finfo_sport = #{sportCategory} and finfo_add1 like '%'||#{searchArea}||'%' 
+		</if>
+	</select>
+	
+	<!-- 시설관리자 전화번호  -->
+	<select id="selectFinfo_Phone" resultType="String">
+		select fm_phone from fmanager where fm_id = #{fm_id}
+	</select>
+	
+	<!-- 리뷰 쓰기 -->
+	<insert id="writeReview">
+		<selectKey keyProperty="r_no" order="BEFORE" resultType="int" >
+			select review_seq.nextval from dual
+		</selectKey>
+		insert into review values(#{r_no},#{m_no},#{finfo_no},sysdate,#{r_content},#{r_rate})
+	</insert>
+	
+	<!-- 리뷰 1개 가져오기  -->
+	<select id="selectOneReview" resultType="com.example.teamproject.Vo.ReviewVo">
+		select r_no,m_nickname,to_char(r_date,'yyyy-mm-dd') r_date,r_content,r_rate from review join member using(m_no) where r_no = #{r_no}
+	</select>
+	
+	<!-- 리뷰전체 가져오기  -->
+	<select id="selectAllReview" resultType="com.example.teamproject.Vo.ReviewVo">
+		select r_no,m_no,m_nickname,to_char(r_date,'yyyy-mm-dd') r_date,r_content,r_rate from review join member using(m_no) where finfo_no = #{finfo_no} order by r_no asc
+	</select>
+	
+	<!-- 리뷰 개수  -->
+	<select id="selectReviewCount" resultType="int">
+		select count(*) from review where finfo_no = #{finfo_no}
+	</select>
+	
+	<!-- 리뷰개수 가져오기  -->
+	<select id="getReviewCount" resultType="int">
+	select count(*)from finfo join review using(finfo_no) where finfo_no = #{finfo_no}
+	</select>	
+	
+	<!-- 메인페이지 이벤트 리스트  -->
+	<select id="selectNewFinfo"  resultType="com.example.teamproject.Vo.Fac_admin_Vo">
+		select * from (select rownum rnum, b.* from(select * from finfo order by finfo_no desc)b)
+				where rnum between 1 and 6
+	</select>
+	
+	<delete id="deleteReview">
+		delete review where r_no = #{r_no}
+	</delete>
+	
+	<select id="reserCheck" resultType="int">
+		select count(*) from reservation where finfo_no = #{finfo_no} and m_no = #{m_no} and reser_status = '0'
+	</select>
+ </mapper>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--  jquery 라이브러리 추가 
+	자바스크립트 라이브러리 1개 
+ -->
+<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	// window.onload : 모든 객체가 로딩된후
+	// $(document).ready(function(){}: 무거운건 빼고
+	// 1) jQuery(식별자) : selector 
+	// 2) $(식별자) : selector
+	
+	var bt1_click = function(){
+			alert("버튼 눌림");	
+	}
+	
+	$(document).ready(function(){
+		/* var b = 
+			document.getElementById("btn1"); */
+		// 이벤트 핸들러 등록 
+		/* $("#btn1").bind('click', function(){
+			alert("버튼 눌림");	
+		}); */
+		// $("#btn1").bind('click', bt1_click); 
+		
+ 		/* jQuery("#btn1").click(function(){
+			alert("버튼 눌림");
+			}); */
+		//document.getElementById("btn1")	
+		$("#btn1").click(function(){
+			
+			alert('버튼 1 클릭');
+		});	
+		
+		// btn2를 클릭하면 사용자가 입력한 
+		// 메세지를 가져와서 경고창에 띄우기
+		$("#btn2").click(function(){
+			var msg =	$("input#msg").val();// value속성값 => val()	
+		//document.getElementById("msg").value;
+			alert(msg);
+			$("#msg").val("헐  대박");
+			$(this).val("Changed!!");
+			
+		});
+		
+	});
+	
+</script>	
+</head>
+<body>
+	메세지: <input type="text" name="msg" id="msg" value="" />
+	<br>
+	<input type="button" id="btn1" 	value="버튼1"	 />				
+	<input type="button" id="btn2" value="입력된 메세지" />
+					
+	
+</body>
+</html>
+
+
+

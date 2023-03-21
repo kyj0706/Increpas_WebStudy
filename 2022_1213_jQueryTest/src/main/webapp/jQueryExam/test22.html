@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+// 문서 준비되면 익명 함수 실행 
+	$(document).ready(function(){
+		// btn1번 버튼을 클릭하면 
+		$("#btn1").click(function(){
+			$("#img1").animate({marginLeft:300},1000);
+			
+		});
+		// btn2번 버튼을 클릭하면 
+		// marginTop 증가 시키므로서 이동 
+		$("#btn2").click(function(){
+			$("#img1").animate({marginTop:300},1000);
+		});
+		//원위치
+		$("#btn5").click(function(){
+			$("#img1").animate({margin:0},1000);
+		});
+		
+		$("#btn3").click(function(){
+			var w = 
+				parseInt($("#img1").css("width"))*2;
+			var h = 
+				parseInt($("#img1").css("height"))*2;
+			
+			/* $("#img1").css("width",w)
+					.css("height",h); */
+				$("#img1").animate({width:w,height:h},1000);		
+		});
+		$("#btn4").click(function(){
+			var w = 
+				parseInt($("#img1").css("width"))*1/2;
+			var h = 
+				parseInt($("#img1").css("height"))*1/2;
+			
+			/* $("#img1").css("width",w)
+					.css("height",h); */
+				$("#img1").animate(
+					{width:w,height:h},1000);		
+		});
+		
+		
+	});
+</script>
+</head>
+<body>
+	<input type="button" id="btn1" 	value="right" />
+	<input type="button" id="btn2" 	value="down" />
+	<input type="button" id="btn3" 	value="zoom2x" />
+	<input type="button" id="btn4" 	value="zoom 1/2x" />
+	<input type="button" id="btn5" 	value="clear" />
+	<br >
+	<img src="images/movie6.jpg" id="img1" />
+</body>
+</html>
+
+
+
+

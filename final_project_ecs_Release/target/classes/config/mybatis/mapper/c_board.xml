@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="c_board">
+
+   <!-- 전체조회 -->
+   <select id="c_board_list"  resultType="vo.C_boardVo">
+      select * from board order by b_ref desc,b_step asc
+   </select>
+   
+   <!-- 페이징 & 검색조건별 조회 -->
+   <select id="c_board_condition_list"   parameterType="Map"  resultType="vo.C_boardVo">
+	    select 
+	       cc.*,
+	       (select count(*) from c_comment_tb where c_b_idx=cc.c_b_idx) as comment_count
+	    from
+	    (
+		    select 
+		        rank() over(order by c_b_ref desc, c_b_step asc) as no,
+		        c.*
+		    from
+		        (
+		          select * from c_board
+		          <!-- Dynamic Query -->
+			      <trim prefix="where" prefixOverrides="or">
+			         <if test="subject!=null">
+			             c_b_subject like '%' || #{ subject } || '%'
+			         </if>
+			         <if test="content!=null">
+			             or c_b_content like '%' || #{ content } || '%'
+			         </if>
+			         <if test="name!=null">
+			             or c_mem_name like '%' || #{ name } || '%'
+			         </if>
+			      </trim>
+		        ) c
+	    ) cc
+	    where no between #{ start } and #{ end }   
+    
+   </select>
+   
+   <!-- 검색조건별 게시물수 구하기 -->
+   <select id="c_board_condition_row_total"  parameterType="Map"  resultType="int">
+      select nvl(count(*),0) from c_board
+      <!-- Dynamic Query -->
+      <trim prefix="where" prefixOverrides="or">
+         <if test="subject!=null">
+             c_b_subject like '%' || #{ subject } || '%'
+         </if>
+         <if test="content!=null">
+             or c_b_content like '%' || #{ content } || '%'
+         </if>
+         <if test="name!=null">
+             or c_mem_name like '%' || #{ name } || '%'
+         </if>
+      </trim>
+      
+   </select>
+   
+   <!-- 전체게시물수 구하기 -->
+   <select id="c_board_row_total"  resultType="int">
+      select nvl(count(*),0) from board
+   </select>
+   
+   <!-- b_idx 1건 데이터 조회 -->
+   <select id="c_board_one"   parameterType="int"  resultType="vo.C_boardVo">
+      select * from c_board where c_b_idx=#{ c_b_idx }
+   </select>
+   
+   
+   <!-- 조회수 증가 -->
+   <update id="c_board_update_readhit"  parameterType="int">
+       update c_board set c_b_readhit = c_b_readhit + 1
+       where c_b_idx=#{ c_b_idx }
+   </update>
+   
+   <!-- 새글쓰기 -->
+   <insert id="c_board_insert"  parameterType="vo.C_boardVo">
+        insert into c_board values( seq_c_board_c_b_idx.nextVal,
+                            #{ c_b_subject },
+                            #{ c_b_content },
+                            #{ c_b_ip },
+                            sysdate,
+                            0,
+                            'y',
+                            #{ c_mem_idx },
+                            #{ c_mem_name },
+                            seq_c_board_c_b_idx.currVal,
+                            0,
+                            0
+       )
+   
+   </insert>
+
+   <!-- 삭제처리 : b_use상태정보만 수정 -->
+   <update id="c_board_update_use"  parameterType="int">
+       update c_board set c_b_use = 'n' where c_b_idx=#{ b_idx }
+   </update>
+
+   <!-- 기준글보다 step 큰 게시물의 step을 1씩 증가 -->
+   <update id="c_board_update_step"  parameterType="vo.C_boardVo">
+       update c_board set c_b_step = c_b_step + 1
+       where c_b_ref=#{ c_b_ref } and c_b_step > #{ c_b_step }
+   </update>
+   
+   
+   <!-- 답글쓰기 -->
+   <insert id="c_board_reply"   parameterType="vo.C_boardVo">
+       insert into c_board values( seq_c_board_c_b_idx.nextVal,
+                            #{ c_b_subject },
+                            #{ c_b_content },
+                            #{ c_b_ip },
+                            sysdate,
+                            0,
+                            'y',
+                            #{ c_mem_idx },
+                            #{ c_mem_name },
+                            #{ c_b_ref },
+                            #{ c_b_step },
+                            #{ c_b_depth }
+       )
+   </insert>
+   
+   
+   <!-- 수정 -->
+   <update id="c_board_update"  parameterType="vo.C_boardVo">
+       update c_board set c_b_subject = #{ c_b_subject},
+                        c_b_content = #{ c_b_content},
+                        c_b_ip      = #{ c_b_ip },
+                        c_b_regdate = sysdate
+       where c_b_idx = #{ c_b_idx }                    
+   </update>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

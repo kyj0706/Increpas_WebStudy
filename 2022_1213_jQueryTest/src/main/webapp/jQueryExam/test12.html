@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	table { table-layout: auto; width: 75%}
+	tr { color: blue; font-weight: bold;}
+	
+	.selectClass { 
+	    background-color: cyan;
+		font-size: 20px; color: red;
+	}
+	
+	table, tr, td {
+		border: 1px solid gray;
+	}
+</style>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+	// 버튼을 클릭하면 메세지를 경고창에 띄우기
+	$("document").ready(function(){
+		
+		$("tr:even").css("background-color","pink"); //짝수
+		$("tr:odd").css("background-color","yellow");//홀수
+		
+		
+		$("#btn1").click(function(){
+			//addClass시 기존에 지정된 스타일은 변경안된다
+			$("tr:first").addClass("selectClass");
+			$("tr:last").addClass("selectClass");
+			
+		});
+		
+		$("#btn2").click(function(){
+			$("tr:first").removeClass("selectClass");
+			$("tr:last").removeClass("selectClass");
+		});
+		
+	});
+</script>
+</head>
+<body>
+	<table>
+		<tr><td>one</td></tr>  <!-- 0  : first -->
+		<tr><td>two</td></tr>  <!-- 1 -->
+		<tr><td>three</td></tr><!-- 2 -->
+		<tr><td>four</td></tr> <!-- 3 -->
+		<tr><td>five</td></tr> <!-- 4  : last-->
+	</table>
+	<button id="btn1">버튼</button>
+	<button id="btn2">제거</button>
+	
+</body>
+</html>

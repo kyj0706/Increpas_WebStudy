@@ -1,0 +1,223 @@
+CREATE TABLE member
+(
+    M_No          number               primary key, 
+    M_ID          VARCHAR2(50)      NULL, 
+    M_PW          VARCHAR2(50)      NULL, 
+    M_NAME        VARCHAR2(50)      NULL, 
+    M_NICKNAME    VARCHAR2(50)      NULL, 
+    M_BIRTH       VARCHAR2(50)      NULL, 
+    M_GENDER      VARCHAR2(50)      NULL, 
+    M_eMAIL       VARCHAR2(100)     NULL, 
+    M_POST        VARCHAR2(50)      NULL, 
+    M_ADD1        VARCHAR2(1000)    NULL, 
+    M_ADD2        VARCHAR2(1000)    NULL, 
+    M_PHONE       VARCHAR2(50)      NULL, 
+    M_GRADE       VARCHAR2(50)      NULL, 
+    M_POINT       NUMBER(10)        NULL 
+   
+);
+
+CREATE TABLE FMANAGER
+(
+    FM_No         number            primary key, 
+    FM_ID         VARCHAR2(50)      NULL, 
+    FM_PW         VARCHAR2(50)      NULL, 
+    FM_NAME       VARCHAR2(50)      NULL, 
+    FM_ADD1       VARCHAR2(1000)    NULL, 
+    FM_PHONE      VARCHAR2(50)      NULL, 
+    FM_COR_NUM    VARCHAR2(50)      NULL, 
+    FM_POINT      NUMBER(10)        NULL 
+);
+
+CREATE TABLE Finfo
+(
+    Finfo_No        number            primary key, 
+    FM_id           varchar2(50)      NULL, 
+    Finfo_NAME      VARCHAR2(50)      NULL, 
+    Finfo_SPORT     VARCHAR2(50)      NULL, 
+    Finfo_ADD1      VARCHAR2(2000)    NULL, 
+    Finfo_PRICE     NUMBER(10)        NULL, 
+    Finfo_PEOPLE    NUMBER(10)       NULL, 
+    Finfo_DETAIL    VARCHAR2(1000)     NULL, 
+    Finfo_PIC1      VARCHAR2(100)     NULL, 
+    Finfo_PIC2      VARCHAR2(100)     NULL, 
+    Finfo_PIC3      VARCHAR2(100)     NULL, 
+    Finfo_PIC4      VARCHAR2(100)     NULL, 
+    Finfo_PIC5      VARCHAR2(100)     NULL   
+);
+
+CREATE TABLE admin
+(
+    A_No    NUMBER(10)      NULL, 
+    A_ID    VARCHAR2(50)    NULL, 
+    A_PW    VARCHAR2(50)    NULL
+);
+
+create table reservation(
+reser_no number primary key,--예약번호
+finfo_no number,--시설번호
+m_no number,--회원 번호
+reser_date date,--예약일,
+apply_date date,--신청일
+reser_time varchar2(300),--예약시간
+reser_status char(1)--예약상태
+);
+
+
+create table payment(
+pay_no number primary key,--결제번호
+reser_no number, --결제상품
+m_no number,--회원번호,
+pay_price number, --결제 금액
+pay_date date,--결제 날짜
+pay_status char(1));--결제상태
+
+create table refund(
+refund_no number primary key,--환불번호
+reser_no number,--환불제품
+m_no number, --환불요청한 사람
+refund_price number(8),--환불가격
+refund_date date,--환불날짜
+);
+
+
+create table reply_board(
+q_num number,
+r_title varchar2(1000),
+r_content varchar2(2000),
+r_date date);
+
+--자유게시판(회원)
+create table free_board_member(
+fbm_num number primary KEY,
+fbm_title varchar2(1000),
+fbm_content varchar2(3000),
+fbm_category varchar2(20),
+fbm_date date,
+fbm_hit number,
+m_id varchar2(50)
+);
+--자유게시판(회원 이미지)
+create table free_board_member_images(
+img_no number primary key,
+img_name varchar2(1000),
+fbm_num number);
+
+--자유게시판(회원 댓글)
+create table free_board_member_comment(
+c_no number primary key,
+c_content varchar2(1000),
+c_date date,
+fbm_num number,
+m_id varchar2(50));
+
+--자유게시판(판매자)
+create table free_board_seller(
+fbs_num number primary KEY,
+fbs_title varchar2(1000),
+fbs_content varchar2(3000),
+fbs_category varchar2(20),
+fbs_date date,
+fbs_hit number,
+fm_id varchar2(50)
+);
+--자유게시판(회원 이미지)
+create table free_board_seller_images(
+img_no number primary key,
+img_name varchar2(1000),
+fbs_num number);
+
+--자유게시판(회원 댓글)
+create table free_board_seller_comment(
+c_no number primary key,
+c_content varchar2(1000),
+c_date date,
+fbs_num number,
+fm_id varchar2(50));
+
+--노리게시판
+create table nori_board(
+nb_num number primary KEY,
+nb_title varchar2(1000),
+nb_content varchar2(3000),
+nb_category varchar2(20),
+nb_date date,
+nb_hit number,
+m_id varchar2(50)
+);
+--노리게시판(이미지)
+create table nori_board_images(
+img_no number primary key,
+img_name varchar2(1000),
+nb_num number);
+
+--노리게시판(댓글)
+create table nori_board_comment(
+c_no number primary key,
+c_content varchar2(1000),
+c_date date,
+nb_num number,
+m_id varchar2(50));
+
+--이벤트 게시판 
+create table event_board(
+eb_num number primary KEY,
+eb_title varchar2(1000),
+eb_content varchar2(3000),
+eb_date date,
+eb_start_date date,
+eb_end_date date,
+eb_hit number,
+eb_status number,
+a_id varchar2(50)
+);
+
+--이벤트 게시판(이미지)
+create table event_board_images(
+img_no number primary key,
+img_name varchar2(1000),
+eb_num number
+);
+
+--공지사항 게시판 
+create table notice_board(
+n_num number primary KEY,
+n_title varchar2(500),
+n_content varchar2(3000),
+n_date date,
+n_hit number,
+a_id varchar2(50)
+);
+
+--공지사항 게시판(이미지)
+create table notice_board_images(
+img_no number primary key,
+img_name varchar2(1000),
+n_num number
+);
+
+--자주묻는 질문 테이블
+create table qna_board(
+qb_num number,
+qb_title varchar2(1000),
+qb_content varchar2(3000),
+qb_category varchar2(50));
+
+--문의 테이블
+create table q_board(
+q_num number,
+q_title varchar2(1000),
+q_content varchar2(2000),
+q_date date,
+q_category varchar2(50),
+q_member varchar2(50),
+q_status char(1),
+member_id varchar2(50));
+--리뷰
+create table review(
+r_no number primary key,
+m_no number,
+finfo_no number,
+r_date date,
+r_content varchar2(1500),
+r_rate number);

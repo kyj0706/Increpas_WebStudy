@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   <mapper namespace="com.example.teamproject.Mapper.FManagerMapper">
+   
+   <!-- 시설관리자 마이페이지 이동 -->
+   <select id="FmanagerMypage" resultType="com.example.teamproject.Vo.FmanagerVo">
+   		select * from fmanager where fm_id=#{fm_id}
+   </select>
+   
+   <!-- 시설관리자 페이지 수정등록 -->
+   <update id="Fm_Modify">
+   		update fmanager set fm_name=#{fm_name}, fm_add1=#{fm_add1}, fm_phone=#{fm_phone}, fm_cor_num=#{fm_cor_num} where fm_id=#{fm_id}
+   </update>
+   
+   <select id="selectReserveList" resultType="com.example.teamproject.Vo.ReservationVo">
+   		select reser_no,m_name,finfo_name,finfo_sport,to_char(reser_date,'yyyy-mm-dd') reser_date,reser_time from finfo join fmanager using(fm_id) join reservation using (finfo_no) join member using(m_no) where fm_id = #{fm_id}
+   </select>
+   
+   
+</mapper>

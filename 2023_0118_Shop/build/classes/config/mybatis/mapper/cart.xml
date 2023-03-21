@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cart">
+	<!-- mem_idx(유저별) 장바구니 목록 조회 -->
+	<select id="cart_list" parameterType="int" resultType="cart">
+		select * from cart_view where mem_idx=#{mem_idx}
+	</select>
+	
+	<!-- mem_idx별 총액 얻어오기 -->
+	<select id="cart_total_amount" parameterType="int" resultType="int">
+		select nvl(sum(amount),0) from cart_view where mem_idx=#{mem_idx}
+	</select>
+	
+	<select id="cart_one" parameterType="cart" resultType="cart">
+	
+		select * from cart_view where p_idx=#{p_idx} and mem_idx=#{mem_idx}
+	
+	</select>
+	<insert id="cart_insert" parameterType="cart">
+		insert into cart values(seq_cart_idx.nextVal,1,#{p_idx},#{mem_idx})
+	
+	</insert>
+	<update id="cart_update" parameterType="cart">
+		update cart set c_cnt=#{c_cnt} where c_idx=#{c_idx} 
+	
+	</update>
+	<delete id="cart_delete" parameterType="cart">
+		delete from cart where c_idx=#{c_idx}
+		
+	
+	
+	
+	</delete>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

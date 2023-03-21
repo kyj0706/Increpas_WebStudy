@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product_remain">
+
+   <!-- 전체조회 -->
+   <select id="product_remain_list"  resultType="vo.ProductVo">
+      select * from product_remain order by idx 
+   </select>
+   
+   <!-- idx 이용 1건조회 -->
+   <select id="product_remain_one_idx"  parameterType="int"  
+                                    resultType="product">
+      select * from product_remain where idx=#{ idx }
+   </select>
+   
+   <!-- name 이용 1건조회 -->
+   <select id="product_remain_one_name"  parameterType="String"  
+                                    resultType="product">
+      select * from product_remain where name=#{ name }
+   </select>
+   
+   <!-- 추가 -->
+   <insert id="product_remain_insert"  parameterType="vo.ProductVo">
+      insert into product_remain values(
+						            seq_product_remain_idx.nextVal,
+						            #{ name },
+						            #{ cnt },
+						            sysdate
+      )
+   </insert>
+
+   <!-- 삭제  -->
+   <delete id="product_remain_delete"  parameterType="int">
+      delete from product_remain where idx=#{ idx } 
+   </delete>
+   
+   <!-- 수량+날짜 수정 -->
+   <update id="product_remain_update"  parameterType="vo.ProductVo">
+      update product_remain set cnt = #{ cnt }, regdate=sysdate 
+      where  idx=#{ idx }
+   </update>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

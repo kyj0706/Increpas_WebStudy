@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.myClass {
+		width:  300px;
+		height: 200px;
+		color : white;
+		background-color: red;
+	}
+	img{
+		width:150px;
+		height:150px;
+		border: 2px solid yellow;
+	}
+</style>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	$("document").ready(function() {
+		
+		$("#btn1").click(function() {
+			// box1의 css의 color속성을 red 
+			// 배경 그린 너비 200px 높이 200px
+			// 1.맵(Map)방식
+			$("#box1").css(
+				{
+					// key  : value 
+					"color" : "red",
+					"background" : "green",
+					"width" : "200px",
+					"height" : "200px"
+				}
+			);
+			// 2. method chainning
+			/*
+			 $("#box1").css("color","red")
+					   .css("background","green")
+			           .css("width","200px")
+			           .css("height","200px"); 
+            */  
+			// 두번째 버튼을 누르면 배경색을 무얼쓸지
+			// 물어보고 이 색을 box1의 배경색으로 사용 
+		});
+		$("#btn2").click(function() {
+			
+			var usercolor = prompt("어떤색을쓸래? ","blue");
+			
+			$("#box1").css("background",usercolor);
+		});
+		
+		//3번 버튼을 누르면 box1의 너비를 구해서
+		// 경고창에 출력 
+		$("#btn3").click(function(){
+			//$(this) : 현재 이벤트가 발생된
+			// Jquery객체를 가르킨다. 
+			var w = $("#box1").css("width");
+			console.log(w);
+			alert("너비 : " + w);
+		});
+		
+		// 4번 버튼을 누르면 box1의 클래스를
+		// myClass로 추가시키고 
+		$("#btn4").click(function(){
+			//기존스타일이 지정되지 않아야 적용
+			$("#box1").addClass("myClass");
+		});
+		
+		// 5번 버튼 누르면 removeClass
+		$("#btn5").click(function(){
+			$("#box1").removeClass("myClass");
+		});
+		
+/* 		$("#img1").mouseover(function(){
+			$(this).css("border","2px solid red");
+		});
+		
+		$("#img1").mouseout(function(){
+			$(this).css("border","none");
+		});
+ */		
+		$("img").hover(function(){
+			$(this).css("border","2px solid red");
+		},function(){
+			$(this).css("border","2px solid yellow");
+		});	
+ 
+        //                올라갔을때    내려갔을때
+        //$("img").hover(function(){},function(){});
+ 
+	});
+</script>
+</head>
+<body>
+	<input type="button" value="btn1" id="btn1" />
+	<input type="button" value="btn2" id="btn2" />
+	<input type="button" value="btn3" id="btn3" />
+	
+	
+	<input type="button" value="btn4" id="btn4" />
+	<input type="button" value="btn5" id="btn5" />
+
+	<div id="box1">box1</div>
+
+	<img src="images/em.jpg" id="img1" />
+	<img src="images/em.jpg" id="img2" />
+</body>
+</html>

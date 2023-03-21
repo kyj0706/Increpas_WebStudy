@@ -1,0 +1,222 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+  box-sizing: border-box;
+}
+
+#div{
+  width: 100%;
+  height: 1100px;
+}
+#header_div{
+  width: 100%;
+  height: 10%;
+}
+
+#header_img{
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/header.PNG");
+}
+/*-------------------------------------------------------------*/
+#body_div{
+  width: 100%;
+  height: 80%;
+}
+#body_nav{
+  width: 90%;
+  height: 160px;
+  margin: auto;
+}
+#body_list{
+  width: 100%;
+  margin: auto;
+}
+#div_nav{
+  width: 100%;
+  height: 130px;
+  padding: 30px;
+  margin-bottom: 0px;
+}
+
+#ul_nav{
+list-style-type: none;
+ width: 100%;
+ height: 70px;
+ line-height: 70px;
+ border: 1px solid #f3f0ff;
+}
+#ul_nav li{
+  display: inline-block;
+  font-size: 30px;
+  font-weight: bolder;
+  height: 100%;
+  width: 25%;
+  text-align: center;
+  border-right: 1px solid #f3f0ff;
+  float: left;
+}
+
+#ul_nav li:first-of-type {
+  background-color: #f3f0ff;
+}
+#ul_nav li >a {
+	color:black;
+}
+#ul_nav li:hover{
+	background-color: #f3f0ff;
+}
+#list_table{
+  border-collapse: collapse;
+  width: 87%;
+  margin: auto;
+  margin-top: 10px;
+}
+
+#list_tr{
+  /* border-top: 3px solid black; */
+  height: 70px;
+  background-color: #fcfcfc;
+ 
+}
+
+#list_tr td{
+  height: 70px;
+  line-height: 70px;
+  font-weight: bolder;
+  font-size: 30px;
+}
+
+.list_tr_td td{
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+td{
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+#body_header_div{
+  width: 100%;
+  margin: auto;
+  margin-top: 20px;
+}
+#body_header_div1{
+    margin: auto;
+    width: 50%;
+    text-align: right;
+    margin-bottom: 10px;
+    margin-right: 0px;
+}
+#category_select{
+    display: inline-block;
+    width: 20%;
+}
+
+#exampleFormControlInput1 {
+  width: 50%;
+  text-align: left;
+  display: inline-block;
+}
+
+
+#footer_div_btn{
+  width: 87%;
+  height: auto;
+  margin: auto;
+  margin-top: 10px;
+  text-align: right;
+}
+
+#btn_write{
+  width: 100px;
+  height: 40px;
+  font-weight: Zbold;
+  font-size: 18px;
+}
+
+/*-------------------------------------------------------------------------*/
+#footer_div{
+  width: 100%;
+  height: 10%;
+  background-color: #fafbfc;
+}
+a{
+	text-decoration: none;
+	letter-spacing: -2px;
+   word-spacing: 5px;
+}
+.page-num {
+	list-style-type: disc;
+	text-align: center;
+	margin-top: 40px;
+}
+
+.page-num li {
+	width: 36px;
+	height: 35px;
+	padding: 0;
+	display: inline-block;
+	text-align: -webkit-match-parent;
+	text-align: center;
+}
+
+.first {
+	background:
+		url(https://www.midashotel.co.kr/Midas_common/images/homepage/board/paging_first.png)
+		no-repeat;
+}
+
+.prev {
+	background:
+		url(https://www.midashotel.co.kr/Midas_common/images/homepage/board/paging_prev.png)
+		no-repeat;
+}
+
+.num {
+	position: relative;
+	top: -15px;
+	height: 33px !important;
+	margin-left: 5px;
+	margin-right: 5px;
+	border: 1px #989898 solid;
+}
+
+.num>div {
+	position: relative;
+	top: 2px;
+}
+
+.next {
+	background:
+		url(https://www.midashotel.co.kr/Midas_common/images/homepage/board/paging_next.png)
+		no-repeat;
+}
+
+.last {
+	background:
+		url(https://www.midashotel.co.kr/Midas_common/images/homepage/board/paging_last.png)
+		no-repeat;
+}
+#numbering {
+	text-align: center;
+}

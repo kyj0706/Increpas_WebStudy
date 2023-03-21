@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// 윈도우 로딩이 완료된우 익명함수 수행
+	window.onload = function(){
+		var b = 
+			document.getElementById("btn1");
+		
+		// 버튼에 이벤트 등록 
+		if(window.ActiveObject){ 
+			//웹브라우저중 ie하위버젼
+			b.attachEvent('onclick', test);
+		}else{ // 그외 브라우저
+			b.addEventListener('click', test, false);
+		}
+	}
+	
+	
+	function test(){
+		alert("버튼 눌림");
+	}
+</script>	
+</head>
+<body>
+	<input type="button" id="btn1"  value="버튼"  />
+</body>
+</html>

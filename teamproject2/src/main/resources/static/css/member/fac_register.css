@@ -1,0 +1,68 @@
+
+#body_div{
+    margin: 0px;
+    width: 100%;
+    height: 1000px;
+
+}
+
+#body_div > div{
+    width: 95%;
+    height: 95%;
+
+    margin: auto;
+}
+#body_div div #title_div{
+    width: 100%;
+    height: 4%;
+    
+}
+#body_div div #title_div h3{
+    height: auto;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+#fac_inform{
+    width: 100%;
+    height: 90%;
+}
+#fac_inform_blank{
+    width: 95%;
+    height: 5%;
+    margin: auto;
+}
+#fac_inform_div1{
+    width: 95%;
+    height: 7%;
+    margin: auto;
+}
+#fac_inform_div1 span{
+    font-size: 22px;
+    color: black;
+    font-weight: bolder;
+}
+
+#fac_inform_input{
+    width: 100%;
+    height: 90%;
+
+}
+
+#fac_inform_input1{
+    width: 95%;
+    height: 100%;
+    margin: auto;
+}
+
+#fac_input label{
+    margin-top: 15px;
+
+}
+
+#fac_save{
+    margin-top: 10px;
+}
+
+#exampleFormControlSelect2{
+    height: 60px;
+}

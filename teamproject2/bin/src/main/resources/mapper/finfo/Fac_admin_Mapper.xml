@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.teamproject.Mapper.Fac_admin_Mapper">
+	
+	<!-- insertList -->
+	<insert id="insertFile">
+		<selectKey resultType="int" keyProperty="finfo_no" order="BEFORE">
+			select finfo_seq.nextval from dual
+		</selectKey>
+		insert into finfo values(
+		#{finfo_no},#{fm_id},#{finfo_name},#{finfo_sport},#{finfo_add1},
+		#{finfo_price},#{finfo_people},#{finfo_detail},
+		#{finfo_pic1},#{finfo_pic2},#{finfo_pic3},#{finfo_pic4},#{finfo_pic5})
+	</insert>
+	
+	
+	<!-- selectAllList -->
+	<select id="selectAllList" resultType="com.example.teamproject.Vo.Fac_admin_Vo">
+		select * from finfo where fm_id = #{fm_id}
+	</select>
+	
+	
+    <!-- //게시글 전체리스트 -->
+	<select id="selectOneList" resultType="com.example.teamproject.Vo.Fac_admin_Vo">
+		select * from finfo where finfo_no= #{finfo_no}
+	</select>
+	
+	<!-- modify -->
+	<update id="updateOneList">
+		update finfo set finfo_no=#{finfo_no},finfo_name=#{finfo_name},finfo_sport=#{finfo_sport},
+		       finfo_add1=#{finfo_add1},finfo_price=#{finfo_price},finfo_people=#{finfo_people},
+		       finfo_detail=#{finfo_detail},finfo_pic1=#{finfo_pic1},finfo_pic2=#{finfo_pic2},
+		       finfo_pic3=#{finfo_pic3},finfo_pic4=#{finfo_pic4},finfo_pic5=#{finfo_pic5}
+		where finfo_no=#{finfo_no}
+	</update>
+
+	<!-- delete -->
+	<update id="deleteOneList">
+		delete finfo where finfo_no =${finfo_no}
+	</update>
+	<select id="fmanagerMypage" resultType="com.example.teamproject.Vo.FmanagerVo">
+		select * from fmanager where fm_id=#{fm_id}
+	</select>
+	
+	 <!-- 시설관리자 페이지 수정등록 -->
+   <update id="fm_Modify">
+   		update fmanager set fm_name=#{fm_name}, fm_add1=#{fm_add1}, fm_phone=#{fm_phone}, fm_cor_num=#{fm_cor_num} where fm_id=#{fm_id}
+   </update>
+   
+   <select id="selectReserveList" resultType="com.example.teamproject.Vo.ReservationVo">
+   		select reser_no,m_name,finfo_name,finfo_sport,to_char(reser_date,'yyyy-mm-dd') reser_date,reser_time,reser_status from finfo join fmanager using(fm_id) join reservation using (finfo_no) join member using(m_no) where fm_id = #{fm_id}
+   </select>
+   
+   <select id="selectReviewList" resultType="com.example.teamproject.Vo.ReviewVo">
+   	select r_no,m_name,to_char(r_date,'yyyy-mm-dd') r_date,r_content,r_rate from review join member using(m_no) where finfo_no = (select finfo_no from fmanager join finfo using(fm_id) where fm_id = #{fm_id} and finfo_name = #{finfo_name} )
+   </select>
+   
+   <select id="selectReserCount" resultType="int">
+   	select count(*) from reservation where finfo_no = (select finfo_no from finfo where finfo_name =#{finfo_name} and fm_id =#{fm_id})
+   </select>
+   <!--시설 이름  -->
+   <select id="selectFinFoName" resultType="String">
+   	select finfo_name from finfo where fm_id =#{fm_id}
+   </select>
+   <select id="selectFinfoNo" resultType="int">
+   	select count(*) from finfo where fm_id =#{fm_id}
+   </select>
+   
+   <select id="selectReviewNo" resultType="int">
+   	select count(*) from review where finfo_no = (select finfo_no from finfo where finfo_name = #{finfo_name} and fm_id =#{fm_id}  )
+   </select>
+   
+   
+   <select id="selectPayNo" resultType="int">
+   	select count(*) from payment join reservation using(reser_no) where finfo_no = (select finfo_no from finfo where fm_id = #{fm_id} and finfo_name = #{finfo_name})
+   </select>
+   
+   <select id="selectRefundNo" resultType="int">
+   	select count(*) from refund join reservation using(reser_no) where finfo_no = (select finfo_no from finfo where fm_id = #{fm_id} and finfo_name = #{finfo_name})
+   </select>
+   
+   <select id="selectPayInfo" resultType="com.example.teamproject.Vo.PaymentVo">
+   select  reser_no,m_name,pay_status,pay_price,pay_date from payment join member using(m_no) join reservation using(reser_no) join finfo using(finfo_no) where fm_id =#{fm_id} and finfo_name = #{finfo_name}
+   </select>
+   
+   <select id="getRefundDate" resultType="String">
+   	select refund_date from payment join refund using(reser_no) where reser_no = #{reser_no}
+   </select>
+   
+   <select id="selectTotalPrice" resultType="int">
+   select  nvl(sum(pay_price),0) from payment join member using(m_no) join reservation using(reser_no) join finfo using(finfo_no) where fm_id = #{fm_id} and finfo_name = #{finfo_name}
+   </select>
+   
+   <select id="selectTotalRefund" resultType="int">
+   	select  nvl(sum(pay_price),0) from payment join member using(m_no) join reservation using(reser_no) join finfo using(finfo_no) where fm_id = #{fm_id} and finfo_name = #{finfo_name} and pay_status = '1'
+   </select>
+   
+   <select id="selectQBoardList" resultType="com.example.teamproject.Vo.QBoardVo">
+   	select q_num,q_title,to_char(q_date,'yyyy-mm-dd') q_date, q_status from q_board where q_member = #{member} and member_id = #{fm_id}
+   </select>
+   
+   <!--시설 이벤트 가져오기  -->
+   <select id="selectEventBoard" resultType="com.example.teamproject.Vo.EventBoardVo">
+   select eb_num,eb_title,eb_content,finfo_name,to_char(eb_date,'yyyy-mm-dd') eb_date,to_char(eb_start_date,'yyyy-mm-dd') eb_start_date,to_char(eb_end_date,'yyyy-mm-dd') eb_end_date,eb_hit,img_name from event_board join event_board_images using (eb_num)  join fmanager using(fm_id) 
+	 where fm_id = #{fm_id} order by eb_num desc 
+   </select>
+</mapper>

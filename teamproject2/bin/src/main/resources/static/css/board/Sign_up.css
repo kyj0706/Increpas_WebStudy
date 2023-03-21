@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+.wrap {
+    height: 100%;
+    width: 100%;
+    background-image: url(../images/main.jpg);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+}
+.form-wrap {
+    width: 420px;
+    height: 850px;
+    position: relative;
+    margin: 2% auto;
+    background: #fff;
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+.button-wrap {
+    width: 230px;
+    margin: 35px auto;
+    position: relative;
+    text-align: center;
+    border-radius: 30px;
+}
+.togglebtn {
+  
+    cursor: pointer;
+    background: transparent;
+    outline: none;
+    position: relative;
+    width: 110px;
+    text-align: center;
+    display: inline-block;
+    height: 30px;
+    padding-top: 6px;
+    font-weight: bolder;
+}
+#btn {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 115px;
+    height: 100%;
+    background: linear-gradient(to right, #e2ebf0, #bee3f8);
+    border-radius: 30px;
+    transition: .5s;
+}
+
+#title_h1{
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+.input-group {
+    top: 180px;
+    position: absolute;
+    width: 280px;
+    transition: .5s;
+}
+
+#customer {
+    left: 50px;
+}
+#corporation {
+    left: 450px;
+}
+#register_input{
+    width: 80%;
+    height: 80%;
+    text-align: center;
+    margin: auto;
+}
+
+input{
+    font-size: 20px;
+    font-weight: bolder;
+    color: gray;
+    height: 50px;
+    width: 300px;
+    margin-top: 15px;
+    border: none;
+}
+input:focus{
+    outline: none;
+}
+hr{
+    margin: auto;
+    width: 300px;
+    height: 5px;
+    background-color: black;
+}
+#submit_btn{
+    border: 2px solid gray;
+    margin-top: 50px;
+    background-color: white;
+    font-size: 30px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+#id{
+    width: 200px;
+}

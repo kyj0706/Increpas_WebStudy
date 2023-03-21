@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	img {width: 120px; height: 120px;}
+	div {float:left; margin: 30px}
+	ul { list-style: none; } 
+	
+	div#box{
+	      width: 680px;
+	      height: auto;
+	      border: 1px solid blue;
+	}
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//$("*").css("border","1px solid yellow");
+		$("li > div").css("border","2px solid red");
+		
+		$(".movie").css("padding","20px");
+		$(".movie").css("margin","20px");
+		// div 요소를 클릭 : 메세지 출력
+		$(".movie").click(function(){
+			var msg =$(this).children().eq(1).html();
+			//자신의 하위요소 검색
+			//var msg =$(this).find("p").html();
+			console.log(msg)
+			alert(msg);
+		});
+	});
+</script>
+</head>
+<body>
+	<h2>영화순위</h2>
+	<div id="box">
+		<ul>
+			<li>
+				<div class="movie" id="movie1">
+					<img src="images/movie1.jpg" />
+					<p>토르: 다크 월드</p>
+				</div>
+			</li>
+			<li>
+				<div class="movie" id="movie2">
+					<img src="images/movie2.jpg" />
+					<p>동창생</p>
+				</div>
+			</li>
+			<li>
+				<div class="movie" id="movie3">
+					<img src="images/movie3.jpg" />
+					<p>그래비티</p>
+				</div>
+			</li>
+			<li>
+				<div class="movie" id="movie4">
+					<img src="images/movie4.jpg" />
+					<p>공범</p>
+				</div>
+			</li>
+			<li>
+				<div class="movie" id="movie5">
+					<img src="images/movie5.jpg" />
+					<p>더 퍼지</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

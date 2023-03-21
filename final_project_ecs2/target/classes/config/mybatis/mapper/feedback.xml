@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="feedback">
+
+   <!-- 전체조회 -->
+   <select id="feedback_list"  resultType="vo.FeedbackVo">
+      select * from feedback 
+   </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+

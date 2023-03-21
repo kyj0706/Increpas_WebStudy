@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.example.teamproject.Mapper.adminMapper">
+    
+    
+    <!-- 관리자 회원 리스트 -->
+    <select id="adminMAllList" resultType="com.example.teamproject.Vo.MemberVo">
+    select * from member
+    </select>
+    
+    <!-- 관리자 시설관리자 리스트 -->
+    <select id="adminFmAllList" resultType="com.example.teamproject.Vo.FmanagerVo">
+    select * from fmanager
+    </select>
+    
+    <!-- 관리자 회원 자유게시판 리스트 -->
+    <select id="adminFbmAllList" resultType="com.example.teamproject.Vo.FreeBoardMemberVo">
+    select fbm_num,fbm_title,fbm_content,fbm_category,fbm_date,m_nickname,fbm_hit,m_id
+    from free_board_member join member using(m_id)
+    </select>
+    
+    <!-- 관리자 시설관리자 자유게시판 리스트 -->
+    <select id="adminFbsAllList" resultType="com.example.teamproject.Vo.FreeBoardSellerVo">
+    select fbs_num,fbs_title,fbs_content,fbs_category,fbs_date,fbs_hit,fm_id
+    from free_board_seller join fmanager using(fm_id)
+    </select>
+    
+    <!-- 관리자 노리게시판 리스트 -->
+    <select id="amdinNoriAllList" resultType="com.example.teamproject.Vo.NoriBoardVo">
+    select nb_num,nb_title,nb_content,nb_category,nb_date,m_nickname,nb_hit,m_id
+    from nori_board join member using(m_id)
+    </select>
+    
+    <!-- 관리자 공지사항게시판 리스트 -->
+    <select id="adminNotictAllList" resultType="com.example.teamproject.Vo.NoticeBoardVo">
+    select n_num,n_title,n_content,to_char(n_date ,'yyyy-mm-dd') n_date,n_hit,a_id
+    from notice_board join admin using(a_id)
+    </select>
+    
+    <!-- 관리자 문의사항 게시판 리스트 -->
+    <select id="adminQAllList" resultType="com.example.teamproject.Vo.QnaBoardVo">
+    select * from qna_board
+    </select>
+    
+    <select id="selectMemberQBoard" resultType="com.example.teamproject.Vo.QBoardVo">
+    	select q_num,q_title,to_char(q_date,'yyyy-mm-dd') q_date,q_status,m_nickname from q_board q, member m where q.member_id = m.m_id and  q_member = 'member'
+    </select>
+    <select id="selectSellerQBoard" resultType="com.example.teamproject.Vo.QBoardVo">
+    	select q_num,q_title,to_char(q_date,'yyyy-mm-dd') q_date,q_status,fm_name from q_board q, fmanager m where q.member_id = m.fm_id and  q_member = 'seller'
+    </select>
+    
+    <select id="selectAdminQnaList" resultType="com.example.teamproject.Vo.QnaBoardVo">
+    	select * from qna_board
+    
+    </select>
+    
+    <select id="selectMemberCount" resultType="int">
+    	select count(*) from member
+    </select>
+    
+    <select id="selectFmanagerCount" resultType="int">
+    	select count(*) from finfo
+    </select>
+    
+    
+    <!--시설 이벤트 리스트  -->
+    <select id="eventBoard" resultType="com.example.teamproject.Vo.EventBoardVo">
+    select eb_num,eb_title,fm_name,finfo_name,to_char(eb_date,'yyyy-mm-dd hh:mi') eb_date,to_char(eb_start_date,'yyyy-mm-dd') eb_start_date,to_char(eb_end_date,'yyyy-mm-dd') eb_end_date,eb_hit,img_name from event_board join event_board_images using (eb_num)  join fmanager using(fm_id) 
+		order by eb_num desc 
+    </select>
+    <!--시설 이벤트 리스트  -->
+    <select id="eventBoard2" resultType="com.example.teamproject.Vo.EventBoardVo">
+    select * from( select rownum rnum,b.* from(select eb_num,eb_title,fm_name,finfo_name,to_char(eb_date,'yyyy-mm-dd hh:mi') eb_date,to_char(eb_start_date,'yyyy-mm-dd') eb_start_date,to_char(eb_end_date,'yyyy-mm-dd') eb_end_date,eb_hit,img_name from event_board join event_board_images using (eb_num)  join fmanager using(fm_id)
+		order by eb_num desc)b) where rnum between 1 and 3
+    </select>
+    <!-- 관리자 공지사항게시판 리스트 -->
+    <select id="adminNotictAllList2" resultType="com.example.teamproject.Vo.NoticeBoardVo">
+    select * from( select rownum rnum,b.* from(    select n_num,n_title,n_content,to_char(n_date ,'yyyy-mm-dd') n_date,n_hit,a_id
+    from notice_board join admin using(a_id))b) where rnum between 1 and 3
+
+    </select>
+    </mapper>

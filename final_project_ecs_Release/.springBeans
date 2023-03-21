@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.9.22.202204280911-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[true]]></enableImports>
+	<configs>
+		<config>src/main/resources/config/spring/context/context-1-datasource.xml</config>
+		<config>src/main/resources/config/spring/context/context-3-mybatis.xml</config>
+		<config>src/main/resources/config/spring/context/context-4-dao.xml</config>
+		<config>src/main/resources/config/spring/context/context-5-service.xml</config>
+		<config>src/main/resources/config/spring/context/context-6-fileupload.xml</config>
+		<config>src/main/resources/config/spring/context/context-7-jsonconverter.xml</config>
+		<config>src/main/resources/config/spring/servlet/servlet-context.xml</config>
+		<config>src/main/resources/config/spring/context/x_context-0-aspect.xml</config>
+		<config>src/main/resources/config/spring/context/x-context-2-transaction.xml</config>
+	</configs>
+	<autoconfigs>
+	</autoconfigs>
+	<configSets>
+		<configSet>
+			<name><![CDATA[web-context]]></name>
+			<allowBeanDefinitionOverriding>true</allowBeanDefinitionOverriding>
+			<incomplete>false</incomplete>
+			<configs>
+				<config>src/main/resources/config/spring/context/context-1-datasource.xml</config>
+				<config>src/main/resources/config/spring/context/context-3-mybatis.xml</config>
+				<config>src/main/resources/config/spring/context/context-4-dao.xml</config>
+				<config>src/main/resources/config/spring/context/context-5-service.xml</config>
+				<config>src/main/resources/config/spring/context/context-6-fileupload.xml</config>
+				<config>src/main/resources/config/spring/context/context-7-jsonconverter.xml</config>
+				<config>src/main/resources/config/spring/servlet/servlet-context.xml</config>
+			</configs>
+			<profiles>
+			</profiles>
+		</configSet>
+	</configSets>
+</beansProjectDescription>

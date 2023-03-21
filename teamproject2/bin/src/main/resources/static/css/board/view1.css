@@ -1,0 +1,290 @@
+@charset "UTF-8";
+
+html, body, div, span, applet, object, iframe, p, blockquote, pre, a,
+	abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q,
+	s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl,
+	dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption,
+	tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,
+	figure, figcaption, footer, header, hgroup, menu, nav, output, ruby,
+	section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	box-sizing: content-box;
+}
+
+#div {
+	width: 100%;
+	height: 1200px;
+}
+
+#header_div {
+	width: 100%;
+	height: 10%;
+}
+
+#header_img {
+	width: 100%;
+	height: 100%;
+	background-image: url("../img/header.PNG");
+}
+/*-------------------------------------------------------------*/
+#body_div {
+	width: 100%;
+	height: 80%;
+}
+
+#body_view_div {
+	width: 80%;
+	border: 2px solid #eeeeee;
+	margin: auto;
+	border-radius: 10px;
+}
+
+/*  게시판 뷰 타이틀 부분 -------------------------------------------------------------------------*/
+#body_view_header {
+	width: 100%;
+	height: 15%;
+}
+
+#body_view_header1 {
+	width: 90%;
+	height: 80%;
+	margin: auto;
+	margin-bottom: 0px;
+	margin-top: 2%;
+}
+
+#body_view_title {
+	width: 100%;
+}
+
+#body_view_title h3 {
+	margin-top: 10px;
+}
+
+#body_view_inform {
+	margin-top: 10px;
+	width: 100%;
+}
+
+#body_view_inform_div1 {
+	display: inline-block;
+	width: 69%;
+	height: auto;
+}
+
+#body_view_inform_nickname {
+	width: 90%;
+	margin: auto;
+	font-weight: bolder;
+}
+
+#body_view_inform_date {
+	width: 90%;
+	margin: auto;
+	font-size: 12px;
+}
+
+#body_view_inform_date span:last-of-type {
+	margin-left: 10px;
+}
+
+#body_view_inform_comment {
+	display: inline-block;
+	width: 30%;
+	height: auto;
+	text-align: right;
+}
+/*  게시판 뷰 타이틀 부분 -------------------------------------------------------------------------*/
+/*  게시판 뷰 몸통 부분 -------------------------------------------------------------------------*/
+#body_view_body {
+	width: 90%;
+	height: 42%;
+	border-top: 2px solid #eeeeee;
+	border-bottom: 2px solid #eeeeee;
+	margin: auto;
+}
+
+#body_view_body1 {
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	margin-top: 10px;
+}
+
+#body_view_content {
+	width: 90%;
+	height: 70%;
+}
+
+#body_view_comment {
+	width: 90%;
+	height: 30%;
+}
+
+#body_view_comment1 {
+	width: 90%;
+	height: auto;
+	margin-top: 3%;
+}
+
+/*  게시판 뷰 몸통 부분 -------------------------------------------------------------------------*/
+/*  게시판 뷰 다리 부분 -------------------------------------------------------------------------*/
+#body_view_footer {
+	width: 100%;
+	height: 35%;
+}
+
+#body_view_footer1 {
+	width: 90%;
+	height: 100%;
+	background-color: #f9f9fa;
+	margin: auto;
+}
+
+.body_footer_comment {
+	margin-top: 10px;
+	width: 100%;
+	height: 40%;
+}
+
+#body_footer_comment div h5 {
+	font-weight: bolder;
+}
+
+#body_footer_inform_div1 {
+	margin-top: 10px;
+	width: 100%;
+	border-bottom: 1px solid #f0f0f0;
+}
+
+#body_footer_inform_nickname {
+	width: 90%;
+	height: auto;
+	margin: auto;
+	margin-bottom: 2px;
+}
+
+#body_footer_inform_nickname span:first-of-type {
+	font-weight: bolder;
+}
+
+#body_footer_inform_comment {
+	width: 90%;
+	height: auto;
+	margin: auto;
+	margin-bottom: 2px;
+}
+
+#body_footer_inform_date {
+	width: 90%;
+	margin: auto;
+	font-size: 12px;
+}
+
+#body_footer_comment_write {
+	width: 100%;
+	height: 40%;
+	border: 1px solid gainsboro;
+	border-radius: 15px;
+	border-width: 2px;
+	background-color: white;
+}
+
+#body_footer_comment_nickname {
+	width: 95%;
+	margin: auto;
+	padding: 10px;
+	font-size: 14px;
+	font-weight: bolder;
+}
+
+#body_footer_comment_nickname1 {
+	width: 70%;
+}
+
+#body_footer_comment_nickname input {
+	margin-top: 1%;
+	width: 50%;
+	height: 30px;
+	border: none;
+}
+
+#body_footer_comment_nickname input:focus {
+	outline: none;
+}
+
+#body_footer_comment_btn {
+	text-align: right;
+}
+
+#body_footer_comment_click {
+	width: 40px;
+	height: 25px;
+	font-size: 10px;
+	padding: 0;
+}
+/*  게시판 뷰 다리 부분 -------------------------------------------------------------------------*/
+/* 게시판 뷰 버튼 부분  */
+#body_view_header_btn {
+	width: 90%;
+	height: 5%;
+	text-align: right;
+	margin-top: 30px;
+}
+
+#body_view_header_btn button {
+	background-color: #EFF0F2;
+	font-weight: bolder;
+	border: white;
+}
+
+#body_view_header_btn button:hover {
+	color: black;
+}
+
+#body_view_bottom_btn {
+	width: 100%;
+	height: 5%;
+	text-align: left;
+	margin: auto;
+}
+
+#body_view_bottom_btn1 {
+	width: 80%;
+	margin: auto;
+	margin-top: 15px;
+}
+
+#body_view_bottom_btn_left {
+	display: inline-block;
+	width: 49%;
+}
+
+#body_view_bottom_btn_right {
+	display: inline-block;
+	width: 50%;
+	text-align: right;
+}
+
+#body_view_bottom_btn1 div button {
+	background-color: #EFF0F2;
+	font-weight: bolder;
+	border: white;
+}
+
+#body_view_bottom_btn1 div button:hover {
+	color: black;
+}
+
+/* 게시판 뷰 버튼 부분  */
+/*-------------------------------------------------------------------------*/
+#footer_div {
+	width: 100%;
+	/* height: 7%;
+  background-color: #EFF0F2; */
+}

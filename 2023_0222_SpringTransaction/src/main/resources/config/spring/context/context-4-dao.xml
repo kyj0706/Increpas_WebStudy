@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- 입고 Dao -->
+	<bean id="product_in_dao"  class="dao.Product_In_DaoImpl">
+	   <property name="sqlSession"  ref="sqlSession"/>
+	</bean>
+	
+	<!-- 출고 Dao -->
+	<bean id="product_out_dao"  class="dao.Product_Out_DaoImpl">
+	   <property name="sqlSession"  ref="sqlSession"/>
+	</bean>
+	
+	<!-- 재고 Dao -->
+	<bean id="product_remain_dao"  class="dao.Product_Remain_DaoImpl">
+	   <property name="sqlSession"  ref="sqlSession"/>
+	</bean>
+	
+		
+</beans>

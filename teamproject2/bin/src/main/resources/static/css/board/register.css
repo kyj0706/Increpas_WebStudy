@@ -1,0 +1,67 @@
+#body_div{
+  width: 50%;
+  margin: auto;
+}
+.form_div{
+  margin-bottom: 30px;
+}
+h1{
+  text-align: center;
+}
+.form_span{
+  display: inline-block;
+}
+span{
+  width: 80%;
+  height: 50px;
+  border:1px solid black;
+}
+#id{
+  width: 50%;
+  height: 80%;
+  margin: auto;
+  vertical-align: middle;
+  border: none;
+}
+#id_btn{
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+  height: 80%;
+  vertical-align: middle;
+}
+label{
+  display: inline-block;
+  width: 10%;
+  vertical-align: middle;
+}
+.form_input{
+  width: 80%;
+  height: 80%;
+  border: none;
+}
+img{
+  width: 50px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.phone{
+  height: 80%;
+  vertical-align: middle;
+  margin: auto;
+
+}
+
+.gender{
+  width: 20%;
+}

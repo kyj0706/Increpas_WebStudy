@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.span_menu{
+		display: inline-block;
+		width: 30px;
+		height: 30px;
+		padding: 5px;
+		text-align: center;
+		font-size: 18px;
+	}
+	
+	.span_menu:hover{
+		background: red;
+	}

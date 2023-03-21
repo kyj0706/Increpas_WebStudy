@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+function ok(){
+	
+	var num1 = document.getElementById("num1").value;
+	
+	//정규식 패턴(숫자만)
+	var num_pattern = /^[0-9]+$/;
+	
+	if(!num_pattern.test(num1)){
+		alert('숫자만 입력하세요!!');
+		return;
+	}
+	
+	
+}
+
+</script>
+
+</head>
+<body>
+
+숫자: <input id="num1">
+      <input type="button" value="확인" 
+             onclick="ok();">
+
+</body>
+</html>

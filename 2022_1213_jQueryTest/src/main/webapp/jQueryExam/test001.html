@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+  
+  
+  //초기화 함수
+  //              익명함수                    
+  window.onload = function(){
+	  //html element(객체) 배치 완료된 시점
+	  
+	  //현재 시스템 날짜 구하기
+	  var today = new Date();
+	  var year  = today.getYear() + 1900;// 1900 
+	  var month = today.getMonth() + 1;  // 0: 1월
+	  var day   = today.getDate();
+	  
+	  var msg = "안녕하세요 " + year  + "년 " + 
+	                            month + "월 "  +
+	                            day   + "일  입니다";
+	  //alert(msg);
+	  var msg_ctrl = document.getElementById("msg");
+	  
+	  msg_ctrl.innerHTML = msg;
+  };
+  
+  
+
+</script>
+
+</head>
+<body>
+
+<div id="msg"></div>
+
+</body>
+</html>

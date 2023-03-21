@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script type="text/javascript">
+	/* 정규식 표현
+		? : 0 or 1
+		*
+	*/
+	
+	//방법1 2는 이전에 쓰던 방식이다. 알아는 두자 
+	
+	
+	//숫자만 입력 정규식
+	var regular_number = /^[0-9]+$/;
+	
+	//방법1
+	//		문서내의 form정보를 배열로 관리
+	function send1(){
+		
+		var f = document.forms[0];
+		
+		var su1 = f.su1.value;
+		var su2 = f.su2.value;
+		
+		if(regular_number.test(su1)==false){
+			alert("숫자만 입력하세요");
+			f.su1.value = "";
+			f.su1.focus();
+			return;
+		}
+		if(regular_number.test(su2)==false){
+			alert("숫자만 입력하세요");
+			f.su2.value = "";
+			f.su2.focus();
+			return;
+		}
+		//지정된 action으로 전송
+		f.submit();
+		
+		
+	}
+	
+	//방법2
+	//		문서내의 name으로 배열로 관리
+	// include 의 여러개의 form 이 들어오면 인식할수 없다.
+	function send2(){
+		
+		var f = document.forms[0];
+		
+		var su1 = f.su1.value;
+		var su2 = f.su2.value;
+		
+		if(regular_number.test(su1)==false){
+			alert("숫자만 입력하세요");
+			f.su1.value = "";
+			f.su1.focus();
+			return;
+		}
+		if(regular_number.test(su2)==false){
+			alert("숫자만 입력하세요");
+			f.su2.value = "";
+			f.su2.focus();
+			return;
+		}
+		//지정된 action으로 전송
+		f.submit();
+		
+		
+	}
+	//방법3(많이 쓰인다 !! ) 무조건 알아둬라 .
+	//form의 Element(요소)만 가능하다
+	function send3(f){
+		// f = this.form
+		
+		var su1 = f.su1.value;
+		var su2 = f.su2.value;
+		
+		if(regular_number.test(su1)==false){
+			alert("숫자만 입력하세요");
+			f.su1.value = "";
+			f.su1.focus();
+			return;
+		}
+		if(regular_number.test(su2)==false){
+			alert("숫자만 입력하세요");
+			f.su2.value = "";
+			f.su2.focus();
+			return;
+		}
+		//지정된 action으로 전송
+		f.submit();
+		 
+	}
+	 
+
+</script>
+
+	
+</head>
+<body>
+<form name="f" action="calc.do">
+
+	
+	<h3>수1 입력 :<input type="text" id="su1" name="su1" value=""></h3>
+	<h3>수2 입력 :<input type="text" id="su2" name="su2" value=""></h3>
+
+	<input type="button" value="전송(방법1)" onclick="send1();">
+	<input type="button" value="전송(방법2)" onclick="send2();">
+	<!-- this.form : this를 소유하고 있는 form 정보 -->
+	<input type="button" value="전송(방법3)" onclick="send3(this.form);"><br>
+	
+<!-- ######################################################################### -->
+	
+	<!-- button tag 사용시 알아둘 것
+		 주의사항  :  button tag or type="image" 는 자동으로 onsubmit()이 호출된다.
+		 조지방법  :  onclick에서 return false( onsubmit()이 되기 때문에  하지말아라[권장]		-->
+	<!-- 예시 -->
+	<button onclick="send3(this.form);">전송[button tag]</button>
+	<!-- 조치 -->
+	<button onclick="send3(this.form); return false;">전송(조치)[button tag]</button><br>
+	
+<!-- ######################################################################### -->
+	
+	<!-- img tag 사용시 알아둘 것 
+		 주의사항
+		 조치방법
+	-->
+		
+	<!-- 예시 
+	전송img name으로 하면 가능하다.-->
+	img_f_name전송: 
+	<img src="imges/전송.png" onclick="send2();">
+	<!-- 문제
+	image tag는 this.form을 사용할 수 없다. 
+		why? this.form 은 form의 Element(요소)만 사용할 수 있다.
+		res: 결과도 안나오고 반응도 안한다. html console 에서 찾을 수 없다고 나온다-->
+	img_f_this.from(안된다) :
+	<img src="imges/전송.png" onclick="send3(this.form);">
+	<!-- 조치 -->
+	input_img_this.from(조치):
+	<input type="image" src="imges/전송.png" onclick="send3(this.form); return false;"><br>
+	
+	
+	
+	<input type="submit"  value="sbm_계산해줘">
+
+</form>
+
+
+
+</body>
+</html>

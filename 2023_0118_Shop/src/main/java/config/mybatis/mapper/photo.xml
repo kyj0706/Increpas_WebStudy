@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="photo">
+
+
+	<select id="photo_list" resultType="vo.PhotoVo">
+		select * from photo
+	</select>
+
+	<select id="photo_insert" resultType="vo.PhotoVo">
+		insert into photo values(seq_photo_p_idx.nextVal,
+		#{ p_title },
+		#{ p_content },
+		#{ p_filename },
+		#{ p_ip },sysdate,sysdate,
+		#{ mem_idx })
+	</select>
+
+	<select id="photo_delete" parameterType="int">
+		delete from photo where p_idx=#{p_idx}
+	</select>
+
+
+	<select id="photo_update" parameterType="vo.PhotoVo">
+		update photo set p_filename=#{p_filename}, p_modifydate=sysdate where
+		p_idx=#{p_idx}
+	</select>
+
+
+	<select id="photo_content_update" parameterType="vo.PhotoVo">
+		update photo set
+		p_title=#{p_title},p_content=#{p_content},p_ip=#{p_ip},p_modifydate=sysdate
+		where p_idx=#{p_idx}
+	</select>
+
+
+	<select id="photo_one" parameterType="int" resultType="vo.PhotoVo">
+		select * from photo where p_idx=#{ p_idx }
+	</select>
+	<!-- 추가 -->
+	<!-- parameter처리방법: mapper내에서 parameter변수 표현방법 #{ 속성(변수)명 } parameter 객체가 
+		들어오면 변수명은 속성명을 기록 사용예) #{ name } => vo.getName()와 동일한 결과 -->
+	<!-- <select id="visit_insert" parameterType="visit"> insert into visit 
+		values( seq_visit_idx.nextVal, #{ name } , #{ content } , #{ pwd } , #{ ip 
+		} , sysdate, sysdate) </select> 삭제 parameter가 단일타입일 경우 변수명은 아무이름이나 사용 가능하다. 
+		<select id="visit_delete" parameterType="int"> delete from visit where idx 
+		= #{ sdklfja;lsdklgjalsglkasdkhlk } </select> <select id="visit_update" parameterType="visit"> 
+		update visit set name = #{ name }, content = #{ content }, pwd = #{ pwd }, 
+		ip = #{ ip }, modifydate = sysdate where idx = #{ idx } </select> idx에 해당되는 
+		게시물 1건 <select id="visit_one" parameterType="int" resultType="visit"> select 
+		* from visit where idx=#{ idx } </select> -->
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

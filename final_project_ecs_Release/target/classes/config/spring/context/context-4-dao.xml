@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- BoardDaoImpl -->
+	<bean id="c_member_dao"  class="dao.C_memberDaoImpl">
+	   <property name="sqlSession"  ref="sqlSession"/>
+	</bean>
+	
+	<bean id="c_board_dao"  class="dao.C_boardDaoImpl">
+	   <property name="sqlSession"  ref="sqlSession"/>
+	</bean>
+	<!-- CommentDaoImpl -->
+	<bean id="c_comment_dao" class="dao.C_commentDaoImpl">
+		<property name="sqlSession" ref="sqlSession"/>	
+	</bean>
+	
+	<bean id="feedbackdao" class="dao.FeedbackDaoImpl">
+		<property name="sqlSession" ref="sqlSession"/>	
+	</bean>
+
+	<!-- 관리자 추가  -->
+	<!-- AdminDaoImpl -->
+	<bean id="admin_dao" class="dao.AdminDaoImpl">
+		<property name="sqlSession" ref="sqlSession"/>	
+	</bean>
+	
+<!-- 	<bean id="c_comment_dao"  class="dao.x_C_commentDaoImpl">
+	   <property name="sqlSession"  ref="sqlSession"/>
+	</bean>	 -->
+</beans>

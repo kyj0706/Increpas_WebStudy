@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="feedback">
+
+   <!-- 전체조회 -->
+   <select id="feedback_list"  resultType="vo.FeedbackVo">
+      select * from feedback where f_statNm = '#{ statNm }' order by f_idx asc
+   </select>
+
+   <select id="feedback_condition_list"   parameterType="Map"  resultType="vo.FeedbackVo">
+	    select 
+		        rank() over(order by f_idx ) as no,
+		        f.*
+		    from
+		        (
+		          select * from feedback
+		          <!-- Dynamic Query -->
+			      <trim prefix="where" prefixOverrides="or">
+			         <if test="statNm!=null">
+			             f_statNm like '%' || #{ statNm } || '%'
+			         </if>
+			      </trim>
+		        ) f
+   </select>
+   
+   <select id="feedback_stasdar_avg" parameterType="Map" resultType="String">
+	select 
+	avg(s_no) 
+	from feedback
+	where
+	f_statNm = #{ statNm }
+   </select>
+   
+   <insert id="feedback_insert"  parameterType="feedback">
+      insert into feedback values( seq_feedback_f_idx.nextVal,
+                                   #{ c_mem_idx },
+                                   #{ c_mem_name },
+                                   #{ s_no },
+                                   #{ f_content },
+                                   sysdate,
+                                   #{ f_statNm }
+                                   )
+  </insert>
+   
+</mapper>
+
+
+
+
+

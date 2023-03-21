@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+<!-- Bootstrap 3.x 사용설명 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+	#table_box{
+		width: 300px;
+		margin: auto;
+		margin-top: 50px;
+	
+	}
+	
+	#input_box{
+		margin: auto;
+		text-align: center;
+	}
+	
+
+	
+	
+	th, td {
+	
+	 	text-align: center;
+	 	
+	
+	}
+	
+	td {
+		width: 200px;
+	}
+
+</style>
+<script type="text/javascript">
+
+var regular_jumin = /\d{2}([0]\d|[1][0-2])([0][1-9]|[1-2]\d|[3][0-1])[-]*[1-4]\d{6}/g;
+
+$(document).ready(function(){
+	
+	$("#btn_res").click(function(){
+		
+		var jumin_no = $("#jumin_no").val();
+		if(regular_jumin.test(jumin_no)==false){
+			alert("["+jumin_no+"]는"+"주민번호 형태가 아닙니다.");
+			$("#jumin_no").val('');
+			$("#jumin_no").focus();
+			return;
+		}
+		
+		
+		//jQuery Ajax
+		$.ajax({
+			url			:'jumin.do',
+			data		:{'jumin_no':jumin_no},
+			dataType	:'json',
+			success		:function(res_data){
+				$("#year").html(res_data.year+"(년)"+ "["+res_data.ganji+"]");
+				$("#age").html(res_data.age+"(살)");
+				$("#tti").html(res_data.tti+"(띠)");
+				$("#gender").html(res_data.gender+"다");
+				$("#season").html(res_data.season);
+				$("#local").html(res_data.local+"에서 태어남");
+				
+				
+				
+			},
+			error		:function(err){
+				alert(err.responseText);
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+		});//ajax_end
+	});//click_end
+}); //document_end
+
+
+</script>
+
+
+
+</head>
+<body>
+<hr>
+<div id="input_box">
+
+	주민번호입력 : <input id="jumin_no" value="">
+			   <input type="button" value="결과" id="btn_res">
+			   <input type="reset" value="초기화">
+</div>
+<hr>
+<div id="table_box">
+	<table class="table table-striped table-bordered">
+		<caption align="top">Client</caption>
+		<tr class="success">
+			<th colspan="2">주민정보</th>
+		</tr>
+		<tr>
+			<th>출생년도</th>
+			<td id="year"></td>
+		</tr>
+		<tr>
+			<th>나이</th>
+			<td id="age"></td>
+		</tr>
+		<tr>
+			<th>띠</th>
+			<td id="tti"></td>
+		</tr>
+		<tr>
+			<th>성별</th>
+			<td id="gender"></td>
+		</tr>
+		<tr>
+			<th>출생계절</th>
+			<td id="season"></td>
+		</tr>
+		<tr>
+			<th>출생지역</th>
+			<td id="local"></td>
+		</tr>
+	
+	</table>
+</div>
+
+</body>
+</html>

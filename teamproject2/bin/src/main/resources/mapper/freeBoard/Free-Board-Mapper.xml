@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.teamproject.Mapper.FreeBoardMapper">
+<!-- 글쓰기 -->
+	<insert id="freeBoardMemberInsert" >
+	<selectKey keyProperty="fbm_num" order="BEFORE" resultType="int" >
+			select fbm_seq.nextval from dual
+		</selectKey>
+		insert into free_board_member values(#{fbm_num},#{fbm_title},#{fbm_content},#{fbm_category},sysdate,0,#{m_id})
+	</insert>
+	<insert id="freeBoardMemberImgInsert">
+		insert into free_board_member_images values(fbm_img_seq.nextval,#{fileName},#{fbm_num})
+	</insert>
+	
+	<!-- 게시글수 가져오기 -->
+	<select id="selectFreeBoardMemberListCount" resultType="int">
+		select count(*) from(select fbm_num,fbm_title,fbm_content,m_nickname,fbm_category,fbm_date,fbm_hit from free_board_member join member using(m_id)
+		where fbm_category like '%'||#{sportsCategory}||'%')
+		<where>
+			<if test='searchCategory == null'>
+			</if>
+			<if test='searchCategory == "all"'>
+				fbm_title like '%'||#{searchWord}||'%' or fbm_content like '%'||#{searchWord}||'%' or M_NICKNAME like '%'||#{searchWord}||'%' 
+			</if>
+			<if test='searchCategory == "title"'>
+				fbm_title like '%'||#{searchWord}||'%' 
+			</if>
+			<if test='searchCategory == "content"'>
+				fbm_content like '%'||#{searchWord}||'%' 
+			</if>
+			<if test='searchCategory == "name"'>
+					M_NICKNAME like '%'||#{searchWord}||'%' 
+			</if>
+		</where>
+	</select>
+	
+	
+	
+	<select id="selectFreeBoardMemberList" resultType="com.example.teamproject.Vo.FreeBoardMemberVo">
+			select * from ( 
+			select rownum rnum, b.* from (
+			select *from (select fbm_num,fbm_title,fbm_content,m_nickname,to_char(fbm_date,'yyyy-mm-dd hh:mi') fbm_date,fbm_hit,fbm_category from free_board_member join member using (m_id) 
+			where fbm_category like '%'||#{sportsCategory}||'%')  
+			<where>
+				<if test='searchCategory == null'>
+					
+				</if>
+				<if test='searchCategory == "all"'>
+					fbm_title like '%'||#{searchWord}||'%' or fbm_content like '%'||#{searchWord}||'%' or M_NICKNAME like '%'||#{searchWord}||'%'  
+				</if>
+				<if test='searchCategory == "title"'>
+					fbm_title like '%'||#{searchWord}||'%'
+				</if>
+				<if test='searchCategory == "content"'>
+					fbm_content like '%'||#{searchWord}||'%' 
+				</if>
+				<if test='searchCategory == "name"'>
+					M_NICKNAME like '%'||#{searchWord}||'%' 
+				</if>
+
+				
+			</where>
+			order by fbm_num desc)b) where rnum between #{startRow} and #{endRow}
+	</select>
+	<!-- 뷰페이지 가져오기 -->
+	<select id="selectFreeBoardMemberView" resultType="com.example.teamproject.Vo.FreeBoardMemberVo">
+		select fbm_num,fbm_title,fbm_content,m_nickname,to_char(fbm_date,'yyyy-mm-dd') fbm_date,fbm_hit,fbm_category,m_id from free_board_member join member using(m_id) where fbm_num = #{fbm_num} 
+	</select>
+	<!-- 이미지 이름 가져오기  -->
+	<select id="selectFreeBoardMemberImg" resultType="com.example.teamproject.Vo.FreeBoardMemberImgVo">
+		select * from free_board_member_images where fbm_num = #{fbm_num}
+	</select>
+	<!-- 게시글 수정 -->
+	<update id="freeBoardMemberModify">
+		update free_board_member set fbm_title = #{fbm_title} , fbm_content = #{fbm_content}, fbm_category = #{fbm_category}, fbm_date = sysdate where fbm_num = #{fbm_num}
+	</update>
+	<!--게시글 이미지 수정  -->
+	<update id="freeBoardImgModify">
+		update free_board_member_images set img_name = #{fileName} where img_no = #{img_no}
+	</update>
+	<!-- 게시글 지우기 -->
+	<delete id="freeBoardMemberDelete">
+		delete free_board_member where fbm_num = #{fbm_num}
+	</delete>
+	<!-- 게시글 이미지 지우기 -->
+	<delete id="freeBoardMemberDeleteImg">
+		delete free_board_member_images where fbm_num = #{fbm_num}
+	</delete>
+	<!-- 게시글 조회수 증가  -->
+	<update id="updateFreeBoardMemberHit">
+		update free_board_member set fbm_hit = fbm_hit+1 where fbm_num = #{fbm_num}
+	</update>
+	<!-- 게시글 다음글 가져오기 -->
+	<select id="selectNextView" resultType="com.example.teamproject.Vo.FreeBoardMemberVo">
+		select fbm_num from
+		(select rownum rnum,b.* from
+		(select * from free_board_member join member using(m_id) order by fbm_num desc) b ) where rnum = 
+		(select rnum from(select rownum rnum,b.*from (select * from free_board_member join  member using(m_id)
+		order by fbm_num desc)b) where fbm_num = #{fbm_num})+1
+	</select>
+	<!-- 게시글 이전글 가져오기  -->
+	<select id="selectPreView" resultType="com.example.teamproject.Vo.FreeBoardMemberVo">
+		select fbm_num from
+		(select rownum rnum,b.* from
+		(select * from free_board_member join member using(m_id) order by fbm_num desc) b ) where rnum = 
+		(select rnum from(select rownum rnum,b.*from (select * from free_board_member join  member using(m_id)
+		order by fbm_num desc)b) where fbm_num = #{fbm_num})-1
+	</select>
+
+	<!--게시글 댓글달기  -->
+	<insert id="freeBoardMemberCommentWrite">
+		<selectKey keyProperty="c_no" order="BEFORE" resultType="int" >
+			select fbm_comment_seq.nextval from dual
+		</selectKey>
+		insert into free_board_member_comment values(#{c_no},#{c_content},sysdate,#{fbm_num},#{m_id})
+	</insert>
+	<!--댓글 1개 가져오기  -->
+	<select id="selectOneMemberComment" resultType="com.example.teamproject.Vo.FreeBoardMemberCommentVo">
+		select c_no,m_nickname,c_content,to_char(c_date, 'yyyy-mm-dd') c_date,fbm_num,m_id from free_board_member_comment join member using (m_id) where c_no = #{c_no}
+	</select>
+	<!--댓글 전체개수  -->
+	<select id="selectAllMemberCommentCount" resultType="int">
+		select count(*) from free_board_member_comment where fbm_num = #{fbm_num}
+	</select>
+	<!-- 댓글전체 가져오기 -->
+	<select id="selectAllMemberComment" resultType="com.example.teamproject.Vo.FreeBoardMemberCommentVo">
+		select c_no,m_nickname,c_content,to_char(c_date, 'yyyy-mm-dd') c_date,fbm_num,m_id from free_board_member_comment join member using (m_id) where fbm_num = #{fbm_num}
+	</select>
+	<!-- 댓글 수정하기  -->
+	<update id="freeBoardMemberCommentModify">
+		update free_board_member_comment set c_content = #{c_content}, c_date = sysdate where c_no = #{c_no}
+	</update>
+	
+	<delete id="freeBoardMemberCommentDelete">
+		delete free_board_member_comment where c_no = #{c_no}
+	</delete> 
+	<!--//	자유 게시판 (판매자)=====================================================================================================================  -->
+	<!-- 게시글수 가져오기 -->
+	<select id="selectFreeBoardSellerListCount" resultType="int">
+		select count(*) from(select fbs_num,fbs_title,fbs_content,fm_id,fbs_category,fbs_date,fbs_hit from free_board_Seller join FMANAGER using(fm_id)
+		where fbs_category like '%'||#{sportsCategory}||'%')
+		<where>
+			<if test='searchCategory == null'>
+			</if>
+			<if test='searchCategory == "all"'>
+				fbs_title like '%'||#{searchWord}||'%' or fbs_content like '%'||#{searchWord}||'%' or fm_id like '%'||#{searchWord}||'%' 
+			</if>
+			<if test='searchCategory == "title"'>
+				fbs_title like '%'||#{searchWord}||'%' 
+			</if>
+			<if test='searchCategory == "content"'>
+				fbs_content like '%'||#{searchWord}||'%' 
+			</if>
+			<if test='searchCategory == "name"'>
+					fm_id like '%'||#{searchWord}||'%' 
+			</if>
+		</where>
+	</select>
+	<!-- 게시판 가져오기  -->
+	<select id="selectFreeBoardSellerList" resultType="com.example.teamproject.Vo.FreeBoardSellerVo">
+			select * from ( 
+			select rownum rnum, b.* from (
+			select *from (select fbs_num,fbs_title,fbs_content,fm_id,to_char(fbs_date,'yyyy-mm-dd hh:mi') fbs_date,fbs_hit,fbs_category from free_board_seller join FMANAGER using (fm_id) 
+			where fbs_category like '%'||#{sportsCategory}||'%')  
+			<where>
+				<if test='searchCategory == null'>
+					
+				</if>
+				<if test='searchCategory == "all"'>
+					fbs_title like '%'||#{searchWord}||'%' or fbs_content like '%'||#{searchWord}||'%' or fm_id like '%'||#{searchWord}||'%'  
+				</if>
+				<if test='searchCategory == "title"'>
+					fbs_title like '%'||#{searchWord}||'%'
+				</if>
+				<if test='searchCategory == "content"'>
+					fbs_content like '%'||#{searchWord}||'%' 
+				</if>
+				<if test='searchCategory == "name"'>
+					fm_id like '%'||#{searchWord}||'%' 
+				</if>
+
+				
+			</where>
+			order by fbs_num desc)b) where rnum between #{startRow} and #{endRow}
+	</select>
+	<!-- 게시글 쓰기  -->
+ 	<insert id="freeBoardSellerInsert" >
+	<selectKey keyProperty="fbs_num" order="BEFORE" resultType="int" >
+			select fbs_seq.nextval from dual
+		</selectKey>
+		insert into free_board_seller values(#{fbs_num},#{fbs_title},#{fbs_content},#{fbs_category},sysdate,0,#{fm_id})
+	</insert>
+	<!-- 게시글 이미지 등록 -->
+	<insert id="freeBoardSellerImgInsert">
+		insert into free_board_seller_images values(fbs_img_seq.nextval,#{fileName},#{fbs_num})
+	</insert> 
+	
+	<!-- 게시글 조회수 증가  -->
+	<update id="updateFreeBoardSellerHit">
+		update free_board_seller set fbs_hit = fbs_hit+1 where fbs_num = #{fbs_num}
+	</update>
+	
+		<!-- 뷰페이지 가져오기 -->
+	<select id="selectFreeBoardSellerView" resultType="com.example.teamproject.Vo.FreeBoardSellerVo">
+		select fbs_num,fbs_title,fbs_content,fm_id,to_char(fbs_date,'yyyy-mm-dd') fbs_date,fbs_hit,fbs_category,fm_id from free_board_seller join FMANAGER using(fm_id) where fbs_num = #{fbs_num} 
+	</select>
+	
+	<!-- 이미지 이름 가져오기  -->
+	<select id="selectFreeBoardSellerImg" resultType="com.example.teamproject.Vo.FreeBoardSellerImgVo">
+		select * from free_board_seller_images where fbs_num = #{fbs_num}
+	</select>
+	<!-- 게시글 다음글 가져오기 -->
+	<select id="selectNextSellerView" resultType="com.example.teamproject.Vo.FreeBoardSellerVo">
+		select fbs_num from
+		(select rownum rnum,b.* from
+		(select * from free_board_seller join FMANAGER using(fm_id) order by fbs_num desc) b ) where rnum = 
+		(select rnum from(select rownum rnum,b.*from (select * from free_board_seller join  FMANAGER using(fm_id)
+		order by fbs_num desc)b) where fbs_num = #{fbs_num})+1
+	</select>
+	<!-- 게시글 이전글 가져오기  -->
+	<select id="selectPreSellerView" resultType="com.example.teamproject.Vo.FreeBoardSellerVo">
+		select fbs_num from
+		(select rownum rnum,b.* from
+		(select * from free_board_seller join FMANAGER using(fm_id) order by fbs_num desc) b ) where rnum = 
+		(select rnum from(select rownum rnum,b.*from (select * from free_board_seller join  FMANAGER using(fm_id)
+		order by fbs_num desc)b) where fbs_num = #{fbs_num})-1
+	</select>
+	<!-- 게시글 수정 -->
+	<update id="freeBoardSellerModify">
+		update free_board_seller set fbs_title = #{fbs_title} , fbs_content = #{fbs_content}, fbs_category = #{fbs_category}, fbs_date = sysdate where fbs_num = #{fbs_num}
+	</update>
+	<!--게시글 이미지 수정  -->
+	<update id="freeBoardSellerImgModify">
+		update free_board_seller_images set img_name = #{fileName} where img_no = #{img_no}
+	</update>
+	<!-- 댓글전체 가져오기 -->
+	<select id="selectAllSellerComment" resultType="com.example.teamproject.Vo.FreeBoardSellerCommentVo">
+		select c_no,fm_id,c_content,to_char(c_date, 'yyyy-mm-dd') c_date,fbs_num from free_board_seller_comment  where fbs_num = #{fbs_num}
+	</select>
+	<!--댓글 전체개수  -->
+	<select id="selectAllSellerCommentCount" resultType="int">
+		select count(*) from free_board_seller_comment where fbs_num = #{fbs_num}
+	</select>
+	<delete id="freeBoardSellerDelete">
+		delete free_board_seller where fbs_num = #{fbs_num}
+	</delete>
+	<!-- 게시글 이미지 지우기 -->
+	<delete id="freeBoardSellerDeleteImg">
+		delete free_board_seller_images where fbs_num = #{fbs_num}
+	</delete>
+	<!--댓글쓰기  -->
+	<insert id="freeBoardSellerCommentWrite">
+		<selectKey keyProperty="c_no" order="BEFORE" resultType="int" >
+			select fbs_comment_seq.nextval from dual
+		</selectKey>
+		insert into free_board_seller_comment values(#{c_no},#{c_content},sysdate,#{fbs_num},#{fm_id})
+	</insert>
+	<!--댓글 1개 가져오기  -->
+	<select id="selectOneSellerComment" resultType="com.example.teamproject.Vo.FreeBoardSellerCommentVo">
+		select c_no,fm_id,c_content,to_char(c_date, 'yyyy-mm-dd') c_date,fbs_num from free_board_seller_comment  where c_no = #{c_no}
+	</select>
+	
+	<update id="freeBoardSellerCommentModify">
+		update free_board_seller_comment set c_content = #{c_content}, c_date = sysdate where c_no = #{c_no}
+	</update>
+	<!-- 댓글 삭제  -->
+	<delete id="freeBoardSellerCommentDelete">
+		delete free_board_seller_comment where c_no = #{c_no}
+	</delete> 
+ </mapper>

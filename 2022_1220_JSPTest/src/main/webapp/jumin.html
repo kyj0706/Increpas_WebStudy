@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+
+  var regular_jumin = /\d{2}([0]\d|[1][0-2])([0][1-9]|[1-2]\d|[3][0-1])[-][0-9]{1}\d{6}/;
+  
+  function send(f){
+	  
+	  //입력한 주민번호에 대한 정규식 체크
+	  var jumin_no = f.jumin_no.value;
+	  if(regular_jumin.test(jumin_no)==false){
+		  alert('주민번호 형식이 맞지 않습니다');
+		  f.jumin_no.value='';
+		  f.jumin_no.focus();
+		  return;
+	  }
+	  
+	  
+	  f.submit();//전송
+  }
+
+</script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+  <form action="jumin_result.jsp">
+     주민번호:<input  name="jumin_no" value="">
+              <input type="button"  value="확인" onclick="send(this.form);"> <br>
+  </form>
+</body>
+</html>

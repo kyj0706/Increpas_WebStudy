@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- MyList 객체생성을 위한 설계 -->
+	<bean id="myListBean" class="util.MyList">
+		<constructor-arg>
+			<!-- List list = new ArrayList() -->
+			<list>
+				<!-- ex)list.add("사과") -->
+				<value>사과</value>
+				<value>참외</value>
+				<value>수박</value>
+				<value>딸기</value>
+			</list>
+		</constructor-arg>
+	
+	</bean>
+	
+		<!-- MySet객체 설계 -->
+	<bean id="mySetBean"  class="util.MySet">
+	    <property name="set">
+	        <!-- Set set = new HashSet() -->
+	        <set>
+	           <!--set.add("하나"); -->
+	           <value>하나</value>
+	           <value>둘</value>
+	           <value>셋</value>
+	        </set> 
+	    </property>
+	</bean>
+	
+	<!-- MyMap 객체설정 -->
+	<bean id="myMapBean" class="util.MyMap">
+		<property name="map">
+			<map>
+				<entry key="one" 	value="하나"/>
+				<entry key="two" 	value="두리두리"/>
+				<entry key="three" 	value="세시세시세시"/>
+				<entry key="ioc" 	value="역제어다 (inversion of Control)"/>
+				<entry key="DI" 	value="의존성 (Depen)"/>
+			</map>
+		</property>
+	
+	</bean>
+	
+	<!-- MyProp 객체설정 -->
+	<bean id="myPropBean" class="util.MyProp">
+		<property name="prop">
+			<props>
+				<prop key="driver">oracle.jdbc.driver.OravleDriver</prop>			
+				<prop key="url">jdbc:oralce:thin:@localhost:1521:xe</prop>			
+				<prop key="user">scott</prop>			
+				<prop key="pwd">tiger</prop>			
+			</props>
+		</property>
+	</bean>
+	
+	
+		
+</beans>

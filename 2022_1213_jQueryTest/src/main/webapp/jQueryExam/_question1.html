@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+  table{
+     width: 300px;
+  }
+  
+  th{
+     width: 100px;
+  }
+
+</style>
+
+
+<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/jumin.js"></script>
+
+<script type="text/javascript">
+
+   var jumin = new Jumin();
+   //jQuery초기화 이벤트
+   var regular_jumin = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))-[1-4][0-9]{6}$/g;
+   
+   
+   
+   $(document).ready(function(){
+	   
+	   //결과버튼이 눌리면
+	   $("#btn_result").click(function(){
+		   
+		   var jumin_no = $("#jumin_no").val();
+		   
+		   /* if(regular_jumin.test(jumin_no)==false){
+			   alert("잘못된 번호입니다.");
+			   $("#jumin_no").val("");
+			   $("#jumin_no").focus();
+			
+			   
+		   } */
+		   //주민번호 정규식체크...
+		   
+		   //^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))-[1-4][0-9]{6}$/g
+		   
+		   
+		   //Jumin class setter를 통해서 데이터를 전달
+		   jumin.jumin_no = jumin_no;
+		   
+		   //주민번호->부가정보를 구한다
+		   var year 	= jumin.getYear();
+		   var age 		= jumin.getAge();
+		   var tti		= jumin.getTti();
+		   var tti_t		= jumin.getTti_t();
+		   //var ganji	= jumin.getGanji();
+		   var ganji_t	= jumin.getGanji_t();
+		   var gender 	= jumin.getGender();
+		   var season 	= jumin.getSeason();
+		   
+		   //결과넣기
+		   $("#birthday").html(year+"("+ganji_t+")");
+		   $("#age").html(age);
+		   //$("#tti").html(tti);
+		   $("#tti").html(tti_t);
+		   //$("#ganji").html(ganji);
+		   $("#ganji").html(ganji);
+		   $("#gender").html(gender);
+		   $("#season").html(season);
+		   
+	   });
+	   
+	   //다시하기
+	   $("#btn_remove").click(function () {
+			$("#jumin_no").val("");
+			$("#birthday").html("");
+			$("#age").html("");
+			$("#tti").html("");
+			$("#ganji").html("");
+			$("#gender").html("");
+			$("#season").html("");
+			$("#jumin_no").focus();
+	   });
+   });
+
+
+</script>
+
+
+
+</head>
+<body>
+주민등록번호:<input type="text"    id="jumin_no"   value="">
+             <input type="button"  id="btn_result" value="결과보기" > 
+             <input type="button"  id="btn_remove" value="다시하기">
+<hr>
+<table border="1">
+   
+   <tr>
+      <th>생년월일</th>
+      <td><span id="birthday"></span></td>
+   </tr>
+   
+   <tr>
+      <th>나이</th>
+      <td><span id="age"></span></td>
+   </tr>
+   
+   <tr>
+      <th>띠</th>
+      <td><span id="tti"></span></td>
+   </tr>
+   <tr>
+      <th>간지</th>
+      <td><span id="ganji"></span></td>
+   </tr>
+   
+   <tr>
+      <th>성별</th>
+      <td><span id="gender"></span></td>
+   </tr>
+   
+   <tr>
+      <th>계절</th>
+      <td><span id="season"></span></td>
+   </tr>
+   
+   
+</table>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- jQuery 라이브러리 연결  -->
+<!-- <script type="text/javascript" src="js/jquery-1.10.2.js"></script> -->
+
+<!-- online상에서 CDN 방식 -->
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript">
+
+
+
+/* 원본 */
+   //jQuery초기화
+   $(document).ready(function(){
+	   // $(selector).event(처리함수)
+	   $("#btn1").click(function(){
+		   alert('버튼눌림');
+	   });
+   });
+   
+   
+   
+   
+   
+   
+
+
+/*사용방법 순서 */
+/*
+    // 1 
+   	$(document).ready(function () {
+   	});
+   	
+   	// 2
+   	$(document).ready(function () {
+   		$("#btn1").click(function () {
+   		});
+   	});
+   	// 3
+   	$(document).ready(function () {
+   		$("#btn1").click(function () {
+   			alert('버튼눌림')
+   		});
+   	});
+   	   	
+*/
+
+
+</script>
+
+</head>
+<body>
+	<input type="button" id="btn1"  value="버튼"  />
+</body>
+</html>

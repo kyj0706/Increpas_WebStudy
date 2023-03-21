@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- RMI Service를 수행하는 객체 생성 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName"><value>VisitDao</value></property>
+		<property name="service"><ref bean="visit_dao"/></property>
+		<property name="serviceInterface"><value>dao.VisitDao</value></property>
+		<!-- defaults to 1099 -->
+		<property name="registryPort"><value>1199</value></property>
+	</bean>
+	
+
+
+
+</beans>

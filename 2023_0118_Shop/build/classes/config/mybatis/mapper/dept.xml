@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dept">
+	
+	<resultMap type="vo.DeptVO" id="dept_map">
+		<result property="deptno" column="deptno" />
+		
+		<!-- column 속성 : select시 넘겨질 parameter정보 
+						   2개이상시 정보 전달시 {deptno=deptno,dname=dname} 으로 묶어야한다.
+		-->
+		<collection property="sa_list"
+					column="deptno=deptno"
+					select="sawon_list_deptno"
+		
+		/>						
+	</resultMap>
+	
+	
+	<resultMap type="vo.SawonVO" id="sawon_map">
+		<result property="sabun" column="sabun"/>
+		
+		<collection property="go_list"
+					column="sabun=sabun"
+					select="gogek_list_godam"
+		/>
+	</resultMap>
+	
+	
+	
+	<!-- 조회 -->
+	<select id="gogek_list_godam" resultType="vo.GogekVO">
+		select * from gogek where godam=#{ sabun }	
+	</select>
+	
+	<select id="sawon_list_deptno" resultMap="sawon_map">
+		select * from sawon where deptno=#{deptno}
+		<!-- select * from sawon where deptno=#{ deptno }	 -->	
+	</select>
+	
+	<select id="dept_list" resultMap="dept_map">
+		select * from dept
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

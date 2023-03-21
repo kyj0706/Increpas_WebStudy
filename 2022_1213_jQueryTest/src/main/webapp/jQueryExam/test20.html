@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#box1 {
+		width: 300px;
+		height: 200px;
+		background-color: skyblue;
+	}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$("input[value='숨기기']").click(function(){
+			
+			$("#box1").hide(1000);
+			
+		});
+		
+		$("input[value='보이기']").click(function(){
+			$("#box1").show(1000);
+		});
+		
+		$("input[value='번갈아수행']").click(function(){
+			$("#box1").toggle(1000);
+		});
+		
+		
+		$("input[value='위로숨기기']").click(function(){
+			$("#box1").slideUp(1000);
+			//$("#box1").fadeOut(2000);
+		});
+		$("input[value='아래로보이기']").click(function(){
+			$("#box1").slideDown(1000,function(){
+				alert('아래로보이기 완료!!');
+			});
+		});
+		
+		$("input[value='효과주기']").click(function(){
+			$("#box1").slideToggle(1000,function(){
+				alert("작업완료");
+			});
+		});
+		
+		$("input[value='fadeIn']").click(function(){
+			$("#box1").fadeIn(1000);
+		});
+		
+		$("input[value='fadeOut']").click(function(){
+			$("#box1").fadeOut(1000);
+		});
+		
+		
+	});
+</script>
+</head>
+<body>
+	<input type="button" value="숨기기" />
+	<input type="button" value="보이기" />
+	<input type="button" value="번갈아수행" />
+	<input type="button" value="위로숨기기" />
+	<input type="button" value="아래로보이기" />
+	<input type="button" value="효과주기" />
+	<input type="button" value="fadeIn" />
+	<input type="button" value="fadeOut" />
+	
+	<div id="box1">
+		아차 졸다간 내년에 집에서 논다.
+	</div>
+</body>
+</html>
+
+
+
+

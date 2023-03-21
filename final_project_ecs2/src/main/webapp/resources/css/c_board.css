@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+#box{
+    width: 1024px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+#login{
+       text-align: right;
+}
+
+#title{
+	text-align: center;
+	font-weight: bold;
+	font-size: 25px;
+	color: #43ff87;
+}
+
+body {
+	/* background-image: url("https://ifh.cc/g/9zXTfq.gif"); */
+	/* 
+	.color1 {color: #120907;}
+	.color2 {color: #28253f;}
+	.color3 {color: #605c8c;}
+	.color4 {color: #a39ae4;}
+	.color5 {color: #e3d1ed;}
+	 */
+}
+
+.span_menu{
+	display: inline-block;
+	width: 30px;
+	height:35px;
+	padding: 5px;
+	border: 1px solid gray; 
+	text-align: center;
+}
+   
+.span_menu:hover{
+	border-color: red;
+}
+
+#comment{
+	color: rgb(0, 0, 0);
+	background-color: rgb(232, 255, 240);
+}

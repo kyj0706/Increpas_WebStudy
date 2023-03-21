@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#box{
+		width: 350px;
+		height: 200px;
+		margin: auto;
+		margin-top: 150px;
+		/* border: 1px solid red; */
+	
+	}
+	
+	input[value='로그인'],[value='취소']{
+		width: 80px;
+		margin: auto;
+		margin-top:30px; 
+		
+	}
+	
+	/*.panel-primary > .panel-heading {
+    color: #fff;
+    background-color:purple;
+    border-color: #337ab7;
+	} */
+	
+	
+	
+	
+	
+	/* 	 body > #box > #panel panel-primary > #btn-group > button{
+		
+		margin: auto;
+	} */
+	
+	/* 	button[value='pw_find'],[value='id_find'],[value='sing_up'] {
+		width: 100px;
+		
+	} */
+
+</style>
+<!-- Bootstrap 3.x 사용설명 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+	<div id="box">
+		<div class="panel panel-primary" id="panel panel-primary">
+    		<div class="panel-heading"><h3>로그인</h3></div>
+    		<div class="panel-body">
+    			<table class="table">
+    				<tr>
+    					<th>아이디</th>
+    					<td><input type="text" class="form-control" id="id" value=""> </td>
+    				</tr>
+    				<tr>
+    					<th>비밀번호</th>
+    					<td><input type="text"  class="form-control" id="id" value=""> </td>
+    				</tr>
+    				<tr>
+    					<td colspan="2" align="center">
+    						<input class="btn btn-success" type="button" value="로그인">
+    						<input class="btn btn-danger" type="button" value="취소">
+    					</td>
+    				</tr>
+    			</table>
+    		</div>
+    		
+    		<div class="btn-group btn-group-justified" >
+  				<a href="#" class="btn btn-link">비밀번호 찾기</a>
+  				<a href="#" class="btn btn-link">아이디 찾기</a>
+  				<a href="#" class="btn btn-link">회원가입</a>
+			</div>
+    	</div>
+	</div>
+
+</body>
+</html>

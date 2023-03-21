@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+
+  <select id="user_list"  resultType="user">
+     select * from user_test
+  </select>
+  
+  <select id="user_one_idx"  parameterType="int" resultType="user">
+     select * from user_test where user_idx=#{ user_idx }
+  </select>
+  
+  <select id="user_one_id"  parameterType="String" resultType="user">
+     select * from user_test where user_id=#{ user_id }
+  </select>
+  
+  <insert id="user_insert"  parameterType="user">
+      insert into user_test values(seq_user_idx.nextVal,
+                                   #{ user_name },
+                                   #{ user_id }, 
+                                   #{ user_pw },
+                                   #{ user_email }, 
+                                   #{ user_address1 }, 
+                                   #{ user_address2 },
+                                   #{ user_post }, 
+                                   #{ user_grade }, 
+                                   default, 
+                                   default)
+  </insert>
+  
+  <update id="user_update"  parameterType="user">
+      update user_test set user_name=#{ user_name }, user_pw=#{ user_pw },
+                      user_nickname=#{ user_nickname }, user_phone=#{ user_phone },
+                      user_email=#{ user_email }, user_address=#{ user_address },
+                      user_post=#{ user_post }
+                      where user_idx=#{ user_idx }
+  </update>
+  
+  <delete id="user_delete"  parameterType="int">
+      delete from user_test 
+      where user_idx=#{ user_idx }
+  </delete>
+  
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

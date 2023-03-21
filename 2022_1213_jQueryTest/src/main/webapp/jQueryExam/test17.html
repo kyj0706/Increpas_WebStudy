@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	var news = [
+	            "1 박지성 김민지 결혼",  //0
+	            "2 미래의 선택 정용화",  //1
+	            "3 김미려 눈물",         //2
+	            "4 한국인 10명 연락두절",//3
+	            "5 은혁 트위터 해킹"     //4
+	           ];
+	
+	var timer=null; 
+	function startNews(){
+		// 2초마다 한번씩 showNews()를 실행
+		if(timer==null){
+		   timer = setInterval(showNews,1000);
+		}
+		
+		//timer = setTimeout(showNews,2000); //<=2초후에 1회만 호출
+	}
+	function stopNews(){
+		// setInterval 효과를 제거 
+		clearInterval(timer);
+		timer=null;
+	}
+	// 배열에 인덱스로 사용할 변수
+	var index=0; 	
+	function showNews(){
+		var div = 	document.getElementById("topnews");
+		div.innerHTML=news[index];
+		
+		index++;
+		
+		if(index==news.length){
+			index=0;
+		}
+	}
+</script>
+</head>
+<body>
+	<div id="topnews">오늘의 탑뉴스</div>
+	
+	<input type="button" value="뉴스보기"  onclick="startNews();"/>
+	<input type="button" value="뉴스중지"  onclick="stopNews();"/>
+	
+</body>
+</html>

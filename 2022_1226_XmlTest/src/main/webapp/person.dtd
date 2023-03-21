@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT persons (person*) >
+	<!ELEMENT person (name,age,tel) >
+		<!ELEMENT name (#PCDATA)>
+			<!ATTLIST name nickname   CDATA #REQUIRED>
+			<!ATTLIST name familyname CDATA #IMPLIED>
+		<!ELEMENT age (#PCDATA)>
+		<!ELEMENT tel (#PCDATA)>	
+		    <!ATTLIST tel hometel CDATA #REQUIRED>

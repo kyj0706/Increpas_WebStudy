@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	table { table-layout: auto; width: 75%}
+	tr { color: blue; font-weight: bold;}
+	.selectClass { background-color: pink;
+		font-size: 20px; color: red;
+	}
+	table, tr, td {
+		border: 1px solid gray;
+	}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	// 버튼을 클릭하면 메세지를 경고창에 띄우기
+	$("document").ready(function(){
+			
+			// eq : = 
+			// lt : less then     <
+			// gt : Greater Then  >
+		
+		    
+			$("tr:lt(2)").css("background","gold");
+			
+			$("tr:eq(2)").css("background","pink");
+			
+			$("tr:gt(2)").css("background","silver");
+			
+			
+	});
+</script>
+</head>
+<body>
+	<table>
+		<tr><td>one</td></tr>    <!-- 0 -->
+		<tr><td>two</td></tr>    <!-- 1 -->
+		<tr><td>three</td></tr>  <!-- 2 -->
+		<tr><td>four</td></tr>   <!-- 3 -->
+		<tr><td>five</td></tr>   <!-- 4 -->
+	</table>
+	<button id="btn1">버튼</button>
+	<button id="btn2">제거</button>
+	
+</body>
+</html>

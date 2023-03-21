@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	div {padding: 5px;}
+	
+	/* 
+		span or lable inline요소 : 크기조절이 안된다.
+									단 float(띄우면) 크기조절이 가능해진다.	
+	 */
+	
+	
+	
+	.item {
+			float:left;
+			width:100px;
+			border: 1px solid gold;
+		}
+		
+	.warning {
+		color:red;
+		font-weight: bold;
+	}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	// 1. 버튼을 누르면 type:button인 엘리먼트를
+	// 찾아서 버튼을 누르면 인자에 기술한 함수를 
+	// 자동호출하여 이벤트를 처리 
+	
+	$(document).ready(function(){
+		
+		$("#regBtn").click(function(){
+			// 유효성 검사 
+			if(invalidation()){
+			   // 입력값 초기화
+			   clearInputValue();
+			}
+		});
+		
+		
+		function clearInputValue(){
+			$("#userId:text").val("");
+			$("#username:text").val("");
+			$("#pwd:password").val("");
+			$("#repwd:password").val("");
+			$("#idValid").html("");
+			$("#nameValid").html("");
+			
+		}
+		function invalidation(){
+			// 아이디를 입력하지 않으면 
+			// 해당 span에 아이디를 입력하세요 
+			//라믄 문구 추가 
+			if($("#userId:text").val()==""){
+				// id를 빼고 실행하면 
+				if($("#idValid").text()==""){
+					$("#idValid").html("아이디를 입력하세요")
+					             .addClass("warning");
+					$("#userId").focus();
+					
+				//.append("아이디를 입력하세요")
+				//.addClass("warning");
+				}
+				return false;
+			}else{
+				$("#idValid").html("");
+			}
+			
+			if($("#username:text").val()==""){
+				// id를 빼고 실행하면 
+				if($("#nameValid").text()==""){
+					$("#nameValid").html("이름을 입력하세요")
+					               .addClass("warning");
+					$("#username").focus();
+				//.append("아이디를 입력하세요")
+				//.addClass("warning");
+				}
+				return false;
+			}else {
+				$("#nameValid").html("");
+			}
+			
+			//암호입력체크
+			if($("#pwd:password").val().trim()==''){
+				
+				alert('암호를 입력하세요');
+				$("#pwd").val("");//값비우기
+			    $("#pwd").focus();//포커스지정
+				
+				return false;
+			}
+		
+			//암호확인입력체크
+			if($("#repwd:password").val().trim()==''){
+				
+				alert('암호(확인)을 입력하세요');
+				$("#repwd").val("");//값비우기
+			    $("#repwd").focus();//포커스지정
+				
+				return false;
+			}else if(($("#pwd:password").val()) != ($("#repwd:password").val())){
+				alert("암호가 다릅니다.");
+				return false;
+			}
+		
+		
+			
+			/* if($("#pwd:password").val() !=	$("#repwd:password").val() ){
+				alert("암호가 일치하지 않습니다.")
+				return false;
+			} */
+			
+			
+			alert("회원가입을 축하합니다");
+			return true;
+		}
+	}
+	
+	
+	
+	);
+</script>
+</head>
+<body>
+	<div>
+		<span class="item">아이디</span>
+		<input type="text" id="userId" name="userId" />
+		<span id="idValid"></span>
+	</div>
+	<div>
+		<span class="item">이름</span>
+		<input type="text" id="username" />
+		<span id="nameValid"></span>
+	</div>
+	<div>
+		<span class="item">암호</span>
+		<input type="password" id="pwd" />
+	</div>
+	<div>
+		<span class="item">암호 확인</span>
+		<input type="password" id="repwd" />
+	</div>
+	<input type="button" id="regBtn" value="회원가입" />
+</body>
+</html>

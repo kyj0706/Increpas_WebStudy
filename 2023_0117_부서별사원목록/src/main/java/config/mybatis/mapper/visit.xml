@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="visit">
+	<!-- 전체조회 -->
+	<select id="visit_list" resultType="vo.VisitVo">
+		select * from visit order by idx desc
+	</select>
+	
+	<!-- 추가 -->
+	<!-- parameter처리방법 : mapper내에서 parameter 변수 표현방법: #{속성(변수)명} 
+							 parameter가 객체가 들어오면 변수명은 속성명을 기록	
+							 사용예)
+							 #{name} => vo.getName()를 호출한 것과 동일한 결과
+							 
+	-->
+	<insert id="visit_insert" parameterType="vo.VisitVo">
+		insert into visit values(
+									seq_visit_idx.nextVal,
+									#{ name },
+									#{ content },
+									#{ pwd },
+									#{ ip },
+									sysdate,
+									sysdate)
+	</insert>
+	
+	<!-- 삭제 -->
+	<!-- Parameter 가 단일타입(int,String)일 경우 아무이름이나 사용가능하다 
+	ex) #{sadfjlskjd} 이래도 된다....
+	
+	 -->
+	<delete id="visit_delete" parameterType="int">
+		delete from visit where idx=#{idx}
+	
+	</delete>
+	
+	<!-- 수정 -->
+	<update id="visit_update" parameterType="visit">
+		update visit set name=#{name},content=#{content}, pwd=#{pwd}, ip=#{ip}, modifydate=sysdate where idx=#{idx}
+	</update>
+	
+	<select id="visit_one" resultType="visit" parameterType="int">
+		select * from visit where idx=#{idx}
+	
+	
+	</select>
+	
+		
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

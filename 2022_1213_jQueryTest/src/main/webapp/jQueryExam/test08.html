@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+// 		$("#content-1").css("background","pink");
+		// div 에 id가 content-1인 요소의 
+		// 배경색을 핑크색으로 지정
+		// id의 속성값이 content- 로 
+		//  시작하는 요소
+		// ^= ~로 시작하는 
+		// $=    해당값으로 끝나는 요소
+		// *=   해당문자를 포함하는 요소
+		
+		//id에서 tent단어가 포함된 요소
+		$("div[id*='tent']").css("background","pink");
+
+		//id 1로 끝나는 요소
+		$("div[id$='1']").css("background","red");
+		
+		//id c 로 시작되는 요소
+		$("div[id^='c']").css("background","gold");
+	});
+</script>
+</head>
+<body>
+	<h2>jquery 속성 선택자</h2>
+	<div>
+		<div id="content-1">DIV content-1</div>
+		<div id="content-2">DIV content-2</div>
+		<div id="view-1">DIV view-1</div>
+		<div id="content-3">DIV content-3</div>
+	</div>
+</body>
+</html>

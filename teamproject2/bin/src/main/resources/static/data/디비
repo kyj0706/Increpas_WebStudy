@@ -1,0 +1,340 @@
+CREATE TABLE member
+(
+    M_No          NUMBER(10)        NULL, 
+    M_ID          VARCHAR2(50)      NULL, 
+    M_PW          VARCHAR2(50)      NULL, 
+    M_NAME        VARCHAR2(50)      NULL, 
+    M_NICKNAME    VARCHAR2(50)      NULL, 
+    M_BIRTH       VARCHAR2(50)      NULL, 
+    M_GENDER      VARCHAR2(50)      NULL, 
+    M_eMAIL       VARCHAR2(50)      NULL, 
+    M_POST        VARCHAR2(50)      NULL, 
+    M_ADD1        VARCHAR2(2000)    NULL, 
+    M_ADD2        VARCHAR2(2000)    NULL, 
+    M_PHONE       VARCHAR2(50)      NULL, 
+    M_GRADE       VARCHAR2(50)      NULL, 
+    M_POINT       NUMBER(10)        NULL, 
+    CONSTRAINT PK_member3 PRIMARY KEY (M_ID)
+);
+
+CREATE TABLE FMANAGER
+(
+    FM_No         number(10)        NULL, 
+    FM_ID         VARCHAR2(50)      NULL, 
+    FM_PW         VARCHAR2(50)      NULL, 
+    FM_NAME       VARCHAR2(50)      NULL, 
+    FM_ADD1       VARCHAR2(1000)    NULL, 
+    FM_PHONE      VARCHAR2(50)      NULL, 
+    FM_COR_NUM    VARCHAR2(50)      NULL, 
+    FM_POINT      NUMBER(10)        NULL
+);
+
+CREATE TABLE admin
+(
+    A_No    NUMBER(10)      NULL, 
+    A_ID    VARCHAR2(50)    NULL, 
+    A_PW    VARCHAR2(50)    NULL
+);
+
+insert into member(m_id,m_pw) values(
+'test4','test4'
+);
+
+commit;
+insert into FMANAGER(FM_ID,FM_PW) values(
+'test1','test1'
+);
+
+INSERT INTO ADMIN values(
+1,'admin','admin'
+);
+
+select * from member;
+
+select * from FMANAGER;
+
+select * from admin;
+
+select * from fmanager where fm_id = 'test1' and fm_pw ='test1';
+commit;
+
+
+drop table FMANAGER;
+
+
+
+
+
+select * from fmanager where fm_id = 'test1' and fm_pw ='test1';
+
+select * from member;
+select * from fmanager;
+
+select * from tabs;
+
+ALTER TABLE member ADD m_hit number(10) DEFAULT 0 ;
+commit;
+
+desc member;
+
+update member set m_point = 0 ;
+commit;
+
+select * from member;
+select LENGTH(m_id) from member;
+
+delete member where LENGTH(m_id)<4;
+
+insert into member(m_id) values(
+'0');
+
+--자유게시판(회원)
+create table free_board_member(
+fbm_num number primary KEY,
+fbm_title varchar2(500),
+fbm_content varchar2(3000),
+fbm_category varchar2(20),
+fbm_date date,
+fbm_hit number,
+m_id varchar2(50)
+);
+--자유게시판(회원 이미지)
+create table free_board_member_images(
+img_no number primary key,
+img_name varchar2(1000),
+fbm_num number);
+
+--자유게시판(회원 댓글)
+create table free_board_member_comment(
+c_no number primary key,
+c_content varchar2(1000),
+c_date date,
+fbm_num number,
+m_id varchar2(50));
+
+--자유게시판(판매자)
+create table free_board_seller(
+fbs_num number primary KEY,
+fbs_title varchar2(500),
+fbs_content varchar2(3000),
+fbs_category varchar2(20),
+fbs_date date,
+fbs_hit number,
+m_id varchar2(50)
+);
+--자유게시판(회원 이미지)
+create table free_board_seller_images(
+img_no number primary key,
+img_name varchar2(1000),
+fbs_num number);
+
+--자유게시판(회원 댓글)
+create table free_board_seller_comment(
+c_no number primary key,
+c_content varchar2(1000),
+c_date date,
+fbs_num number,
+m_id varchar2(50));
+
+--노리게시판
+create table nori_board(
+nb_num number primary KEY,
+nb_title varchar2(500),
+nb_content varchar2(3000),
+nb_category varchar2(20),
+nb_date date,
+nb_hit number,
+m_id varchar2(50)
+);
+--노리게시판(이미지)
+create table nori_board_images(
+img_no number primary key,
+img_name varchar2(1000),
+nb_num number);
+
+--노리게시판(댓글)
+create table nori_board_comment(
+c_no number primary key,
+c_content varchar2(1000),
+c_date date,
+nb_num number,
+m_id varchar2(50));
+
+--이벤트 게시판 
+create table event_board(
+eb_num number primary KEY,
+eb_title varchar2(500),
+eb_content varchar2(3000),
+eb_date date,
+eb_hit number,
+m_id varchar2(50)
+);
+
+--이벤트 게시판(이미지)
+create table event_board_images(
+img_no number primary key,
+img_name varchar2(1000),
+eb_num number
+);
+
+--공지사항 게시판 
+create table notice_board(
+n_num number primary KEY,
+n_title varchar2(500),
+n_content varchar2(3000),
+n_date date,
+n_hit number,
+m_id varchar2(50)
+);
+
+--공지사항 게시판(이미지)
+create table notice_board_images(
+img_no number primary key,
+img_name varchar2(1000),
+n_num number
+);
+
+--자주묻는 질문 테이블
+create table qna_board(
+qb_num number,
+qb_title varchar2(1000),
+qb_content varchar2(3000),
+qb_category varchar2(50));
+
+--문의 테이블
+create table q_board(
+q_num number,
+q_title varchar2(1000),
+q_content varchar2(2000),
+q_group number,
+q_step number,
+q_indent number,
+q_date date,
+q_category varchar2(50),
+m_id varchar2(50));
+
+
+select * from free_board_member;
+select * from free_board_member_comment;
+
+select * from free_board_SELLER;
+drop table free_board_SELLER;
+drop table free_board_member_comment;
+
+create table free_board_member_comment(
+c_no number primary key,
+c_content varchar2(1000),
+c_date date,
+fbm_num number,
+m_id varchar2(50));
+
+select * from free_board_seller_comment;
+
+CREATE TABLE "FREE_BOARD_SELLER" 
+   (	"FBS_NUM" NUMBER, 
+	"FBS_TITLE" VARCHAR2(500 BYTE), 
+	"FBS_CONTENT" VARCHAR2(3000 BYTE), 
+	"FBS_CATEGORY" VARCHAR2(20 BYTE), 
+	"FBS_DATE" DATE, 
+	"FBS_HIT" NUMBER, 
+	"FM_ID" VARCHAR2(50 BYTE), 
+	 PRIMARY KEY ("FBS_NUM")
+     );
+commit;
+drop table FREE_BOARD_SELLER_COMMENT;
+     
+CREATE TABLE "FREE_BOARD_SELLER_COMMENT" 
+   (	"C_NO" NUMBER, 
+	"C_CONTENT" VARCHAR2(1000 BYTE), 
+	"C_DATE" DATE, 
+	"FBS_NUM" NUMBER, 
+	"FM_ID" VARCHAR2(50 BYTE), 
+	 PRIMARY KEY ("C_NO")
+     );
+     
+     commit;
+     
+     
+     
+     
+     CREATE TABLE member
+(
+    M_No          NUMBER(10)        NULL, 
+    M_ID          VARCHAR2(50)      NULL, 
+    M_PW          VARCHAR2(50)      NULL, 
+    M_NAME        VARCHAR2(50)      NULL, 
+    M_NICKNAME    VARCHAR2(50)      NULL, 
+    M_BIRTH       VARCHAR2(50)      NULL, 
+    M_GENDER      VARCHAR2(50)      NULL, 
+    M_eMAIL       VARCHAR2(50)      NULL, 
+    M_POST        VARCHAR2(50)      NULL, 
+    M_ADD1        VARCHAR2(2000)    NULL, 
+    M_ADD2        VARCHAR2(2000)    NULL, 
+    M_PHONE       VARCHAR2(50)      NULL, 
+    M_GRADE       VARCHAR2(50)      NULL, 
+    M_POINT       NUMBER(10)        NULL, 
+    CONSTRAINT PK_member3 PRIMARY KEY (M_ID)
+);
+
+drop table member;
+
+insert into member(m_id,m_pw) values(
+'test','test'
+);
+select * from member;
+
+select * from fmanager where fm_id = 'test1' and fm_pw ='test1';
+commit;
+
+
+drop table FMANAGER;
+
+CREATE TABLE FMANAGER
+(
+    FM_No         number(10)        NULL, 
+    FM_ID         VARCHAR2(50)      NULL, 
+    FM_PW         VARCHAR2(50)      NULL, 
+    FM_NAME       VARCHAR2(50)      NULL, 
+    FM_ADD1       VARCHAR2(1000)    NULL, 
+    FM_PHONE      VARCHAR2(50)      NULL, 
+    FM_COR_NUM    VARCHAR2(50)      NULL, 
+    FM_POINT      NUMBER(10)        NULL
+);
+
+insert into FMANAGER(FM_ID,FM_PW) values(
+'test1','test1'
+);
+
+select * from fmanager where fm_id = 'test1' and fm_pw ='test1';
+
+select * from FMANAGER;
+
+desc fmanager;
+commit;
+
+select * from fmanager;
+
+CREATE TABLE admin
+(
+    A_No    NUMBER(10)      NULL, 
+    A_ID    VARCHAR2(50)    NULL, 
+    A_PW    VARCHAR2(50)    NULL
+);
+
+INSERT INTO ADMIN values(
+1,'admin','admin'
+);
+
+select * from admin;
+
+commit;
+
+
+desc q_board;
+     
+     
+시퀀스
+
+
+
+

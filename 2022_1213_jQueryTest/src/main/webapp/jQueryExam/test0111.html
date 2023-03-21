@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- CDN :Contents Delivery Network  -->
+<!-- <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+
+
+/* javascript event */
+window.onload = function(){
+	console.log("--window.onload--");
+};
+
+/* 축약식 점점 짧아짐 .... */
+
+/* 원래사용방법 */
+/* jQuery -> 기호식 $ 대체함  */
+ jQuery(document).ready(function(){
+	console.log("--jQuery(document).ready--")
+});
+
+/* jQuery event 1 [기본(명시적)] */
+$(document).ready(function(){
+	console.log("--$(document).ready--");
+});
+
+/* jQuery event 2 */
+$(function(){
+	console.log("--$(function(){})--");
+});
+
+/* Lambda = Arrow function */
+$(()=>{
+	console.log("--$(()=>{})--");
+});
+
+
+</script>
+
+
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.teamproject.Mapper.QnaBoardMapper">
+		<!-- 게시글수 가져오기 -->
+	<select id="selectQnaBoardListCount" resultType="int">
+		select count(*) from qna_board where qb_category like '%'|| #{category}||'%'  
+	</select>
+	
+	
+	
+	<select id="selectQnaBoardList" resultType="com.example.teamproject.Vo.QnaBoardVo">
+			select * from ( 
+			select rownum rnum, b.* from (
+			select  * from qna_board
+			where qb_category like '%'||#{category}||'%'
+			)b) where rnum between #{startRow} and #{endRow}
+	</select>
+
+	<insert id="qnaBoardWrite">
+		insert into qna_board values(qb_seq.nextval,#{qb_title},#{qb_content},#{qb_category})
+	</insert>
+	<select id="selectQnaInfo" resultType="com.example.teamproject.Vo.QnaBoardVo">
+		select * from qna_board where qb_num = #{qb_num}
+	</select>
+	
+	<update id="qnaModify">
+		update qna_board set qb_title=#{qb_title},qb_content=#{qb_content},qb_category=#{qb_category} where qb_num=#{qb_num}
+	</update>
+	
+	<delete id="qnaDelete">
+		delete qna_board where qb_num=#{qb_num}
+	</delete>
+ </mapper>

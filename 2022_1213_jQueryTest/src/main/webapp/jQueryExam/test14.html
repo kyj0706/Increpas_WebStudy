@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+span{
+   font-size: 15px;
+   font-family: 휴먼옛체,굴림체;
+   color : green;   
+}
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+	$("document").ready(function(){
+		
+		/*
+		   p     > a     : 자식요소
+		   input + span  : 형제요소 
+		*/
+				
+		// un checked
+		$("input:not(:checked) + span").css("background-color","pink");
+		// checked
+		$("input[checked] + span").css("background-color","gold");
+	});
+
+</script>
+</head>
+<body>
+    <div>
+		<input type="checkbox" name="food"><!--  -->
+		<span>설농탕</span>
+	</div>
+	
+	<div>
+		<input type="checkbox" name="food" />
+		<span>곰탕</span>
+	</div>
+	<div>
+		<input type="checkbox" name="food" />
+		<span>왕돈까스</span>
+	</div>	
+	<div>
+		<input type="checkbox" 
+			name="food" checked="checked"/>
+		<span>순두부찌개</span>
+	</div>	
+	
+	
+</body>
+</html>

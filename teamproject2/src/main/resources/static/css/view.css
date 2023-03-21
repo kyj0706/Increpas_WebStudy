@@ -1,0 +1,181 @@
+@charset "UTF-8";
+
+
+
+#header_div{
+	text-align: center;
+  width: 100%
+}
+#article_div{
+  width: 90%;
+  margin: 50px auto;
+}
+#mypage{
+  margin-top: 30px;
+  margin-right: 30px;
+  font-weight: bolder;
+  width: 100%;
+  text-align: left;
+}
+#li_img{
+  width: 80%;
+}
+img{
+  width: 120px;
+}
+#li_mypage{
+  display: inline-block;
+  width: 18%;
+  font-size: 15px;
+
+}
+
+ul{
+
+  margin: 20px auto;
+   list-style-type: none; /*로고 모양 없애기*/
+   width: 90%;
+   height: 50px;
+}
+li{
+   display: inline-block;
+   font-size: 20px;
+   font-weight: bolder;
+   height: 100%;
+}
+.li_class{
+  display: inline-block;
+  margin: 15px;
+  color: white;
+
+}
+#li_1{
+  width: 18%;
+
+}
+#li_2{
+  width: 18%;
+}
+#li_a2{
+  color: black;
+}
+#li_3{
+  width: 18%;
+}
+#li_4{
+  width: 18%;
+}
+#li_5{
+  width: 18%;
+}
+a{
+  text-decoration: none;
+}
+a:link{
+  color: gray;
+}
+a:visited{
+  color: gray;
+}
+a:hover{
+  color: gray;
+}
+a:active{
+  color: gray;
+}
+
+th{
+  font-size: 20px;
+  border-bottom: 1px solid gray;
+}
+tr{
+  height: 50px;
+}
+td{
+  font-weight: bolder;
+  border-bottom: 1px solid gray;
+}
+
+table{
+  margin: auto;
+  width: 100%;
+  text-align: center;
+  border-top: 2px solid gray;
+}
+
+.tNo{
+  width: 15%;
+}
+.tTitle{
+  width: 45%;
+  text-align: left;
+}
+
+#thTitle{
+  text-align: center;
+}
+
+.tName{
+  width: 15%;
+}
+.tDate{
+  width: 15%;
+}
+.tHit{
+  width: 10%;
+}
+#btn_div{
+  margin-top: 30px;
+  margin-right: 10px;
+  text-align: right;
+}
+
+#write_btn{
+  width: 100px;
+  height: 50px;
+  background-color: #B0E0E6;
+  color: white;
+  font-size: 20px;
+  font-weight: bolder;
+  cursor: pointer;
+  border: none;
+}
+
+#next_page{
+  display: block;
+  position: fixed;
+  text-align: left;
+  font-weight: bolder;
+}
+.btn_class{
+  width: 120px;
+  height: 50px;
+  background-color: #B0E0E6;
+  color: gray;
+  font-size: 20px;
+  font-weight: bolder;
+  cursor: pointer;
+  border: none;
+}
+.href_class{
+  display: inline-block;
+ line-height:50px;
+ text-align: center;
+  width: 120px;
+  height: 50px;
+  background-color: #B0E0E6;
+  color: white;
+  font-size: 20px;
+  font-weight: bolder;
+  cursor: pointer;
+  border: none;
+}
+#div_btn{
+  justify-content: space-between;
+}
+img{
+  width: 300px;
+}
+.div_btnlist{
+  margin-top: 130px;
+}

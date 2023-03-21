@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script type="text/javascript">
+
+	var regular_num = /[0-9]/g;
+
+ 	$(document).ready(function () {
+ 		
+		$("#submit").click(function() {
+			
+			var su1 = $("#su1").val();
+			var su2 = $("#su2").val();
+			
+			if(regular_num.test(su1)==false && regular_num.test(su2)==false ){
+				alert("[숫자]가 아닙니다. 다시해주세요");
+				$("#su1").val("");
+				$("#su2").val("");
+				$("#su1").focus();
+				
+				return false;
+			}
+	
+		});
+	}); 
+	 
+
+</script>
+
+
+</head>
+<body>
+<form action="calc.do">
+
+	
+	<h3>수1 입력 :<input type="text" id="su1" name="su1" value=""></h3>
+	<h3>수2 입력 :<input type="text" id="su2" name="su2" value=""></h3>
+<input type="button" id="test_res" value="btn_테스트">
+
+<input type="submit" id="submit" value="sbm_계산해줘">
+
+</form>
+
+
+
+</body>
+</html>

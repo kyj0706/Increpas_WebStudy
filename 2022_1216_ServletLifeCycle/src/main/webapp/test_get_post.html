@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+   function send_get(){
+	   
+	   var f = document.f;
+	   f.method = "GET";  //요청방식 : Query로 전달 (?name=홍길동)
+	                      //           QueryString방식(보안에 취약)  
+	                      //           전송용량제한 있다(4096byte)  
+	   f.submit();//지정된 action객체로 데이터 전송해라
+   }
+   
+	function send_post(){
+	   
+	   var f = document.f;
+	   f.method = "POST"; //요청방식 : 전송데이터가 요청헤더에 숨겨져서 전달
+	                      //           보안성이 강하다/전송용량의 제한없다
+	   f.submit();//지정된 action객체로 데이터 전송해라
+   }
+
+</script>
+
+
+</head>
+<body>
+
+<form name="f" action="lifecycle.do" >
+   <input name="name"  value="홍길동"><br>
+   <input type="button"  value="GET 방식 호출" onclick="send_get();">
+   <input type="button"  value="POST방식 호출" onclick="send_post();">
+</form>
+
+
+</body>
+</html>

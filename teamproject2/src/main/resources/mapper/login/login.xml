@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+  <mapper namespace="com.example.teamproject.Mapper.LoginMapper">
+  
+  	<!-- 회원 로그인  -->
+  	<select id="member_login_check" resultType="com.example.teamproject.Vo.MemberVo">
+  		select * from member where m_id=#{m_id} and m_pw=#{m_pw}
+  	</select>
+  
+  	<!-- 시설 관리자 로그인  -->
+  	<select id="Fmanager_login_check" resultType="com.example.teamproject.Vo.FmanagerVo">
+  	
+  		select * from fmanager where fm_id=#{fm_id} and fm_pw=#{fm_pw}
+  	
+  	</select>
+  	
+  	<!-- 회원 회원 가입  -->
+  	<insert id="member_register_check">
+  	
+  	insert into member(m_no,m_id,m_pw,m_name,m_nickname,m_email,m_point) values(member_seq.nextval,#{m_id},#{m_pw},#{m_name},#{m_nickname},#{m_email},0)
+  	
+  	</insert>
+  	
+  	<!-- 시설 관리자 회원 가입  -->
+  	<insert id="fac_register_check">
+  	
+  	insert into FMANAGER(fm_no,fm_id,fm_pw,fm_name,fm_email,fm_phone) values(fmanager_seq.nextval,#{fm_id},#{fm_pw},#{fm_name},#{fm_email},#{fm_phone})
+  	
+  	</insert>
+  	
+  	<!-- 회원 아이디 찾기-->
+  	<select id="member_ld_find_check" resultType="com.example.teamproject.Vo.MemberVo">
+  	
+  		select * from member where m_nickname=#{m_nickname} and m_email=#{m_email}
+  	
+  	</select>
+  	
+  	<!-- 회원 비밀번호 찾기-->
+  	<select id="member_pw_find_check" resultType="com.example.teamproject.Vo.MemberVo">
+  	
+  		select * from member where m_id=#{m_id} and m_email=#{m_email}
+  	
+  	</select>
+  	
+  	<!-- 시설 아이디 찾기-->
+  	<select id="fac_ld_find_check" resultType="com.example.teamproject.Vo.FmanagerVo">
+  	
+  			select * from fmanager where fm_name=#{fm_name} and fm_phone=#{fm_phone}
+  	
+  	</select>
+  	
+  	<!-- 시설 아이디 찾기-->
+  	<select id="fac_pw_find_check" resultType="com.example.teamproject.Vo.FmanagerVo">
+  	
+  			select * from fmanager where fm_id=#{fm_id} and fm_phone=#{fm_phone}
+  	
+  	</select>
+
+  	<!-- 관리자 로그인 -->
+  	<select id="admin_login" resultType="com.example.teamproject.Vo.AdminVo">
+  	
+  			select * from admin where a_id=#{a_id} and a_pw=#{a_pw}
+  	
+  	</select>
+  <!-- 아이디 중복 검사 -->
+  	<select id="member_id_check" resultType="com.example.teamproject.Vo.MemberVo">
+  	
+  			select m_id from member where M_ID=#{m_id}
+  	
+  	</select>
+
+  	<!-- 아이디 중복 검사 -->
+  	<select id="fmanager_id_check" resultType="com.example.teamproject.Vo.FmanagerVo">
+  	
+  			select fm_id from fmanager where fm_id=#{fm_id}
+  	
+  	</select>
+  
+  </mapper>

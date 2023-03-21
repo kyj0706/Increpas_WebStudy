@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="visit">
+  
+  <!-- 전체조회  -->
+  <select id="visit_list"  resultType="vo.VisitVo">
+     select * from visit order by idx desc
+  </select>
+  
+  
+  <!-- 조건별 조회(Dynamic Query) -->
+  <select id="visit_list_condition"  
+          parameterType="java.util.Map"  
+          resultType="vo.VisitVo">
+          
+     select * from visit 
+     <trim prefix="where"  prefixOverrides="or">
+         <!-- parameter Map : 사용되는 변수는 map's key값 -->
+         
+         <if test="modifydate != null">
+            to_char(modifydate,'YYYY-MM-DD') = #{ modifydate }
+         </if>
+         
+         <if test="name!=null">
+            name like '%' || #{ name } || '%'
+         </if>
+         
+         <if test="content!=null">
+            or content like '%' || #{ content } || '%'
+         </if>
+         
+     </trim>
+     order by idx desc
+  </select>
+  
+  
+  <!-- idx에 해당되는 게시물 1건 -->
+  <select id="visit_one"  parameterType="int" resultType="visit">
+      select * from visit where idx=#{ idx }
+  </select>
+  
+  
+  
+  <!-- 추가 -->
+  <!-- parameter처리방법 : mapper내에서 parameter변수 표현방법 #{ 속성(변수)명 }
+                           parameter가 객체가 들어오면 변수명은 속성명을 기록
+                           사용예)
+                           #{ name } =>  vo.getName()와 동일한 결과
+   -->
+  <insert id="visit_insert"   parameterType="vo.VisitVo">
+     insert into visit values( seq_visit_idx.nextVal,
+                               #{ name } ,  
+                               #{ content } ,
+                               #{ pwd } ,
+                               #{ ip } ,
+                               sysdate,
+                               sysdate )
+  </insert>
+  
+  <!-- 삭제 -->
+  <!-- parameter 가 단일타입(int,String)일 경우 변수명은 아무이름이나 사용 가능하다 -->
+  <delete id="visit_delete"  parameterType="int">
+      delete from visit where idx=#{ idx }
+  </delete>
+  
+  <!-- 수정 -->
+  <update id="visit_update"  parameterType="visit">
+      update visit set name=#{ name },
+                       content=#{ content },
+                       pwd=#{ pwd },
+                       ip=#{ ip },
+                       modifydate=sysdate 
+      where idx=#{ idx } 
+  </update>
+  
+  
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

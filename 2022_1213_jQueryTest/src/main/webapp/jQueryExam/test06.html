@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test06.html</title>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("h2").css("background","yellow");
+ 		$("h2").css("width","200px");
+		$("h2").css("height","200px");
+
+		// 멀티 셀렉터 
+		$("h2, #id1, #id2").css("background","pink");
+		
+ 	// 모든 요소 선택하기 
+ 	
+ 		$("*").css("border","1px solid red");
+ 		$("#id1").css("background","red");
+		$("#id2").css("background","blue");
+		$("#span1").css("background","silver");
+		$("#span2").css("background","gold");
+		
+			
+	});
+</script>
+</head>
+<body>	
+	<h2>Hello World</h2>
+
+	<div>
+		<div id="id1">
+			이부분은 id1
+		</div>
+		<span id="span1">요기는 span1</span>
+		<span id="span2">요기는 span2</span>
+		<div id="id2">
+			이부분은 id2
+		</div>
+	</div>
+</body>
+</html>

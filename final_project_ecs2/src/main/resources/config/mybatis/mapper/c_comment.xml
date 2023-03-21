@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="c_comment">
+	<!-- 추가 -->
+	<insert id="c_comment_insert" parameterType="vo.C_commentVo">
+		insert into c_comment_tb values( seq_comment_tb_c_cmt_idx.nextVal,
+                               #{ c_cmt_content },
+                               #{ c_cmt_ip },
+                               sysdate,
+                               #{ c_b_idx },
+                               #{ c_mem_idx },
+                               #{ c_mem_id },
+                               #{ c_mem_name}
+                             )  
+	</insert>
+
+	<!-- 댓글조회 -->
+	<select id="c_comment_list" parameterType="int" resultType="vo.C_commentVo">
+		select * from c_comment_tb where c_b_idx = #{ c_b_idx }
+		order by c_cmt_idx desc
+	</select>
+
+	<delete id="c_comment_delete" parameterType="int">
+		delete from c_comment_tb where c_cmt_idx=#{ c_cmt_idx } 
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

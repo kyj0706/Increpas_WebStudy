@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+		<setting name="useGeneratedKeys" value="true" />
+		<setting name="defaultExecutorType" value="REUSE" />
+	</settings>
+	
+	
+	<typeAliases>
+		<typeAlias type="vo.C_memberVo"  alias="c_member"/>
+		<typeAlias type="vo.C_boardVo"   alias="c_board"/>
+		<typeAlias type="vo.C_commentVo" alias="c_comment"/>
+		<typeAlias type="vo.FeedbackVo"  alias="feedback"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="config/mybatis/mapper/c_member.xml" />
+		<mapper resource="config/mybatis/mapper/c_board.xml" />
+		<mapper resource="config/mybatis/mapper/c_comment.xml" />
+		<mapper resource="config/mybatis/mapper/admin.xml" />
+		<mapper resource="config/mybatis/mapper/feedback.xml" />
+	</mappers>
+	
+</configuration>

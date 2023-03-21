@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE persons SYSTEM "person.dtd">
+<!-- Root Element(요소) -->
+<persons>
+	<person>
+	    <!-- nickname : Attribute(속성) -->
+		<name nickname="원님" familyname="일">일길동</name>
+		<age>33</age>
+		<tel hometel="02-111-1111">010-111-1111</tel>
+	</person>
+	<person>
+	    <!-- nickname : Attribute(속성) -->
+		<name nickname="투님">이길동</name>
+		<age>22</age>
+		<tel hometel="031-111-1111">010-222-2222</tel>
+	</person>
+	<person>
+	    <!-- nickname : Attribute(속성) -->
+		<name nickname="삼님">삼길동</name>
+		<age>55</age>
+		<tel hometel="02-555-0555">010-555-5555</tel>
+	</person>
+
+</persons>
+

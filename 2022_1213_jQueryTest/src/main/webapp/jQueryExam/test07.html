@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("a[target]").css("background","#cccccc");
+		// a태그중 속성 target 있는 요소만 회색
+		// input 요소에 빨간색 테두리 
+		$("input[size != '20']").css("border","1px solid red");
+		
+		$("a[href~='https://www.naver.com']").css("background","pink");
+		
+		// =  정확하게 일치 
+		// ~= 공백을 포함한 내용이 일치 
+	});
+
+</script>
+</head>
+<body>
+	<input type="text" size="10" />
+	<input type="text" size="20" />
+	
+	<a href=" https://www.naver.com" >네이버</a>
+	<a href="https://www.naver.com" target="_blank">네이버</a>
+	<a href="https://www.daum.net">다음</a>
+	<a href="https://www.daum.net"  target="_blank">다음</a>
+	
+</body>
+</html>
+

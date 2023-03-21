@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test10.html</title>
+<style type="text/css">
+a{
+  text-decoration: none;
+  font-size: 12px;
+  color : #7788cc;
+  font-weight: bold;
+}
+/* 마우스가 올라간 경우 */
+a:hover{
+  /* text-decoration: none; */
+  color : #1122ff;
+  /* font-weight: bold; */
+}
+
+p{
+  width: 120px;
+}
+
+img{
+	width: 120px;
+	height: 120px;
+	border: 2px solid gray; 
+	outline: 2px solid black;
+}
+
+.style_div{
+	border: 1px solid blue;
+	float: left;
+	margin: 10px;
+	padding: 10px;
+	height: 220px;
+	
+}
+
+.style_div:hover{
+	border: 1px solid red;
+}
+
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		/* $("img").css("width","120px")
+			    .css("height","120px"); */
+		$("ul").css("list-style","none");
+		
+		$("div.book").addClass("style_div");	    
+		/* $("div").css("float","left")
+			    .css("margin","30px");
+		$("div.book").css("padding","50px")
+			      .css("margin","50px"); */
+		
+		//$("li > div > p > a").addClass("style_a");
+			      
+			      
+		$('div.book').click(function(){
+            
+			var title = $(this).children().eq(1).find("a").html();
+			//var title = $(this).find("p > a").html();
+			var price = $(this).children().eq(2).html();
+			
+			//string함수 : indexOf("문자")=>index반환
+			//          0123456 
+			// price = "17,200원"      <=  price.indexOf("원")
+			// price = "11,700"+"원";  <=  -1 반환
+			
+			if(price.indexOf('원')<0)
+	           price  = price + "원";		
+			
+			//if(title==null)
+			if(title==undefined)	
+				title = $(this).children().eq(1).html();
+			
+			var msg = "제목:" + title + "\n가격:" + price;
+			
+			alert(msg);
+		});	      
+	});
+
+</script>
+</head>
+<body>
+	<!-- 책이미지를 구해 4*4 크기 모양으로
+	책이미지, 도서명 가격 정보를 출력하시요 -->
+	<h2>도서정보</h2>
+	<ul>
+		<li>
+			<div class="book" id="book1">
+				<img src="images/book1.jpg" />
+				<p><a href="#">인생수업이란 무엇일까요?</a></p>
+				<p>11,700원</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book2">
+				<img src="images/book2.jpg" />
+				<p><a href="#">관계의 힘</a></p>
+				<p>11,700원</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book3">
+				<img src="images/book3.jpg" />
+				<p>제 3인류</p>
+				<p>12,420원</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book4">
+				<img src="images/book4.jpg" />
+				<p>총균쇠</p>
+				<p>14,000원</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book5">
+				<img src="images/book5.jpg" />
+				<p>정글만리</p>
+				<p>11,700</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book6">
+				<img src="images/book6.jpg" />
+				<p>높고푸른 사다리</p>
+				<p>11,700</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book7">
+				<img src="images/book7.jpg" />
+				<p>1cm +</p>
+				<p>12,420</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book8">
+				<img src="images/book8.jpg" />
+				<p>행복한 그림자의 춤</p>
+				<p>9,000</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book9">
+				<img src="images/book9.jpg" />
+				<p>이중섭:편지와 그림들</p>
+				<p>10,500</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book10">
+				<img src="images/book10.jpg" />
+				<p>알랭드 보통의 영혼의 미술관</p>
+				<p>25,200</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book11">
+				<img src="images/book11.jpg" />
+				<p>산사로 가는 즐거움</p>
+				<p>12,600</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book12">
+				<img src="images/book12.jpg" />
+				<p>멈추면, 비로소 보이는 것들</p>
+				<p>10,000</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book13">
+				<img src="images/book13.jpg" />
+				<p>감정은 습관이다</p>
+				<p>12,600</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book14">
+				<img src="images/book14.jpg" />
+				<p>해커스 토익: READING</p>
+				<p>15,790</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book15">
+				<img src="images/book15.jpg" />
+				<p>철학하라</p>
+				<p>17,500</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book16">
+				<img src="images/book16.jpg" />
+				<p>꾸뻬씨의 행복 여행</p>
+				<p>8,640</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book17">
+				<img src="images/book17.jpg" />
+				<p>마시멜로 세번째 이야기</p>
+				<p>12,600</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book18">
+				<img src="images/book18.jpg" />
+				<p>예감은 틀리지 않는다</p>
+				<p>6,400</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book19">
+				<img src="images/book19.jpg" />
+				<p>명작순례</p>
+				<p>16,200</p>
+			</div>
+		</li>
+		<li>
+			<div class="book" id="book20">
+				<img src="images/book20.jpg" />
+				<p>3배속 살림법</p>
+				<p>7,900</p>
+			</div>
+		</li>
+		
+	</ul>
+</body>
+</html>

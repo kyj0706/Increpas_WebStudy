@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- 객체생성에 대한 설계서를 만든다.
+		bean : 객체를 상직적으로 표현
+		생성자를 통해서 초기화되며
+	 -->
+	<!-- new PersonVo("일길동",15, "010-1111-1234") 와 비슷한 형태이다.  -->
+	<!--  Constructor injection 라고한다.-->
+	<!-- 							  scope가 생략되면 default: singleton이다.	 -->
+	<bean id="p1" class="vo.PersonVo" scope="singleton">
+		<constructor-arg value="일길동"  		type="java.lang.String" index="0" />
+		<constructor-arg value="15"  			type="int" 				index="1" />
+		<constructor-arg value="010-1111-1234" 	type="java.lang.String" index="2" />
+	</bean>
+	
+	<!-- 비교 -->
+	<!-- PersonVo p2 = new PersonVo() -->
+	<!-- Setter injectrion 라고한다. -->
+	<!-- 							  scope="prototype" 요청시마다 생성	 -->
+	<bean id="p2" class="vo.PersonVo" scope="prototype">
+		<!-- setter를 호출한다. p2.setName('이길동') 같은형태-->
+		<property name="name" value="이길동"/>
+		<property name="age" value="25"/>
+		<property name="tel" value="010-2222-1234"/>
+	
+	</bean>
+	
+	<!-- 문제1 -->
+	<!-- String nameBean = new String("삼길동") -->
+	<bean id="nameBean" class="java.lang.String">
+		<constructor-arg value="삼길동"/>
+	</bean>
+	
+	<!-- 문제2 -->
+	<!-- Integer ageBean = new Integer("30") -->	
+	<bean id="ageBean" class="java.lang.Integer">
+		<constructor-arg value="30"/>
+	</bean>
+	
+	<!-- 문제1 -->
+	<!-- String telBean = new String("010-3333-1234") -->
+	<bean id="telBean" class="java.lang.String">
+		<constructor-arg value="010-3333-1234"/>
+	</bean>
+	<!-- 문제와 같은 방식으로 사용하지 않는다 절대로 -->
+	
+	
+	<!-- Constructor injection(외부 -> 내부) -->
+	<bean id="p3" class="vo.PersonVo">
+		<constructor-arg ref="nameBean"/>	
+		<constructor-arg ref="ageBean"/>	
+		<constructor-arg ref="telBean"/>	
+	</bean>
+	
+	
+	<!-- Setter injection -->
+	<bean id="p4" class="vo.PersonVo">
+		<property name="name" ref="nameBean"/>
+		<property name="age" ref="ageBean"/>
+		<property name="tel" ref="telBean"/>
+		
+	</bean>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</beans>

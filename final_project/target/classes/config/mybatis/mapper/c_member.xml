@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="c_member">
+  
+  <select id="c_member_list"  resultType="c_member">
+     select * from c_member order by c_mem_idx asc
+  </select>
+  
+  <select id="c_member_one_idx"  parameterType="int" resultType="c_member">
+     select * from c_member where c_mem_idx=#{ c_mem_idx }
+  </select>
+  
+  <select id="c_member_one_id"  parameterType="String" resultType="c_member">
+     select * from c_member where c_mem_id=#{ c_mem_id }
+  </select>
+  
+  <insert id="c_member_insert"  parameterType="c_member">
+      insert into c_member values( (select nvl(max(c_mem_idx),0)+1 from c_member),
+                                   #{ c_mem_name },
+                                   #{ c_mem_id },
+                                   #{ c_mem_pwd },
+                                   #{ c_mem_zipcode },
+                                   #{ c_mem_address },
+                                   default,
+                                   default,
+                                   0,
+                                   #{ c_mem_chargertype }
+                                   )
+  </insert>
+  <!-- 
+  insert into  c_member values( (select nvl(max(c_mem_idx),0)+1 from c_member),
+                            '일길동',
+                            'one',
+                            '1234',
+                            '12345',
+                            '서울시 관악구 시흥대로552',
+                            일반,
+                            default,
+                            0,
+                            06 
+                           );
+   -->
+   
+  <update id="c_member_update"  parameterType="c_member">
+      update c_member set c_mem_name        = #{ c_mem_name },
+                          c_mem_pwd         = #{ c_mem_pwd },
+                          c_mem_zipcode     = #{ c_mem_zipcode },
+                          c_mem_address     = #{ c_mem_address },
+                          c_mem_grade       = #{ c_mem_grade } ,
+                          c_mem_chargertype = #{ c_mem_chargertype }
+      where c_mem_idx=#{ c_mem_idx } 
+  </update>
+  
+  <delete id="c_member_delete"  parameterType="int">
+      delete from c_member 
+      where c_mem_idx = #{ c_mem_idx }
+  </delete>
+  
+  
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

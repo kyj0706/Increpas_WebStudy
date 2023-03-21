@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.mainmenu{
+		float:left;
+		width: 300px;
+		list-style-type: none;
+		margin-left: 20px;
+	}
+	
+	li.mainmenu ul{
+		margin: 0px;
+		list-style-type: none;
+		padding: 0px;
+	}
+	
+	.mainmenu a{
+ 		background : #a50000; 
+		width: 300px;
+		display: block; 
+		color: white;
+		text-decoration: none;
+		padding: 10px;
+		border-bottom: 1px solid #ffffff;
+	}
+	
+	ul#dropdownmenu li a:hover {
+		background-color: #aaaaaa;
+	}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$("li.mainmenu ul").hide(); //하위메뉴 숨기기
+		
+		$("li.mainmenu").hover(function(){
+			// 자신의 자식요소중에 ul요소 화면에 보이기
+			$("ul",this).show(1);
+			//$("ul",this).slideDown(500);
+			//$("ul",this).fadeIn(1000);
+		}, function(){
+			$("ul",this).hide(1);
+		});
+		
+		//$("li.mainmenu").hover(function(){},function(){});
+		
+	});
+</script>
+</head>
+<body>
+	<ul id="dropdownmenu">
+		<li class="mainmenu">
+			<a href="#">도서</a>
+			<ul>
+				<li>
+    				<a href="#">JAVA가 먼가요? 먹는건가요?</a>
+				</li>
+				<li>
+					<a href="#">배우면 돈이된는 자바</a>
+				</li>			
+				<li>
+					<a href="#">손에 잡히는 자바</a>
+				</li>
+			</ul>
+		</li>
+		<li class="mainmenu">
+			<a href="#">화장품</a>
+			<ul>
+				<li><a href="#">SK-II</a></li>
+				<li><a href="#">아리따움</a></li>
+				<li><a href="#">설화수</a></li>				
+			</ul>
+		</li>
+	
+	</ul>
+</body>
+</html>

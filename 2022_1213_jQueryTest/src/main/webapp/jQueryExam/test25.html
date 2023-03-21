@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#list {
+		display: none; 
+	}
+	#list ul li {
+		list-style-type: none;
+		float: left;
+		/* flowLayout */
+	}
+	.mybtn {
+		border: 2px soild red;
+		padding: 5px;
+		margin: 5px;
+		width: 150px;
+	}
+	*{
+		margin:0;
+		padding:0;
+	}
+	.movieinfo{
+		display:none;
+		position:absolute;
+		left:50px;
+		top:40px;
+	}
+	#list ul li img {
+		width: 160px;
+		height:200px;
+		margin:2px;
+		border: 2px solid #cccccc;
+	}
+	
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//span요소 감추기 
+		$("span").hide();
+		
+		// mybtn은 버튼 처럼 클릭하게 
+		$(".mybtn").click(function(){
+			$("#list").slideToggle(1000);
+		});
+		
+		// 이미지에 마우스오버되면
+				// 뿌옇게 보이게 설정
+		$("#list ul li img").hover(function(){
+					$(this).css("opacity",0.25);
+				}, function(){
+					$(this).css("opacity",1);
+				});
+		// li 에 마우스 올라오면 영화정보를 
+		// 보여주게 설정
+		
+		$("#list ul li").hover(function(){
+			$(".movieinfo").show();
+	        // 마우스 오버된 img의 src속성값얻기
+			//var src = $(this).find("img").attr("src");
+	        //        this의 자식요소(img)알아낸다. 
+	        var src = $("img",this).attr("src");
+			//console.log(src);
+			$("#img1").attr("src",src);
+			
+			//제목얻어오기
+			var title = $("span",this).html();
+			console.log(title);
+			
+			$("#p1").html("<h1 style='text-align: center;'>" + title + "</h1>");
+			
+			
+		},function(){
+			$(".movieinfo").hide();
+		}
+		);
+		
+		
+	});
+</script>
+</head>
+<body>
+	<div class="mybtn">제품이미지보기</div>
+	<div id="list">
+		<ul>
+			<li>
+				<img src="images/movie1.jpg" />
+			<span>[토르]</span>
+			</li>
+			<li>
+				<img src="images/movie2.jpg" />
+			<span>[동창생]</span>
+			</li>
+			<li>
+				<img src="images/movie3.jpg" />
+			<span>[그래비티]</span>
+			</li>
+			<li>
+				<img src="images/movie4.jpg" />
+			<span>[공범]</span>
+			</li>
+
+		</ul>
+	</div>
+	<h1 style="text-align: center;"></h1>
+	<!-- 큰박스 -->
+	<div style="clear:both;position:relative">
+		<div class="movieinfo">
+			<p id="p1"></p>
+			<img id="img1" width="300" height="400"/>
+		</div>
+	</div>
+	<!-- 
+	<div style="width:550px;height:300px;border:2px solid #999999";
+			 padding:10px">
+			 
+		 피카디리	 
+	</div> -->
+</body>
+</html>

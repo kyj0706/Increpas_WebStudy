@@ -1,0 +1,69 @@
+
+#body_div{
+    margin: 0px;
+    width: 100%;
+    height: 1250px;
+
+}
+
+#body_div > div{
+    width: 95%;
+    height: 95%;
+
+    margin: auto;
+}
+#body_div div #title_div{
+    width: 100%;
+    height: 4%;
+    
+}
+#body_div div #title_div h3{
+    height: auto;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+#mem_inform{
+    width: 100%;
+    height: 90%;
+}
+#mem_inform_blank{
+    width: 95%;
+    height: 5%;
+    margin: auto;
+}
+#mem_inform_div1{
+    width: 95%;
+    margin: auto;
+}
+#mem_inform_div1 span{
+    font-size: 22px;
+    color: black;
+    font-weight: bolder;
+}
+
+#mem_inform_input{
+    width: 100%;
+    height: 90%;
+
+}
+
+#mem_inform_input1{
+    width: 95%;
+    height: 100%;
+    margin: auto;
+}
+
+#mem_input label{
+    margin-top: 15px;
+
+}
+
+#mem_save{
+    margin-top: 10px;
+}
+
+#exampleFormControlSelect2{
+    height: 60px;
+}
+
+

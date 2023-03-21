@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+	<!-- 전체조회 -->
+	<select id="board_list" resultType="vo.BoardVo">
+		select * from board order by b_ref desc,b_step asc
+	</select>
+   
+    <!-- 페이징 & 검색조건별 조회 -->
+	<select id="board_condition_list" parameterType="Map" resultType="vo.BoardVo">
+		select 
+			* 
+		from
+		(
+			select 
+			
+				rank () over (order by b_ref desc, b_step asc) as no,
+				b.* 
+			from
+		  		(select * from board) b
+		    
+	    )
+	    where no between #{ start } and #{ end }
+	</select>
+	
+	<!-- 전체 게시판 수 구하기 -->
+   	<select id="board_row_total"  resultType="int">
+		select nvl(count(*),0) from board
+	</select>
+	
+	<!-- b_idx 1건 데이터 조회 -->
+	<select id="board_one"   parameterType="int"  resultType="vo.BoardVo">
+		select * from board where b_idx = #{ b_idx }
+	</select>
+
+	<!-- 조회수 증가 -->
+	<update id="board_update_readhit" parameterType="int">
+		update board set b_readhit = b_readhit + 1
+		where b_idx = #{ b_idx }
+	</update>
+	
+	<!-- 새글쓰기 -->
+	<insert id="board_insert"  parameterType="vo.BoardVo">
+	insert into board values( seq_board_b_idx.nextVal,
+							  #{ b_subject },
+                              #{ b_content },
+                              #{ b_ip },
+                              sysdate,
+                              0,
+                              'y',
+                              #{ mem_idx },
+                              #{ mem_name },
+                              seq_board_b_idx.currVal,
+                              0,
+                              0
+       )
+	</insert>
+	
+	<!-- 삭제처리 : b_use의 상태에 따라 정보를 수정한다 -->
+	<update id="board_update_use" parameterType="int">
+		update board set b_use = 'n' where b_idx=#{ b_idx }
+	</update>
+
+	<update id="board_update_step" parameterType="int">
+		update board set b_step = b_step + 1
+		where b_ref=#{ b_ref } and b_step > #{ b_step }
+	</update>
+	
+	<!-- 답글쓰기 -->
+	<insert id="board_reply"   parameterType="vo.BoardVo">
+	insert into board values( seq_board_b_idx.nextVal,
+                              #{ b_subject },
+                              #{ b_content },
+                              #{ b_ip },
+                              sysdate,
+                              0,
+                              'y',
+   						      #{ mem_idx },
+                              #{ mem_name },
+                              #{ b_ref },
+                              #{ b_step },
+                              #{ b_depth }
+	)
+	</insert>
+	
+	<update id="board_update"  parameterType="vo.BoardVo">
+		update board set  b_subject = #{ b_subject },
+	                      b_content = #{ b_content },
+	                      b_ip = #{ b_ip },
+	                      b_regdate = sysdate
+	    where b_idx=#{ b_idx } 
+	</update>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

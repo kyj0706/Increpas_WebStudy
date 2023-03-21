@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+  #disp{
+       width: 200px;
+       height: 200px;
+       padding: 50px;
+       background-color: black;
+       color:yellow;
+  }
+</style>
+<script	src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+
+  var song1 = "동해물과 백두산이<br>마르고 닮도록<br>하느님이 보우하사<br>우리나라만세<br>";
+  var song2 = "남산위에 저소나무<br>...<br>";
+  var song3 = "가을하늘 공할한데<br>...<br>";
+  var song4 = "이기상과 이맘으로<br>...<br>";
+  
+  var last_song = "(후렴)<br>대한사람 대한으로<br>길이보존하세";
+
+  //jQuery초기화
+  $(document).ready(function(){
+	  
+	  //select change event
+	  $("#song").change(function(){
+		  //select에서 선택된 값 얻어오기
+		  var song_val = $(this).val();
+		  
+		  //console.log(song_val);
+		  if(song_val=='s1'){
+			  //var song = song1 + last_song;
+			  $("#disp").html(song1 + last_song);
+		  }else if(song_val=='s2'){
+			  var song = song2 + last_song;
+			  $("#disp").html(song);
+		  }else if(song_val=='s3'){
+			  var song = song3 + last_song;
+			  $("#disp").html(song);
+		  }else if(song_val=='s4'){
+			  var song = song4 + last_song;
+			  $("#disp").html(song);
+		  }else{
+			  $("#disp").html("애국가 선택하세요");
+			  //document.getElementById("disp").innerHTML = "애국가 선택하세요"; 
+			  
+		  }
+		  
+		  
+	  });
+	  
+	  
+  });
+
+</script>	
+</head>
+<body>
+
+애국가선택: <select id="song">
+                <option value="">::::선택하세요::::</option>
+                <option value="s1">애국가 1절</option>
+                <option value="s2">애국가 2절</option>
+                <option value="s3">애국가 3절</option>
+                <option value="s4">애국가 4절</option>
+			</select>
+<hr>
+<div id="disp">여기에 애국가 출력</div>
+
+
+</body>
+</html>

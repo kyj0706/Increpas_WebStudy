@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script	src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<script type="text/javascript">
+	
+	//정규표현식 패턴
+	// ^ : 시작
+	// $ : 끝
+	// ? : 0 or 1
+	// * : 0..n
+	// + : 1..n
+	
+	var regular_number = /^[0-9]+$/;
+	
+	$(document).ready(function() {
+		
+		$("#plus").click(function() {
+			var n1 = $("#num1").val();
+			var n2 = $("#num2").val();
+			
+			if(regular_number.test(n1)==false){
+				alert('숫자만 입력하세요!!');
+				$("#num1").val("");//값 지우기
+				//document.getElementById("num1").focus();
+				$("#num1").focus();
+				return;
+			}
+			
+			if(regular_number.test(n2)==false){
+				alert('숫자만 입력하세요!!');
+				$("#num2").val("");//값 지우기
+				$("#num2").focus();
+				return;
+			}
+			
+			// 문자 => 숫자 변환
+			var num1 = Number(n1);//parseInt(n1);
+			var num2 = Number(n2);//parseInt(n2);
+			var result = num1 + num2;
+			
+			$("#result").val(result);
+			//document.getElementById("result").value = result;
+		});
+		
+		$("#minus").click(function() {
+			var n1 = $("#num1").val();
+			var n2 = $("#num2").val();
+			
+			if(regular_number.test(n1)==false){
+				alert('숫자만 입력하세요!!');
+				$("#num1").val("");//값 지우기
+				//document.getElementById("num1").focus();
+				$("#num1").focus();
+				return;
+			}
+			
+			if(regular_number.test(n2)==false){
+				alert('숫자만 입력하세요!!');
+				$("#num2").val("");//값 지우기
+				$("#num2").focus();
+				return;
+			}
+			
+			// 문자 => 숫자 변환
+			var num1 = Number(n1);//parseInt(n1);
+			var num2 = Number(n2);//parseInt(n2);
+			var result = num1 - num2;
+			
+			$("#result").val(result);
+			//document.getElementById("result").value = result;
+		});
+		
+		$("#multiply").click(function() {
+			var n1 = $("#num1").val();
+			var n2 = $("#num2").val();
+			
+			if(regular_number.test(n1)==false){
+				alert('숫자만 입력하세요!!');
+				$("#num1").val("");//값 지우기
+				//document.getElementById("num1").focus();
+				$("#num1").focus();
+				return;
+			}
+			
+			if(regular_number.test(n2)==false){
+				alert('숫자만 입력하세요!!');
+				$("#num2").val("");//값 지우기
+				$("#num2").focus();
+				return;
+			}
+			
+			// 문자 => 숫자 변환
+			var num1 = Number(n1);//parseInt(n1);
+			var num2 = Number(n2);//parseInt(n2);
+			var result = num1 * num2;
+			
+			$("#result").val(result);
+			//document.getElementById("result").value = result;
+		});
+		
+		$("#pow").click(function() {
+			var n1 = $("#num1").val();
+			var n2 = $("#num2").val();
+			
+			if(regular_number.test(n1)==false){
+				alert('숫자만 입력하세요!!');
+				$("#num1").val("");//값 지우기
+				//document.getElementById("num1").focus();
+				$("#num1").focus();
+				return;
+			}
+			
+			if(regular_number.test(n2)==false){
+				alert('숫자만 입력하세요!!');
+				$("#num2").val("");//값 지우기
+				$("#num2").focus();
+				return;
+			}
+			
+			// 문자 => 숫자 변환
+			var num1 = Number(n1);//parseInt(n1);
+			var num2 = Number(n2);//parseInt(n2);
+			var result = num1 ** num2;
+			
+			$("#result").val(result);
+			//document.getElementById("result").value = result;
+		});
+		
+		
+		
+		$("#mok").click(function() {
+			var n1 = $("#num1").val();
+			var n2 = $("#num2").val();
+			
+			if(regular_number.test(n1)==false){
+				alert('숫자만 입력하세요!!');
+				$("#num1").val("");//값 지우기
+				//document.getElementById("num1").focus();
+				$("#num1").focus();
+				return;
+			}
+			
+			if(regular_number.test(n2)==false){
+				alert('숫자만 입력하세요!!');
+				$("#num2").val("");//값 지우기
+				$("#num2").focus();
+				return;
+			}
+			
+			
+			// 문자 => 숫자 변환
+			var num1 = Number(n1);//parseInt(n1);
+			var num2 = Number(n2);//parseInt(n2);
+			var result = (num2==0) ? 0 : Math.floor(num1 / num2);
+			
+			$("#result").val(result);
+			
+		});
+		
+		$("#remain").click(function() {
+			var n1 = $("#num1").val();
+			var n2 = $("#num2").val();
+			
+			if(regular_number.test(n1)==false){
+				alert('숫자만 입력하세요!!');
+				$("#num1").val("");//값 지우기
+				//document.getElementById("num1").focus();
+				$("#num1").focus();
+				return;
+			}
+			
+			if(regular_number.test(n2)==false){
+				alert('숫자만 입력하세요!!');
+				$("#num2").val("");//값 지우기
+				$("#num2").focus();
+				return;
+			}
+			
+			// 문자 => 숫자 변환
+			var num1 = Number(n1);//parseInt(n1);
+			var num2 = Number(n2);//parseInt(n2);
+			var result = (num2==0) ? 0 : (num1 % num2);
+			
+			$("#result").val(result);
+			
+		});
+		
+		//지우기 버튼 클릭하면 
+		$("input[value='지우기']").click(function(){
+			$("#num1").val("");
+			$("#num2").val("");
+			$("#result").val("");
+			
+			
+		});
+
+	});
+	
+	/* $(document).ready(function(){
+			//동적으로 Event처리 
+			$("#plus").bind('click',function(){
+				alert('ddd');
+				$(this).unbind('click');//이벤트 제거
+			});
+	}); */
+</script>
+
+<style type="text/css">
+  	/* Attribute Selector */
+    input[type='button'] {
+       width: 50px;
+    }
+    
+    /* value 속성으로 */
+    input[value ='합']{
+    	background: black;
+    	color: white;  
+    	
+    }
+
+</style>
+
+
+</head>
+<body>
+	<input type="text" id="num1"   size="5" /> 
+	<input type="text" id="num2"   size="5" /> =
+	<input type="text" id="result" size="7" />
+	<br>
+	<input type="button" id="plus"     value="합" />
+	<input type="button" id="minus"    value="차" />
+	<input type="button" id="multiply" value="곱" />
+	<input type="button" id="pow"      value="누승" />
+	<input type="button" id="mok"      value="몫" />
+	<input type="button" id="remain"   value="나머지" />
+	<input type="button" id="remove"   value="지우기" />
+</body>
+</html>
+

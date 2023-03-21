@@ -1,0 +1,45 @@
+
+#body_div h1{
+    padding: 30px;
+    font-weight: bolder;
+}
+
+#charge_div{
+    margin-left: 50px;
+}
+
+#charge_table{
+    
+    width: 1000px;
+    border-top: 1px solid gainsboro;
+    border-bottom: 1px solid gainsboro;
+}
+
+#charge_table tr{
+    height: 30px;
+    font-size: 18px;  
+    line-height: 30px ;
+}
+
+#charge_table tr:first-of-type{
+    height: 40px;
+    font-size: 25px;
+}
+
+label{
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+#charge_table th{
+    text-align: center;
+    border-bottom: 1px solid gainsboro;
+  
+}
+
+
+
+#charge_table th:first-of-type{
+    text-align: left;
+}

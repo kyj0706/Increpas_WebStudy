@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   <mapper namespace="com.example.teamproject.Mapper.memberMapper">
+   
+   <!-- 마이 페이지 이동 -->
+   <select id="memberMypage" resultType="com.example.teamproject.Vo.MemberVo">
+   
+   select * from member where M_ID=#{M_ID}
+   
+   </select>
+   
+   <!-- 개인페이지 업데이트 -->
+   <update id="member_Modify">
+   
+  update member set M_NAME = #{m_name} ,m_Nickname = #{m_nickname},m_Birth = #{m_birth},m_Gender = #{m_gender},m_Email = #{m_email},
+	m_Post = #{m_post},m_Add1 = #{m_add1},m_Add2 = #{m_add2},m_Phone = #{m_phone} where m_id = #{m_id}
+   
+   </update>
+   
+   <!-- 충전 페이지 -->
+   <select id="member_charge" resultType="com.example.teamproject.Vo.MemberVo">
+   
+   select * from member where M_ID=#{M_ID}
+   
+   </select>
+   
+   <!-- 포인트 충전-->
+   <update id="member_pointcharge">
+   
+   update member set m_point = #{m_point} where m_id = #{m_id}
+   
+   </update>
+
+
+	<!-- 예약 리스트  -->
+	<select id="selectReserList" resultType="com.example.teamproject.Vo.ReservationVo">
+	select reser_no,finfo_price,finfo_name,to_char(reser_date,'yyyy-mm-dd') reser_date,reser_time,reser_status,to_char(apply_date,'yyyy-mm-dd') apply_date from  reservation join finfo using (finfo_no) join member using(m_no) where m_no = #{m_no} order by reser_no desc
+	</select>
+	
+	<select id="selectQBoardList" resultType="com.example.teamproject.Vo.QBoardVo">
+		select q_num,q_title,to_char(q_date,'yyyy-mm-dd') q_date,q_category,q_status from q_board where member_id = #{m_id} and q_member = #{member} order by q_num desc
+	</select>
+	<select id="selectReserList2" resultType="com.example.teamproject.Vo.ReservationVo">
+	select * from( select rownum rnum,b.* from(select reser_no,finfo_price,finfo_name,to_char(reser_date,'yyyy-mm-dd') reser_date,reser_time,reser_status,to_char(apply_date,'yyyy-mm-dd') apply_date from  reservation join finfo using (finfo_no) join member using(m_no) where m_no = #{m_no} order by reser_no desc)b) where rnum between 1 and 3
+	</select>
+	
+	<select id="selectQBoardList2" resultType="com.example.teamproject.Vo.QBoardVo">
+		select * from( select rownum rnum,b.* from(select q_num,q_title,to_char(q_date,'yyyy-mm-dd') q_date,q_category,q_status from q_board where member_id = #{m_id} and q_member = #{member} order by q_num desc)b) where rnum between 1 and 3
+	</select>
+	
+    <!-- 이메일 인증 -->
+   
+  <update id="email_check">
+   
+   update member set email_check = #{email_check},m_email = #{m_email} where m_id = #{m_id}
+   
+   </update> 
+   </mapper>

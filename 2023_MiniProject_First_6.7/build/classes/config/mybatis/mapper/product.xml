@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product">
+
+  <select id="product_list"  resultType="product">
+     select * from product_test
+  </select>
+  
+  <select id="product_one_idx"  parameterType="int" resultType="product">
+     select * from product_test where product_idx=#{ product_idx }
+  </select>
+  
+  <select id="product_one" parameterType="int" resultType="product">
+		select * from product where product_idx=#{ product_idx }
+  </select>	
+  
+  <insert id="product_insert"  parameterType="product">
+      insert into product_test values(seq_product_test_idx.nextVal,
+                                   #{ product_name }, 
+                                   #{ product_content }, 
+                                   #{ product_price },
+
+                                   #{ product_company }, 
+                                   #{ product_category }, 
+                                   
+                                   #{ product_image1 }, 
+                                   #{ product_image2 },
+                                   #{ product_image3 }, 
+                                   #{ product_image4 },
+                                    
+                                   default
+                                   )
+  </insert>
+  
+  <update id="product_update"  parameterType="product">
+      update product_test set 
+      					   product_category=#{ product_category }, 
+      					   product_name=#{ product_name },
+                      	   product_company=#{ product_company }, 
+                      	   product_content=#{ product_content },
+                      	   
+                     	   product_price=#{ product_price }, 
+                     	   product_sale_price=#{ product_sale_price },
+                     	   product_bid_price=#{ product_bid_price },
+                     	   
+                     	   product_image1=#{ product_image1 },
+                     	   product_image2=#{ product_image2 },
+                     	   product_image3=#{ product_image3 },
+                     	   product_image4=#{ product_image4 },
+                     	   
+                     	   product_start_date=#{ product_start_date },
+                     	   product_end_date=#{ product_end_date },
+                     	   
+                     	   where 
+                     	   product_idx=#{ product_idx }
+  </update>
+  
+  <delete id="product_delete"  parameterType="int">
+      delete from product_test 
+      where product_idx=#{ product_idx }
+  </delete>
+  
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+#main_menu{
+	list-style: none;
+	text-align: center;
+	padding-top: 10px;
+}
+
+#main_menu>li{
+	display:inline-block; 
+	margin: 10px;
+}
+
+#main_menu >li > a{
+	
+	display: block;
+
+	width: 120px;
+	margin-left: 30px;	
+	
+	font-size:18px;
+	font-weight: bold;	
+	
+	
+	text-decoration: none;
+	text-shadow: 2px 2px 10px yellow;
+	color: black;
+}
+
+#main_menu>li>a:hover {
+	color: rgb(128, 0, 255);
+}
+

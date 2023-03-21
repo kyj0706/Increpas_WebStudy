@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	img { width: 300px; height: 300px;}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+var timer=null;
+var bRight=true;
+	//  특정시간마다 함수를 호출 
+	//  1회마다 marginLeft에 
+	//  20px만큼 증가 시킨다.
+		
+	$(document).ready(function(){
+		
+		$("img").css("border","2px solid red");
+		//.css("marginLeft","10px");
+
+		$("input[value='이동']").click(function(){
+			if(timer==null)
+			   timer = setInterval(moveImage,10);
+		});
+		$("input[value='멈춰']").click(function(){
+			if(timer==null)
+			   timer = setInterval(moveImage,0);
+		});
+		
+		
+		var position=0;
+		function moveImage(){
+			
+			if(bRight)
+			   position+=2;
+			else
+			   position-=2;
+			
+			if(position>400)bRight=false;//left
+			if(position<0)bRight=true;   //right
+			
+			
+			// css속성 : margin-left
+			//           background-color 
+			$("img").css("marginLeft",position);
+
+		}
+	});
+</script>
+</head>
+<body>
+	<input type="button" value="이동" /> <br>
+	<input type="button" value="멈춰" />
+	<img  src="images/ex.png" />
+</body>
+</html>

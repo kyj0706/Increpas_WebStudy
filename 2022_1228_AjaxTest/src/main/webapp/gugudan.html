@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+  #disp{
+      width: 200px;
+      height: 500px;
+      padding: 20px;
+      background: black;
+      color:white;
+      font-size: 20px;
+      font-weight: bold;
+  }
+
+</style>
+
+<!-- 자바스크립트 외부라이브러리 연결 -->
+<script type="text/javascript"  src="js/httpRequest.js"></script>
+
+<script type="text/javascript">
+  
+  var regular_dan = /^[2-9]{1}$/;
+  
+  function send(){
+	
+	  var dan = document.getElementById("dan").value;
+	  
+	  if(regular_dan.test(dan)==false){
+		  alert('2~9사이의 숫자만 입력하세요');
+		  document.getElementById("dan").value='';
+		  document.getElementById("dan"). focus();
+		  return;
+	  }
+	  
+	  var url   = "gugudan.do"; //  GugudanAction
+	  var param = "dan=" + dan;
+	  
+	  //Ajax로 요청
+	  sendRequest(url,param,resultFn,"GET");
+  }
+  
+  function resultFn(){
+	  
+	  console.log(xhr.readyState, xhr.status);
+	  if(xhr.readyState==4 && xhr.status==200){
+		  
+		  var data = xhr.responseText;
+		  alert(data);
+		  
+		  //서버로브터 전달 받기 
+		  document.getElementById("disp").innerHTML= data;
+	  }
+	  
+	  
+  }
+  
+  
+</script>
+
+</head>
+<body>
+단:<input id="dan">
+   <input type="button" value="계산해줘" onclick="send();">
+<hr>
+
+<div id="disp">여기 출력</div>
+   
+</body>
+</html>

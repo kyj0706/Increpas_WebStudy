@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.teamproject.Mapper.QBoardMapper">
+		<!-- 게시글수 가져오기 -->
+	<select id="selectQnaBoardListCount" resultType="int">
+		select count(*) from qna_board where qb_category like '%'|| #{category}||'%'  
+	</select>
+	
+	
+	
+	<select id="selectQBoardList" resultType="com.example.teamproject.Vo.QBoardVo">
+			select * from q_board where member_id = #{m_id} order by q_group desc, q_step asc
+	</select>
+	<select id="selectView" resultType="com.example.teamproject.Vo.QBoardVo">
+		select * from q_board where q_num = #{q_num}
+	</select>
+	<insert id="qBoardWrite">
+		insert into q_board values(q_seq.nextval,#{qBoardVo.q_title},#{qBoardVo.q_content},sysdate,#{qBoardVo.q_category},#{member},'0',#{qBoardVo.member_id})
+	</insert>
+	<select id="selectQnaInfo" resultType="com.example.teamproject.Vo.QnaBoardVo">
+		select * from qna_board where qb_num = #{qb_num}
+	</select>
+	<select id="selectQBoardInfo" resultType="com.example.teamproject.Vo.QBoardVo">
+		select * from q_board where q_num = #{q_num}
+	</select>
+<insert id="qBoardReply">
+	insert into reply_board values (#{q_num},#{r_title},#{r_content},sysdate)
+</insert>	
+
+<update id="changeStatus">
+	update q_board set q_status = '1' where q_num = #{q_num}
+</update>
+
+<select id="selectReply" resultType="com.example.teamproject.Vo.ReplyVo">
+	select * from reply_board where q_num = #{q_num}
+</select>
+ </mapper>

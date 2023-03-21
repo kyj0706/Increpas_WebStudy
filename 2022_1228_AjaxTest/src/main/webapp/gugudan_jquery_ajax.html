@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+  #disp{
+      width: 200px;
+      height: 500px;
+      padding: 20px;
+      background: black;
+      color:white;
+      font-size: 20px;
+      font-weight: bold;
+  }
+
+</style>
+<!-- jQuery -->
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript">
+  
+  var regular_dan = /^[2-9]{1}$/;
+  
+  function send(){
+	
+	  var dan = $("#dan").val();
+	  
+	  if(regular_dan.test(dan)==false){
+		  alert('2~9사이의 숫자만 입력하세요');
+		  $("#dan").val('');
+		  $("#dan").focus();
+		  return;
+	  }
+	  
+	
+	  
+	 //jQuery를 통해서 Ajax통신 이용
+	 $.ajax({ 
+		 url		:'gugudan.do',	//호출 할 서버
+		 
+		 type		:'GET',			//요청방식
+		 async		: true,			//비동기(true), 비동기(false)
+		 //기본 defalut 가 get과 true 이기때문에 빼도 무관하다  
+		 //즉 오히려 FM대로 하면 오타로 인해서 문제가 생길수있으니깐 알아둬라
+		 
+		 data		:{'dan':dan},	//parameter
+		 dataType	:'html',		//수신타입(text,json,xml... 등등)
+		 
+		 //success(결과처리 성공시)
+		 success	: function(res_data){//여기에서의 data는 ajax의 data하고는 다른거다
+			 
+			 $("#disp").html(res_data);
+			 
+		 },
+		 
+		 //error(진행 -> 과정/결과시 에러)
+		 error		: function(err){
+			 alert(err.responseText);
+		 }
+	 
+	 });
+	  
+	  
+  }
+  
+  
+  
+  
+</script>
+
+</head>
+<body>
+단:<input id="dan">
+   <input type="button" value="계산해줘" onclick="send();">
+<hr>
+
+<div id="disp">여기 출력</div>
+   
+</body>
+</html>

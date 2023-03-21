@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+	<person>
+	   <name></name>
+	   <age></age>
+	   <tel></tel>
+	</person>
+	<person>
+	   <name></name>
+	   <age></age>
+	   <tel></tel>
+	</person>
+	<person>
+	   <name></name>
+	   <age></age>
+	   <tel></tel>
+	</person>
+
+</root>

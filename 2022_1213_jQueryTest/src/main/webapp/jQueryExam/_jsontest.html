@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- JSON (Javascript Object Notation) 
+		:자바스크립트 객체 표현법
+	## 표현방법 ##
+	{ key1 : value1,  key2 : value2, ... }
+	
+	ex)한사람의 정보를 가지고 온다고 했을때
+	1. Java에서 객체 설계방법
+		class Person{
+			String name;
+			int    age;
+			String tel;
+		}
+	   Person p = new Person();
+	   
+	
+-->
+<!-- 2. JSON 표기법 -->
+<script type="text/javascript">
+	//개인정보를 저장할 객체 선언 
+	//		   Key :  value			
+	var p = {"name" : "일길동", "age" : 20 , "tel" : "010-111-1234"};
+	console.log("이름",p.name);
+	console.log("나이",p.age);
+	console.log("번호",p.tel);
+	
+	var key = "name";
+	// square bracket(key값이 변수일때)
+	console.log("이름:" ,p[key]);
+	
+	//
+	var p1 = {
+			  "name"  	: {"family_name":"홍","given_name":"길동"},
+			  "hobby"	: ["독서","영화","낚시"],
+			  "married" : false,
+			  "tel"		: {"office" : "02-123-3456","phone" :"010-111-1234"},
+			  "regdate" : new Date()
+	
+			};
+	console.log("_____________________")
+	var name = (p1.name.family_name + p1.name.given_name);
+	console.log("이름 :", name);
+	
+	var hobby_list = "";
+	for(var i=0; i<p1.hobby.length; i++){
+		hobby_list += p1.hobby[i] + " ";
+	}
+	
+	console.log("취미 :", hobby_list);
+	
+	console.log("결혼 :", (p1.married) ? "기혼" : "미혼");
+	
+	console.log("사무실 :", p1.tel.office);
+	console.log("핸드폰 :", p1.tel.phone);
+	
+	console.log("등록일자 :" ,
+				p1.regdate.getFullYear() +"년",
+				p1.regdate.getMonth()+1 +"월",
+				p1.regdate.getDay() +"일"
+				);
+	
+	var hour	 = p1.regdate.getHours();
+	var minutes  = p1.regdate.getMinutes();
+	var seconds  = p1.regdate.getSeconds();
+	var ampm;
+	
+	ampm = (hour<12) ? "오전":"오후";
+	
+	console.log("등록시간 :",
+				//p1.regdate.getHours()+"시",
+				//p1.regdate.getMinutes()+"분"
+				hour+"시",
+				minutes+"분",
+				seconds+"초",
+				ampm
+	
+				);
+	
+
+	
+</script>
+
+
+</head>
+<body>
+
+
+</body>
+</html>

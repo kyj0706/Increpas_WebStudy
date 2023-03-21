@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.teamproject.Mapper.NoriBoardMapper">
+		<!-- 게시글수 가져오기 -->
+	<select id="selectNoriBoardCount" resultType="int">
+		select count(*) from(select nb_num,nb_title,nb_content,m_nickname,nb_category,nb_date,nb_hit from nori_board join member using(m_id)
+		where nb_category like '%'||#{sportsCategory}||'%')
+		<where>
+			<if test='searchCategory == null'>
+			</if>
+			<if test='searchCategory == "all"'>
+				nb_title like '%'||#{searchWord}||'%' or nb_content like '%'||#{searchWord}||'%' or M_NICKNAME like '%'||#{searchWord}||'%' 
+			</if>
+			<if test='searchCategory == "title"'>
+				nb_title like '%'||#{searchWord}||'%' 
+			</if>
+			<if test='searchCategory == "content"'>
+				nb_content like '%'||#{searchWord}||'%' 
+			</if>
+			<if test='searchCategory == "name"'>
+					M_NICKNAME like '%'||#{searchWord}||'%' 
+			</if>
+		</where>
+	</select>
+	
+	
+	
+	<select id="selectNoriBoardList" resultType="com.example.teamproject.Vo.NoriBoardVo">
+			select * from ( 
+			select rownum rnum, b.* from (
+			select *from (select nb_num,nb_title,nb_content,m_nickname,to_char(nb_date,'yyyy-mm-dd hh:mi') nb_date,nb_hit,nb_category from nori_board join member using (m_id) 
+			where nb_category like '%'||#{sportsCategory}||'%')  
+			<where>
+				<if test='searchCategory == null'>
+					
+				</if>
+				<if test='searchCategory == "all"'>
+					nb_title like '%'||#{searchWord}||'%' or nb_content like '%'||#{searchWord}||'%' or M_NICKNAME like '%'||#{searchWord}||'%'  
+				</if>
+				<if test='searchCategory == "title"'>
+					nb_title like '%'||#{searchWord}||'%'
+				</if>
+				<if test='searchCategory == "content"'>
+					nb_content like '%'||#{searchWord}||'%' 
+				</if>
+				<if test='searchCategory == "name"'>
+					M_NICKNAME like '%'||#{searchWord}||'%' 
+				</if>
+
+				
+			</where>
+			order by nb_num desc)b) where rnum between #{startRow} and #{endRow}
+	</select>
+
+	<!-- 글쓰기 -->
+	<insert id="noriBoardInsert" >
+	<selectKey keyProperty="nb_num" order="BEFORE" resultType="int" >
+			select nb_seq.nextval from dual
+		</selectKey>
+		insert into nori_board values(#{nb_num},#{nb_title},#{nb_content},#{nb_category},sysdate,0,#{m_id})
+	</insert>
+	<!--이미지 입력  -->
+	<insert id="noriBoardImgInsert">
+		insert into nori_board_images values(nb_img_seq.nextval,#{fileName},#{nb_num})
+	</insert>
+	
+	<!-- 뷰페이지 가져오기 -->
+	<select id="selectNoriBoardView" resultType="com.example.teamproject.Vo.NoriBoardVo">
+		select nb_num,nb_title,nb_content,m_nickname,to_char(nb_date,'yyyy-mm-dd') nb_date,nb_hit,nb_category,m_id from nori_board join member using(m_id) where nb_num = #{nb_num} 
+	</select>
+	<!-- 이미지 이름 가져오기  -->
+	<select id="selectNoriBoardImg" resultType="com.example.teamproject.Vo.NoriBoardImgVo">
+		select * from nori_board_images where nb_num = #{nb_num}
+	</select>
+	<!-- 게시글 조회수 증가  -->
+	<update id="updateNoriBoardHit">
+		update nori_board set nb_hit = nb_hit+1 where nb_num = #{nb_num}
+	</update>
+	<!-- 게시글 다음글 가져오기 -->
+	<select id="selectNextView" resultType="com.example.teamproject.Vo.NoriBoardVo">
+		select nb_num from
+		(select rownum rnum,b.* from
+		(select * from nori_board join member using(m_id) order by nb_num desc) b ) where rnum = 
+		(select rnum from(select rownum rnum,b.*from (select * from nori_board join  member using(m_id)
+		order by nb_num desc)b) where nb_num = #{nb_num})+1
+	</select>
+	<!-- 게시글 이전글 가져오기  -->
+	<select id="selectPreView" resultType="com.example.teamproject.Vo.NoriBoardVo">
+		select nb_num from
+		(select rownum rnum,b.* from
+		(select * from nori_board join member using(m_id) order by nb_num desc) b ) where rnum = 
+		(select rnum from(select rownum rnum,b.*from (select * from nori_board join  member using(m_id)
+		order by nb_num desc)b) where nb_num = #{nb_num})-1
+	</select>
+	<!--댓글 전체개수  -->
+	<select id="selectAllNoriBoardCommentCount" resultType="int">
+		select count(*) from nori_board_comment where nb_num = #{nb_num}
+	</select>
+	<!-- 댓글전체 가져오기 -->
+	<select id="selectAllNoriBoardComment" resultType="com.example.teamproject.Vo.NoriBoardCommentVo">
+		select c_no,m_nickname,c_content,to_char(c_date, 'yyyy-mm-dd') c_date,nb_num,m_id from nori_board_comment join member using (m_id) where nb_num = #{nb_num}
+	</select>
+	
+	<!-- 게시글 수정 -->
+	<update id="noriBoardModify">
+		update nori_board set nb_title = #{nb_title} , nb_content = #{nb_content}, nb_category = #{nb_category}, nb_date = sysdate where nb_num = #{nb_num}
+	</update>
+	<!--게시글 이미지 수정  -->
+	<update id="noriBoardImgModify">
+		update nori_board_images set img_name = #{fileName} where img_no = #{img_no}
+	</update>
+	
+		<!-- 게시글 지우기 -->
+	<delete id="noriBoardDelete">
+		delete nori_board where nb_num = #{nb_num}
+	</delete>
+	<!-- 게시글 이미지 지우기 -->
+	<delete id="noriBoardDeleteImg">
+		delete nori_board_images where nb_num = #{nb_num}
+	</delete>
+	
+	<!--게시글 댓글달기  -->
+	<insert id="noriBoardCommentWrite">
+		<selectKey keyProperty="c_no" order="BEFORE" resultType="int" >
+			select nb_comment_seq.nextval from dual
+		</selectKey>
+		insert into nori_board_comment values(#{c_no},#{c_content},sysdate,#{nb_num},#{m_id})
+	</insert>
+	<!--댓글 1개 가져오기  -->
+	<select id="selectOneNoriComment" resultType="com.example.teamproject.Vo.NoriBoardCommentVo">
+		select c_no,m_nickname,c_content,to_char(c_date, 'yyyy-mm-dd') c_date,nb_num,m_id from nori_board_comment join member using (m_id) where c_no = #{c_no}
+	</select>
+	<!--댓글 수정  -->
+	<update id="noriBoardCommentModify">
+		update nori_board_comment set c_content = #{c_content}, c_date = sysdate where c_no = #{c_no}
+	</update>
+	<!-- 댓글 삭제 -->
+	<delete id="noriBoardCommentDelete">
+		delete nori_board_comment where c_no = #{c_no}
+	</delete> 
+ </mapper>

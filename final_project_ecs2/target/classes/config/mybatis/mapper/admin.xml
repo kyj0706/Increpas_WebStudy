@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+  
+  
+  <!-- 회원총인원 -->
+  <select id="c_member_list"  resultType="vo.C_memberVo">
+    select * from c_member
+  </select>
+  
+  <!-- 회원최근가입수(1일) -->
+  
+  
+  <!-- 게시판수 -->
+  <select id="c_borde_list" resultType="vo.C_boardVo">
+  	select * from c_board
+  </select>
+  
+  
+  <!-- 충전소수 -->
+  
+  
+  
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

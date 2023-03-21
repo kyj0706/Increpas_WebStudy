@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- jQuery를 사용하려면... -->
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript">
+
+  
+  /* jQuery 초기화  */
+  // jQuery(document).ready(function(){});
+  $(document).ready(function(){
+	  
+	//현재 시스템 날짜 구하기
+	  var today = new Date();
+	  var year  = today.getYear() + 1900;// 1900 
+	  var month = today.getMonth() + 1;  // 0: 1월
+	  var day   = today.getDate();
+	  
+	  var msg = "안녕하세요 " + year  + "년 " + 
+	                            month + "월 "  +
+	                            day   + "일  입니다";
+	  //alert(msg);
+	  //var msg_ctrl = document.getElementById("msg");
+	  //msg_ctrl.innerHTML = msg;
+	  
+	  $("div#msg").html(msg);
+	  
+  });
+
+</script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$( function() {
+  $( "#accordion" ).accordion();
+} );
+</script>
+
+
+
+</head>
+<body>
+ 
+<div id="msg"></div>
+
+<style>
+   #menu_area{
+        width: 200px;
+        height: 300px;  
+   }
+</style>
+
+<div id="menu_area">
+	<div id="accordion">
+	  <h3>회사소개</h3>
+	  <div>
+	    <p>
+	      <ul>
+	         <li><a href="#">인사말</a></li>
+	         <li><a href="#">연혁</a></li>
+	         <li><a href="#">오시는길</a></li>
+	      </ul> 
+	    </p>
+	  </div>
+	  <h3>상품소개</h3>
+	  <div>
+	    <p>
+	    
+	    </p>
+	  </div>
+	  <h3>오시는길</h3>
+	  <div>
+	    <p>
+	    
+	    </p>
+	    
+	  </div>
+	</div>
+</div>
+ 
+</body>
+</html>

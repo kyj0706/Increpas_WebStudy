@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#content{
+		width: 1200px;
+		height: 600px;
+		background-color: skyblue;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	img {
+		width: 200px;
+		height: 250px;
+	}
+	
+	/* popup  */
+	#movie{
+		width: 200px;
+		height: 300px;
+		border: 2px solid red;
+		position: absolute; /* 절대좌표:부모기준 */
+		top:150px;
+		left:50px;
+		padding: 20px;
+		background-color: #cccccc;
+ 		display: none;  /* hidden속성 */
+	}
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+	function showdiv(){
+		
+		//var movie = document.getElementById("movie");
+		//movie.style.display="block";
+		
+		//$("#movie").css("display","block");
+		$("#movie").show();
+	}
+	
+	function hidediv(){
+		//var movie = document.getElementById("movie");
+		//movie.style.display="none";
+		
+		//$("#movie").css("display","none");
+		$("#movie").hide();
+		
+	}
+
+</script>
+</head>
+<body>
+    <!-- popup window  --> 
+	<div id="movie" style="display: none;">
+		<div >
+			<a href="javascript:hidediv();">닫기</a><br>
+			<img src="images/movie1.jpg" />
+		</div>
+	</div>
+	
+
+	<div id="content">
+		<h2>피카디리 영화관</h2>
+		<p>
+			저희 영화관은 멀티플렉스 영화관이지만
+			사실 1개의 영화만 상영합니다.
+			
+			왜냐면 망했거든요 ㅠ.ㅠ
+		</p>
+		<a href="javascript:showdiv();">영화보기</a>
+	</div>
+
+
+</body>
+</html>

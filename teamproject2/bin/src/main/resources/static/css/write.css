@@ -1,0 +1,248 @@
+@charset "UTF-8";
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
+	em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
+	b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
+	details, embed, figure, figcaption, footer, header, hgroup, menu, nav,
+	output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	box-sizing: border-box;
+}
+
+#div {
+	width: 100%;
+	height: 1100px;
+}
+
+#header_div{
+  width: 100%;
+  height: 14%;
+}
+
+#header_img {
+  background-image: url("../img/main4.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 70%;
+}
+/*-------------------------------------------------------------*/
+#body_div {
+	width: 100%;
+	height: 80%;
+}
+
+#body_nav {
+	width: 93%;
+	height: 130px;
+	margin: auto;
+}
+
+#body_list {
+	width: 100%;
+	margin: auto;
+}
+
+#div_nav {
+	width: 100%;
+	height: 130px;
+	padding: 30px;
+	margin-bottom: 0px;
+}
+
+#ul_nav {
+	list-style-type: none;
+	width: 100%;
+	height: 70px;
+	line-height: 70px;
+}
+
+#ul_nav li {
+	display: inline-block;
+	font-size: 30px;
+	font-weight: bolder;
+	height: 100%;
+	width: 25%;
+	text-align: center;
+	border: 1px solid black;
+	float: left;
+}
+
+#ul_nav li:first-of-type {
+	background-color: rgb(189, 183, 183);
+}
+
+#list_table {
+	border-collapse: collapse;
+	width: 87%;
+	margin: auto;
+	margin-top: 10px;
+}
+
+#list_tr {
+	border-top: 3px solid black;
+	height: 70px;
+}
+
+#list_tr td {
+	height: 70px;
+	line-height: 70px;
+	font-weight: bolder;
+	font-size: 30px;
+}
+
+.list_tr_td td {
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+td {
+	border-top: 2px solid silver;
+	border-bottom: 2px solid silver;
+}
+
+#body_header_div {
+	width: 100%;
+	margin: auto;
+	margin-top: 20px;
+}
+
+#body_header_div1 {
+	margin: auto;
+	width: 50%;
+	text-align: right;
+	margin-bottom: 10px;
+	margin-right: 0px;
+}
+
+#category_select {
+	display: inline-block;
+	width: 20%;
+}
+
+#exampleFormControlInput1 {
+	width: 50%;
+	text-align: left;
+	display: inline-block;
+}
+
+#footer_div_btn {
+    width: 90%;
+    height: auto;
+    margin: auto;
+    margin-bottom: 50px;
+    text-align: right;
+}
+
+#btn_list {
+	width: 120px;
+	height: 60px;
+	font-size: 30px;
+	font-weight: bolder;
+}
+
+#btn_save {
+	width: 120px;
+	height: 60px;
+	font-size: 30px;
+	font-weight: bolder;
+}
+
+#btn_cancle {
+	width: 120px;
+	height: 60px;
+	font-size: 30px;
+	font-weight: bolder;
+}
+
+/*-------------------------------------------------------------------------*/
+#footer_div {
+	width: 100%;
+	height: 10%;
+	border: 1px solid black;
+	background-color: #fafbfc;
+}
+
+/*-------------------------------------------------------------------*/
+#write_div {
+	width: 90%;
+	margin: auto;
+}
+
+h1 {
+	font-size: 28px;
+}
+
+.write_label {
+	display: inline-block;
+	width: 20%;
+	font-size: 23px;
+	font-weight: bolder;
+	margin-bottom: 5px;
+}
+
+.input_class {
+	display: inline-block;
+	height: 40px;
+	width: 100%;
+	font-size: 20px;
+}
+
+.write_class {
+	height: 100px;
+}
+
+#write_name {
+	margin-top: 20px;
+}
+
+#input_content {
+	width: 100%
+}
+
+textarea {
+	resize: none;
+	position: relative;
+	font-size: 20px;
+	height: 300px;
+}
+
+#content_div {
+	margin-bottom: 130px;
+}
+
+#btn_span {
+	display: inline-block;
+	width: 20%;
+	text-align: right;
+}
+
+#sub_btn {
+	width: 120px;
+	height: 50px;
+	background-color: #B0E0E6;
+	color: white;
+	font-size: 20px;
+	font-weight: bolder;
+	cursor: pointer;
+	border: none;
+}
+
+#write_category {
+	height: 50px;
+}
+
+select {
+	width: 90px;
+	word-wrap: normal;
+	height: 30px;
+}
